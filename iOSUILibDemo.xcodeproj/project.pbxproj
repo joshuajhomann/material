@@ -33,6 +33,7 @@
 		8885FE9F1AA5B5D700AD4F04 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE911AA5B5D700AD4F04 /* Roboto-Regular.ttf */; };
 		8885FEA01AA5B5D700AD4F04 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE921AA5B5D700AD4F04 /* Roboto-Thin.ttf */; };
 		8885FEA11AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE931AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf */; };
+		889D16F81B4BDFB700188687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D8DE6E1A7A16E700D083A1 /* Main.storyboard */; };
 		88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B698011B25A46600BF3B19 /* SliderViewController.m */; };
 		88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B698021B25A46600BF3B19 /* SliderViewController.xib */; };
 		88B698081B25A5A500BF3B19 /* App Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B698071B25A5A500BF3B19 /* App Icon.png */; };
@@ -450,6 +451,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889D16F81B4BDFB700188687 /* Main.storyboard in Resources */,
 				8885FEA11AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf in Resources */,
 				8885FE9E1AA5B5D700AD4F04 /* Roboto-MediumItalic.ttf in Resources */,
 				8885FE9D1AA5B5D700AD4F04 /* Roboto-Medium.ttf in Resources */,
