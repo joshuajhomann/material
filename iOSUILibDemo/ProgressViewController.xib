@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProgressViewController">
+            <connections>
+                <outlet property="determinteProgress" destination="Ms6-yX-a6H" id="3vb-Z7-BSj"/>
+                <outlet property="linearDeterminateProgress" destination="bki-Pm-9jk" id="4Mp-p5-lnI"/>
+                <outlet property="linearIndeterminateProgress" destination="7LY-bv-PJl" id="Slu-7T-rA0"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7LY-bv-PJl" customClass="MDProgress">
+                    <rect key="frame" x="8" y="242" width="304" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="CER-kE-IYN"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="style">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Circular Indeterminate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VhT-Or-mcH">
+                    <rect key="frame" x="8" y="88" width="174" height="20"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linear Determinate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZaZ-Us-EFu">
+                    <rect key="frame" x="10" y="152" width="302" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="81N-bM-dcJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linear Indeterminate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIW-41-QSa">
+                    <rect key="frame" x="8" y="214" width="304" height="20"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLg-fo-0qQ" customClass="MDProgress">
+                    <rect key="frame" x="264" y="75" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="Ebp-nE-UKx"/>
+                        <constraint firstAttribute="height" constant="48" id="VoK-ae-swK"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                            <color key="value" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bki-Pm-9jk" customClass="MDProgress">
+                    <rect key="frame" x="8" y="181" width="304" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Jie-cy-hLY"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="style">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="type">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ms6-yX-a6H" customClass="MDProgress">
+                    <rect key="frame" x="264" y="11" width="48" height="48"/>
+                    <color key="tintColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Ui1-Of-w79"/>
+                        <constraint firstAttribute="width" constant="48" id="oq4-3M-wZ6"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                            <color key="value" red="0.40784313729999999" green="0.71764705880000002" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="type">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                            <real key="value" value="0.25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Circular Determinate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwW-aI-a9G">
+                    <rect key="frame" x="8" y="24" width="161" height="20"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="7LY-bv-PJl" secondAttribute="trailing" constant="8" id="06b-Jz-YFZ"/>
+                <constraint firstItem="gwW-aI-a9G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="2yo-yQ-c14"/>
+                <constraint firstItem="kIW-41-QSa" firstAttribute="top" secondItem="bki-Pm-9jk" secondAttribute="bottom" constant="8" id="9jz-T3-qRH"/>
+                <constraint firstItem="QLg-fo-0qQ" firstAttribute="centerY" secondItem="VhT-Or-mcH" secondAttribute="centerY" constant="0.5" id="BBb-WO-Cqz"/>
+                <constraint firstAttribute="trailing" secondItem="QLg-fo-0qQ" secondAttribute="trailing" constant="8" id="CGR-jG-0vs"/>
+                <constraint firstAttribute="trailing" secondItem="ZaZ-Us-EFu" secondAttribute="trailing" constant="8" id="Ekm-QD-DLn"/>
+                <constraint firstItem="kIW-41-QSa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="HZr-Lg-jP7"/>
+                <constraint firstItem="VhT-Or-mcH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="MDo-50-uyR"/>
+                <constraint firstAttribute="trailing" secondItem="bki-Pm-9jk" secondAttribute="trailing" constant="8" id="NHO-AV-gOW"/>
+                <constraint firstItem="gwW-aI-a9G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Skk-fk-Kav"/>
+                <constraint firstItem="ZaZ-Us-EFu" firstAttribute="top" secondItem="VhT-Or-mcH" secondAttribute="bottom" constant="44" id="Stk-HX-MDx"/>
+                <constraint firstItem="ZaZ-Us-EFu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="a3J-Bt-KUE"/>
+                <constraint firstItem="bki-Pm-9jk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="b06-Nf-fvg"/>
+                <constraint firstItem="bki-Pm-9jk" firstAttribute="top" secondItem="ZaZ-Us-EFu" secondAttribute="bottom" constant="8" id="hDE-3w-gI6"/>
+                <constraint firstItem="7LY-bv-PJl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="lrE-lp-ykT"/>
+                <constraint firstAttribute="trailing" secondItem="Ms6-yX-a6H" secondAttribute="trailing" constant="8" id="mXk-Aw-CGd"/>
+                <constraint firstItem="gwW-aI-a9G" firstAttribute="centerY" secondItem="Ms6-yX-a6H" secondAttribute="centerY" constant="-0.5" id="pnQ-fw-SgT"/>
+                <constraint firstItem="7LY-bv-PJl" firstAttribute="top" secondItem="kIW-41-QSa" secondAttribute="bottom" constant="8" id="qVf-mc-WQp"/>
+                <constraint firstItem="VhT-Or-mcH" firstAttribute="top" secondItem="gwW-aI-a9G" secondAttribute="bottom" constant="44" id="sB0-HZ-lmM"/>
+                <constraint firstAttribute="trailing" secondItem="kIW-41-QSa" secondAttribute="trailing" constant="8" id="v9g-hf-Bmc"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

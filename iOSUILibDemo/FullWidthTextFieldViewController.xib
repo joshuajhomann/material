@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullWidthTextFieldViewController">
+            <connections>
+                <outlet property="containerView" destination="pcH-EP-cgo" id="0tS-dh-rtE"/>
+                <outlet property="fromTextField" destination="NBE-0J-DNP" id="irV-au-r5m"/>
+                <outlet property="scrollView" destination="S0F-df-zGO" id="rkL-Wd-PD4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0F-df-zGO">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-EP-cgo">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBE-0J-DNP" customClass="MDTextField">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="fullWidth" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="hint" value="Normal"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqR-kl-W37" customClass="MDTextField">
+                                    <rect key="frame" x="0.0" y="50" width="320" height="50"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="fullWidth" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxCharacterCount">
+                                            <integer key="value" value="30"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="floatingLabel" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="hint" value="Character counter"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nh7-wR-mjP" customClass="MDTextField">
+                                    <rect key="frame" x="0.0" y="100" width="320" height="50"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="fullWidth" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="hint" value="Single Line"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxVisibleLines">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-c7-8z0" customClass="MDTextField">
+                                    <rect key="frame" x="0.0" y="150" width="320" height="50"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="fullWidth" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxVisibleLines">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Disabled"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="enabled" value="NO"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="GqR-kl-W37" firstAttribute="top" secondItem="Nh7-wR-mjP" secondAttribute="top" id="7r5-Jb-DcV"/>
+                                <constraint firstItem="NBE-0J-DNP" firstAttribute="top" secondItem="pcH-EP-cgo" secondAttribute="top" id="9X8-Od-VM6"/>
+                                <constraint firstAttribute="trailing" secondItem="uqU-c7-8z0" secondAttribute="trailing" id="H4r-xc-Bu2"/>
+                                <constraint firstAttribute="trailing" secondItem="GqR-kl-W37" secondAttribute="trailing" id="IBu-dl-85F"/>
+                                <constraint firstItem="GqR-kl-W37" firstAttribute="leading" secondItem="pcH-EP-cgo" secondAttribute="leading" id="JeQ-dI-CGG"/>
+                                <constraint firstItem="uqU-c7-8z0" firstAttribute="leading" secondItem="pcH-EP-cgo" secondAttribute="leading" id="MLV-kY-EFh"/>
+                                <constraint firstAttribute="bottom" secondItem="uqU-c7-8z0" secondAttribute="bottom" id="PdT-Ug-k2P"/>
+                                <constraint firstAttribute="trailing" secondItem="NBE-0J-DNP" secondAttribute="trailing" id="R76-dx-lT1"/>
+                                <constraint firstItem="GqR-kl-W37" firstAttribute="top" secondItem="NBE-0J-DNP" secondAttribute="bottom" id="U7A-rT-yKX"/>
+                                <constraint firstItem="GqR-kl-W37" firstAttribute="top" secondItem="Nh7-wR-mjP" secondAttribute="bottom" id="VOB-CG-yJu"/>
+                                <constraint firstItem="uqU-c7-8z0" firstAttribute="top" secondItem="Nh7-wR-mjP" secondAttribute="bottom" id="WDI-n6-WV6"/>
+                                <constraint firstAttribute="trailing" secondItem="Nh7-wR-mjP" secondAttribute="trailing" id="iRa-ZX-VhD"/>
+                                <constraint firstItem="Nh7-wR-mjP" firstAttribute="top" secondItem="uqU-c7-8z0" secondAttribute="bottom" id="kcd-To-e6P"/>
+                                <constraint firstItem="GqR-kl-W37" firstAttribute="top" secondItem="NBE-0J-DNP" secondAttribute="bottom" id="lVq-IU-Uke"/>
+                                <constraint firstItem="Nh7-wR-mjP" firstAttribute="top" secondItem="GqR-kl-W37" secondAttribute="bottom" id="mup-5K-AsQ"/>
+                                <constraint firstItem="NBE-0J-DNP" firstAttribute="leading" secondItem="pcH-EP-cgo" secondAttribute="leading" id="sTi-Rb-dCf"/>
+                                <constraint firstItem="Nh7-wR-mjP" firstAttribute="leading" secondItem="pcH-EP-cgo" secondAttribute="leading" id="wnn-N5-Ook"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="7r5-Jb-DcV"/>
+                                    <exclude reference="U7A-rT-yKX"/>
+                                    <exclude reference="VOB-CG-yJu"/>
+                                    <exclude reference="kcd-To-e6P"/>
+                                </mask>
+                            </variation>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="pcH-EP-cgo" firstAttribute="top" secondItem="S0F-df-zGO" secondAttribute="top" id="H0X-8c-smm"/>
+                        <constraint firstItem="pcH-EP-cgo" firstAttribute="leading" secondItem="S0F-df-zGO" secondAttribute="leading" id="Zs0-yu-AdJ"/>
+                        <constraint firstAttribute="trailing" secondItem="pcH-EP-cgo" secondAttribute="trailing" id="p6V-v2-Qu5"/>
+                        <constraint firstAttribute="bottom" secondItem="pcH-EP-cgo" secondAttribute="bottom" id="sAY-FJ-kSh"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="S0F-df-zGO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6tz-KQ-dBG"/>
+                <constraint firstAttribute="trailing" secondItem="S0F-df-zGO" secondAttribute="trailing" id="mqG-Rh-Bxo"/>
+                <constraint firstItem="S0F-df-zGO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nsT-wG-Cfc"/>
+                <constraint firstAttribute="bottom" secondItem="S0F-df-zGO" secondAttribute="bottom" id="y36-ca-nqp"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

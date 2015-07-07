@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NormalTextFieldViewController">
+            <connections>
+                <outlet property="autoCompleteTextField" destination="Old-Ta-Oxm" id="2qI-bQ-ErL"/>
+                <outlet property="characterCounterTextField" destination="tes-8V-XJt" id="n6m-JE-HDZ"/>
+                <outlet property="containerView" destination="we6-e2-9ls" id="mLo-cL-ds0"/>
+                <outlet property="labeledTextField" destination="egA-XI-goW" id="gQZ-oX-Cl0"/>
+                <outlet property="normalTextField" destination="sTN-oB-HnX" id="jgW-Oy-b6J"/>
+                <outlet property="scrollView" destination="RuD-ob-qIH" id="SZq-cZ-scf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuD-ob-qIH">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we6-e2-9ls">
+                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTN-oB-HnX" customClass="MDTextField">
+                                    <rect key="frame" x="8" y="0.0" width="0.0" height="0.0"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="nQf-QK-Dry"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="hint" value="Normal TextField"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoComplete" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="secureTextEntry" value="NO"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="nQf-QK-Dry"/>
+                                        </mask>
+                                    </variation>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tes-8V-XJt" customClass="MDTextField">
+                                    <rect key="frame" x="8" y="0.0" width="0.0" height="0.0"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="3Ur-SD-bHM"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxCharacterCount">
+                                            <integer key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="label" value="TextField with character counter "/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="3Ur-SD-bHM"/>
+                                        </mask>
+                                    </variation>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egA-XI-goW" customClass="MDTextField">
+                                    <rect key="frame" x="8" y="0.0" width="0.0" height="0.0"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="yLg-Il-ihn"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoComplete" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxVisibleLines">
+                                            <integer key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="floatingLabel" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="label" value="TextField with floating label"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="minVisibleLines">
+                                            <integer key="value" value="0"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="highlightLabel" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="NO"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="yLg-Il-ihn"/>
+                                        </mask>
+                                    </variation>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Old-Ta-Oxm" customClass="MDTextField">
+                                    <rect key="frame" x="8" y="8" width="0.0" height="0.0"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="ppu-yq-Z3G"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="hint" value="Auto complete TextField"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoComplete" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="secureTextEntry" value="NO"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="ppu-yq-Z3G"/>
+                                        </mask>
+                                    </variation>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJV-rf-qNG" customClass="MDTextField">
+                                    <rect key="frame" x="8" y="16" width="0.0" height="0.0"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="ylH-gT-cL0"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoComplete" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="secureTextEntry" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="enabled" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Disabled TextField"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="ylH-gT-cL0"/>
+                                        </mask>
+                                    </variation>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="IJV-rf-qNG" secondAttribute="bottom" id="0Ph-ee-f6d"/>
+                                <constraint firstItem="Old-Ta-Oxm" firstAttribute="top" secondItem="egA-XI-goW" secondAttribute="bottom" constant="8" id="3yO-Kn-lbU"/>
+                                <constraint firstAttribute="trailing" secondItem="IJV-rf-qNG" secondAttribute="trailing" constant="8" id="8Se-Ba-1Oo"/>
+                                <constraint firstItem="egA-XI-goW" firstAttribute="top" secondItem="tes-8V-XJt" secondAttribute="bottom" id="C65-Qv-KD7"/>
+                                <constraint firstItem="tes-8V-XJt" firstAttribute="leading" secondItem="we6-e2-9ls" secondAttribute="leading" constant="8" id="JfG-KK-jtK"/>
+                                <constraint firstItem="egA-XI-goW" firstAttribute="leading" secondItem="we6-e2-9ls" secondAttribute="leading" constant="8" id="U5h-5B-jSA"/>
+                                <constraint firstItem="IJV-rf-qNG" firstAttribute="leading" secondItem="we6-e2-9ls" secondAttribute="leading" constant="8" id="VZ1-hb-1aX"/>
+                                <constraint firstAttribute="trailing" secondItem="egA-XI-goW" secondAttribute="trailing" constant="8" id="ZSZ-8Q-cy9"/>
+                                <constraint firstAttribute="trailing" secondItem="Old-Ta-Oxm" secondAttribute="trailing" constant="8" id="aqs-r8-wSs"/>
+                                <constraint firstItem="tes-8V-XJt" firstAttribute="top" secondItem="sTN-oB-HnX" secondAttribute="bottom" id="dE5-jd-Bfs"/>
+                                <constraint firstAttribute="bottom" secondItem="Old-Ta-Oxm" secondAttribute="bottom" constant="20" id="eQ9-WX-uga"/>
+                                <constraint firstItem="sTN-oB-HnX" firstAttribute="leading" secondItem="we6-e2-9ls" secondAttribute="leading" constant="8" id="fFv-ij-Hr5"/>
+                                <constraint firstAttribute="trailing" secondItem="tes-8V-XJt" secondAttribute="trailing" constant="8" id="gyy-35-i6s"/>
+                                <constraint firstItem="sTN-oB-HnX" firstAttribute="top" secondItem="we6-e2-9ls" secondAttribute="top" id="hzb-yY-Evq"/>
+                                <constraint firstItem="Old-Ta-Oxm" firstAttribute="leading" secondItem="we6-e2-9ls" secondAttribute="leading" constant="8" id="l8S-Hn-LgO"/>
+                                <constraint firstAttribute="trailing" secondItem="sTN-oB-HnX" secondAttribute="trailing" constant="8" id="nSs-zN-P7V"/>
+                                <constraint firstItem="IJV-rf-qNG" firstAttribute="top" secondItem="Old-Ta-Oxm" secondAttribute="bottom" constant="8" id="vZ4-nk-8Os"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="eQ9-WX-uga"/>
+                                </mask>
+                            </variation>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="we6-e2-9ls" firstAttribute="leading" secondItem="RuD-ob-qIH" secondAttribute="leading" id="5O5-Ra-R0D"/>
+                        <constraint firstItem="we6-e2-9ls" firstAttribute="top" secondItem="RuD-ob-qIH" secondAttribute="top" id="K2h-kk-GeV"/>
+                        <constraint firstAttribute="bottom" secondItem="we6-e2-9ls" secondAttribute="bottom" id="VHl-Ou-tmD"/>
+                        <constraint firstAttribute="trailing" secondItem="we6-e2-9ls" secondAttribute="trailing" id="iSh-aX-Ddm"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="RuD-ob-qIH" secondAttribute="bottom" id="61Q-Wk-VDU"/>
+                <constraint firstItem="RuD-ob-qIH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Cfh-OX-T2D"/>
+                <constraint firstItem="RuD-ob-qIH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vpm-SP-ZGc"/>
+                <constraint firstAttribute="trailing" secondItem="RuD-ob-qIH" secondAttribute="trailing" id="fI0-GN-Nox"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="554" y="379"/>
+        </view>
+    </objects>
+</document>

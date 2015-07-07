@@ -1,0 +1,756 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8807F0F81B09C6A4001C0D0B /* TabContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8807F0F61B09C6A4001C0D0B /* TabContentViewController.m */; };
+		8807F0F91B09C6A4001C0D0B /* TabContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8807F0F71B09C6A4001C0D0B /* TabContentViewController.xib */; };
+		8824326D1B0993C900A2B17C /* TabBarViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8824326B1B0993C900A2B17C /* TabBarViewControllerViewController.m */; };
+		8824326E1B0993C900A2B17C /* TabBarViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8824326C1B0993C900A2B17C /* TabBarViewControllerViewController.xib */; };
+		8828911D1A7F196800944560 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8828911C1A7F196800944560 /* UIKit.framework */; };
+		884BEB751B16B5A8008B60B0 /* SnackBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BEB731B16B5A8008B60B0 /* SnackBarViewController.m */; };
+		884BEB761B16B5A8008B60B0 /* SnackBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884BEB741B16B5A8008B60B0 /* SnackBarViewController.xib */; };
+		886B3AE31A81FF9E00D2CF3A /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886B3AE11A81FF9E00D2CF3A /* ProgressViewController.m */; };
+		886B3AE41A81FF9E00D2CF3A /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886B3AE21A81FF9E00D2CF3A /* ProgressViewController.xib */; };
+		886D81BE1B1D644E0009217E /* ToastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886D81BC1B1D644E0009217E /* ToastViewController.m */; };
+		886D81BF1B1D644E0009217E /* ToastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886D81BD1B1D644E0009217E /* ToastViewController.xib */; };
+		887E914C1AA45808002DE595 /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E914A1AA45808002DE595 /* TextFieldViewController.m */; };
+		887E914D1AA45808002DE595 /* TextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887E914B1AA45808002DE595 /* TextFieldViewController.xib */; };
+		8885FE951AA5B5D700AD4F04 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE871AA5B5D700AD4F04 /* LICENSE.txt */; };
+		8885FE961AA5B5D700AD4F04 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE881AA5B5D700AD4F04 /* Roboto-Black.ttf */; };
+		8885FE971AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE891AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf */; };
+		8885FE981AA5B5D700AD4F04 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE8A1AA5B5D700AD4F04 /* Roboto-Bold.ttf */; };
+		8885FE991AA5B5D700AD4F04 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE8B1AA5B5D700AD4F04 /* Roboto-BoldItalic.ttf */; };
+		8885FE9A1AA5B5D700AD4F04 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE8C1AA5B5D700AD4F04 /* Roboto-Italic.ttf */; };
+		8885FE9B1AA5B5D700AD4F04 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE8D1AA5B5D700AD4F04 /* Roboto-Light.ttf */; };
+		8885FE9C1AA5B5D700AD4F04 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE8E1AA5B5D700AD4F04 /* Roboto-LightItalic.ttf */; };
+		8885FE9D1AA5B5D700AD4F04 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE8F1AA5B5D700AD4F04 /* Roboto-Medium.ttf */; };
+		8885FE9E1AA5B5D700AD4F04 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE901AA5B5D700AD4F04 /* Roboto-MediumItalic.ttf */; };
+		8885FE9F1AA5B5D700AD4F04 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE911AA5B5D700AD4F04 /* Roboto-Regular.ttf */; };
+		8885FEA01AA5B5D700AD4F04 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE921AA5B5D700AD4F04 /* Roboto-Thin.ttf */; };
+		8885FEA11AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE931AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf */; };
+		88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B698011B25A46600BF3B19 /* SliderViewController.m */; };
+		88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B698021B25A46600BF3B19 /* SliderViewController.xib */; };
+		88B698081B25A5A500BF3B19 /* App Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B698071B25A5A500BF3B19 /* App Icon.png */; };
+		88C2EA141A834CB00097F3D8 /* libiOSUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 882891471A7F218C00944560 /* libiOSUILib.a */; };
+		88D8DE641A7A16E700D083A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DE631A7A16E700D083A1 /* main.m */; };
+		88D8DE671A7A16E700D083A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DE661A7A16E700D083A1 /* AppDelegate.m */; };
+		88D8DE6A1A7A16E700D083A1 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DE691A7A16E700D083A1 /* MasterViewController.m */; };
+		88D8DE721A7A16E700D083A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D8DE711A7A16E700D083A1 /* Images.xcassets */; };
+		88D8DE811A7A16E700D083A1 /* iOSUILibDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DE801A7A16E700D083A1 /* iOSUILibDemoTests.m */; };
+		88D8DEB91A7A1B9B00D083A1 /* ButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DEB71A7A1B9B00D083A1 /* ButtonViewController.m */; };
+		88D8DEBA1A7A1B9B00D083A1 /* ButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D8DEB81A7A1B9B00D083A1 /* ButtonViewController.xib */; };
+		88D8DEBC1A7A1CF800D083A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D8DEBB1A7A1CF800D083A1 /* QuartzCore.framework */; };
+		88DCF8921ADCD600008F99C7 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DCF8901ADCD600008F99C7 /* TabBarViewController.m */; };
+		88DCF8931ADCD600008F99C7 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DCF8911ADCD600008F99C7 /* TabBarViewController.xib */; };
+		920F125C1ACCFD9700599E01 /* DatePickerDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */; };
+		920F125D1ACCFD9700599E01 /* DatePickerDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */; };
+		9251906B1AC90BD600D4FC0A /* FakeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251905E1AC90BD600D4FC0A /* FakeData.m */; };
+		9251906C1AC90BD600D4FC0A /* FullWidthTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */; };
+		9251906D1AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */; };
+		9251906E1AC90BD600D4FC0A /* NormalTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190631AC90BD600D4FC0A /* NormalTextFieldViewController.m */; };
+		9251906F1AC90BD600D4FC0A /* NormalTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925190641AC90BD600D4FC0A /* NormalTextFieldViewController.xib */; };
+		925190701AC90BD600D4FC0A /* SwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190661AC90BD600D4FC0A /* SwitchViewController.m */; };
+		925190711AC90BD600D4FC0A /* SwitchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925190671AC90BD600D4FC0A /* SwitchViewController.xib */; };
+		925190721AC90BD600D4FC0A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190691AC90BD600D4FC0A /* TableViewController.m */; };
+		925190731AC90BD600D4FC0A /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9251906A1AC90BD600D4FC0A /* TableViewController.xib */; };
+		925FFC1E1ABFC4B100740B93 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FFC1C1ABFC4B100740B93 /* DatePickerViewController.m */; };
+		925FFC1F1ABFC4B100740B93 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925FFC1D1ABFC4B100740B93 /* DatePickerViewController.xib */; };
+		928026C21AD37C9500DFF739 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928026BE1AD37C9500DFF739 /* CollectionViewCell.xib */; };
+		928026C31AD37C9500DFF739 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928026C01AD37C9500DFF739 /* CollectionViewController.m */; };
+		928026C41AD37C9500DFF739 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928026C11AD37C9500DFF739 /* CollectionViewController.xib */; };
+		928026CA1AD37CFF00DFF739 /* TimePickerDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928026C81AD37CFF00DFF739 /* TimePickerDialogViewController.m */; };
+		928026CB1AD37CFF00DFF739 /* TimePickerDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		882891461A7F218C00944560 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 882891411A7F218B00944560 /* iOSUILib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 882891271A7F218B00944560;
+			remoteInfo = iOSUILib;
+		};
+		882891481A7F218C00944560 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 882891411A7F218B00944560 /* iOSUILib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 882891321A7F218B00944560;
+			remoteInfo = iOSUILibTests;
+		};
+		88D8DE7B1A7A16E700D083A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88D8DE561A7A16E700D083A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88D8DE5D1A7A16E700D083A1;
+			remoteInfo = iOSUILibDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8807F0F51B09C6A4001C0D0B /* TabContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabContentViewController.h; sourceTree = "<group>"; };
+		8807F0F61B09C6A4001C0D0B /* TabContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabContentViewController.m; sourceTree = "<group>"; };
+		8807F0F71B09C6A4001C0D0B /* TabContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabContentViewController.xib; sourceTree = "<group>"; };
+		8824326A1B0993C900A2B17C /* TabBarViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewControllerViewController.h; sourceTree = "<group>"; };
+		8824326B1B0993C900A2B17C /* TabBarViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewControllerViewController.m; sourceTree = "<group>"; };
+		8824326C1B0993C900A2B17C /* TabBarViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarViewControllerViewController.xib; sourceTree = "<group>"; };
+		8828911C1A7F196800944560 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		882891411A7F218B00944560 /* iOSUILib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSUILib.xcodeproj; path = iOSUILib/iOSUILib.xcodeproj; sourceTree = "<group>"; };
+		884BEB721B16B5A8008B60B0 /* SnackBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnackBarViewController.h; sourceTree = "<group>"; };
+		884BEB731B16B5A8008B60B0 /* SnackBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnackBarViewController.m; sourceTree = "<group>"; };
+		884BEB741B16B5A8008B60B0 /* SnackBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnackBarViewController.xib; sourceTree = "<group>"; };
+		886B3AE01A81FF9E00D2CF3A /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
+		886B3AE11A81FF9E00D2CF3A /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
+		886B3AE21A81FF9E00D2CF3A /* ProgressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressViewController.xib; sourceTree = "<group>"; };
+		886D81BB1B1D644E0009217E /* ToastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastViewController.h; sourceTree = "<group>"; };
+		886D81BC1B1D644E0009217E /* ToastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastViewController.m; sourceTree = "<group>"; };
+		886D81BD1B1D644E0009217E /* ToastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToastViewController.xib; sourceTree = "<group>"; };
+		887E91491AA45807002DE595 /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
+		887E914A1AA45808002DE595 /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
+		887E914B1AA45808002DE595 /* TextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldViewController.xib; sourceTree = "<group>"; };
+		8885FE871AA5B5D700AD4F04 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		8885FE881AA5B5D700AD4F04 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		8885FE891AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		8885FE8A1AA5B5D700AD4F04 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		8885FE8B1AA5B5D700AD4F04 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		8885FE8C1AA5B5D700AD4F04 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		8885FE8D1AA5B5D700AD4F04 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		8885FE8E1AA5B5D700AD4F04 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		8885FE8F1AA5B5D700AD4F04 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		8885FE901AA5B5D700AD4F04 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		8885FE911AA5B5D700AD4F04 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		8885FE921AA5B5D700AD4F04 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		8885FE931AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		88B698001B25A46600BF3B19 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
+		88B698011B25A46600BF3B19 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
+		88B698021B25A46600BF3B19 /* SliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderViewController.xib; sourceTree = "<group>"; };
+		88B698071B25A5A500BF3B19 /* App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon.png"; sourceTree = "<group>"; };
+		88D8DE5E1A7A16E700D083A1 /* iOSUILibDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSUILibDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88D8DE621A7A16E700D083A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88D8DE631A7A16E700D083A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		88D8DE651A7A16E700D083A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		88D8DE661A7A16E700D083A1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		88D8DE681A7A16E700D083A1 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		88D8DE691A7A16E700D083A1 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		88D8DE6F1A7A16E700D083A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88D8DE711A7A16E700D083A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		88D8DE741A7A16E700D083A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		88D8DE7A1A7A16E700D083A1 /* iOSUILibDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSUILibDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88D8DE7F1A7A16E700D083A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88D8DE801A7A16E700D083A1 /* iOSUILibDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSUILibDemoTests.m; sourceTree = "<group>"; };
+		88D8DEB61A7A1B9B00D083A1 /* ButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonViewController.h; sourceTree = "<group>"; };
+		88D8DEB71A7A1B9B00D083A1 /* ButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonViewController.m; sourceTree = "<group>"; };
+		88D8DEB81A7A1B9B00D083A1 /* ButtonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonViewController.xib; sourceTree = "<group>"; };
+		88D8DEBB1A7A1CF800D083A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		88DCF88F1ADCD600008F99C7 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		88DCF8901ADCD600008F99C7 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		88DCF8911ADCD600008F99C7 /* TabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
+		920F12591ACCFD9700599E01 /* DatePickerDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerDialogController.h; sourceTree = "<group>"; };
+		920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerDialogController.m; sourceTree = "<group>"; };
+		920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerDialogController.xib; sourceTree = "<group>"; };
+		9251905D1AC90BD600D4FC0A /* FakeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeData.h; sourceTree = "<group>"; };
+		9251905E1AC90BD600D4FC0A /* FakeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeData.m; sourceTree = "<group>"; };
+		9251905F1AC90BD600D4FC0A /* FullWidthTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthTextFieldViewController.h; sourceTree = "<group>"; };
+		925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullWidthTextFieldViewController.m; sourceTree = "<group>"; };
+		925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullWidthTextFieldViewController.xib; sourceTree = "<group>"; };
+		925190621AC90BD600D4FC0A /* NormalTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalTextFieldViewController.h; sourceTree = "<group>"; };
+		925190631AC90BD600D4FC0A /* NormalTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalTextFieldViewController.m; sourceTree = "<group>"; };
+		925190641AC90BD600D4FC0A /* NormalTextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NormalTextFieldViewController.xib; sourceTree = "<group>"; };
+		925190651AC90BD600D4FC0A /* SwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchViewController.h; sourceTree = "<group>"; };
+		925190661AC90BD600D4FC0A /* SwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchViewController.m; sourceTree = "<group>"; };
+		925190671AC90BD600D4FC0A /* SwitchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchViewController.xib; sourceTree = "<group>"; };
+		925190681AC90BD600D4FC0A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		925190691AC90BD600D4FC0A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		9251906A1AC90BD600D4FC0A /* TableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
+		925FFC1B1ABFC4B100740B93 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		925FFC1C1ABFC4B100740B93 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		925FFC1D1ABFC4B100740B93 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
+		928026BE1AD37C9500DFF739 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		928026BF1AD37C9500DFF739 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		928026C01AD37C9500DFF739 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		928026C11AD37C9500DFF739 /* CollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		928026C71AD37CFF00DFF739 /* TimePickerDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerDialogViewController.h; sourceTree = "<group>"; };
+		928026C81AD37CFF00DFF739 /* TimePickerDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerDialogViewController.m; sourceTree = "<group>"; };
+		928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerDialogViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88D8DE5B1A7A16E700D083A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88C2EA141A834CB00097F3D8 /* libiOSUILib.a in Frameworks */,
+				8828911D1A7F196800944560 /* UIKit.framework in Frameworks */,
+				88D8DEBC1A7A1CF800D083A1 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88D8DE771A7A16E700D083A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		882891421A7F218B00944560 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				882891471A7F218C00944560 /* libiOSUILib.a */,
+				882891491A7F218C00944560 /* iOSUILibTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8885FE851AA5B5D700AD4F04 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				8885FE871AA5B5D700AD4F04 /* LICENSE.txt */,
+				8885FE881AA5B5D700AD4F04 /* Roboto-Black.ttf */,
+				8885FE891AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf */,
+				8885FE8A1AA5B5D700AD4F04 /* Roboto-Bold.ttf */,
+				8885FE8B1AA5B5D700AD4F04 /* Roboto-BoldItalic.ttf */,
+				8885FE8C1AA5B5D700AD4F04 /* Roboto-Italic.ttf */,
+				8885FE8D1AA5B5D700AD4F04 /* Roboto-Light.ttf */,
+				8885FE8E1AA5B5D700AD4F04 /* Roboto-LightItalic.ttf */,
+				8885FE8F1AA5B5D700AD4F04 /* Roboto-Medium.ttf */,
+				8885FE901AA5B5D700AD4F04 /* Roboto-MediumItalic.ttf */,
+				8885FE911AA5B5D700AD4F04 /* Roboto-Regular.ttf */,
+				8885FE921AA5B5D700AD4F04 /* Roboto-Thin.ttf */,
+				8885FE931AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		88D8DE551A7A16E700D083A1 = {
+			isa = PBXGroup;
+			children = (
+				8885FE851AA5B5D700AD4F04 /* Roboto */,
+				882891411A7F218B00944560 /* iOSUILib.xcodeproj */,
+				8828911C1A7F196800944560 /* UIKit.framework */,
+				88D8DEBB1A7A1CF800D083A1 /* QuartzCore.framework */,
+				88D8DE601A7A16E700D083A1 /* iOSUILibDemo */,
+				88D8DE7D1A7A16E700D083A1 /* iOSUILibDemoTests */,
+				88D8DE5F1A7A16E700D083A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88D8DE5F1A7A16E700D083A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88D8DE5E1A7A16E700D083A1 /* iOSUILibDemo.app */,
+				88D8DE7A1A7A16E700D083A1 /* iOSUILibDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88D8DE601A7A16E700D083A1 /* iOSUILibDemo */ = {
+			isa = PBXGroup;
+			children = (
+				88B698071B25A5A500BF3B19 /* App Icon.png */,
+				88D8DE651A7A16E700D083A1 /* AppDelegate.h */,
+				88D8DE661A7A16E700D083A1 /* AppDelegate.m */,
+				88D8DEB61A7A1B9B00D083A1 /* ButtonViewController.h */,
+				88D8DEB71A7A1B9B00D083A1 /* ButtonViewController.m */,
+				88D8DEB81A7A1B9B00D083A1 /* ButtonViewController.xib */,
+				928026BE1AD37C9500DFF739 /* CollectionViewCell.xib */,
+				928026BF1AD37C9500DFF739 /* CollectionViewController.h */,
+				928026C01AD37C9500DFF739 /* CollectionViewController.m */,
+				928026C11AD37C9500DFF739 /* CollectionViewController.xib */,
+				920F12591ACCFD9700599E01 /* DatePickerDialogController.h */,
+				920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */,
+				920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */,
+				925FFC1B1ABFC4B100740B93 /* DatePickerViewController.h */,
+				925FFC1C1ABFC4B100740B93 /* DatePickerViewController.m */,
+				925FFC1D1ABFC4B100740B93 /* DatePickerViewController.xib */,
+				9251905D1AC90BD600D4FC0A /* FakeData.h */,
+				9251905E1AC90BD600D4FC0A /* FakeData.m */,
+				9251905F1AC90BD600D4FC0A /* FullWidthTextFieldViewController.h */,
+				925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */,
+				925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */,
+				88D8DE711A7A16E700D083A1 /* Images.xcassets */,
+				88D8DE731A7A16E700D083A1 /* LaunchScreen.xib */,
+				88D8DE6E1A7A16E700D083A1 /* Main.storyboard */,
+				88D8DE681A7A16E700D083A1 /* MasterViewController.h */,
+				88D8DE691A7A16E700D083A1 /* MasterViewController.m */,
+				925190621AC90BD600D4FC0A /* NormalTextFieldViewController.h */,
+				925190631AC90BD600D4FC0A /* NormalTextFieldViewController.m */,
+				925190641AC90BD600D4FC0A /* NormalTextFieldViewController.xib */,
+				886B3AE01A81FF9E00D2CF3A /* ProgressViewController.h */,
+				886B3AE11A81FF9E00D2CF3A /* ProgressViewController.m */,
+				886B3AE21A81FF9E00D2CF3A /* ProgressViewController.xib */,
+				88D8DE611A7A16E700D083A1 /* Supporting Files */,
+				925190651AC90BD600D4FC0A /* SwitchViewController.h */,
+				925190661AC90BD600D4FC0A /* SwitchViewController.m */,
+				925190671AC90BD600D4FC0A /* SwitchViewController.xib */,
+				925190681AC90BD600D4FC0A /* TableViewController.h */,
+				925190691AC90BD600D4FC0A /* TableViewController.m */,
+				9251906A1AC90BD600D4FC0A /* TableViewController.xib */,
+				887E91491AA45807002DE595 /* TextFieldViewController.h */,
+				887E914A1AA45808002DE595 /* TextFieldViewController.m */,
+				887E914B1AA45808002DE595 /* TextFieldViewController.xib */,
+				928026C71AD37CFF00DFF739 /* TimePickerDialogViewController.h */,
+				928026C81AD37CFF00DFF739 /* TimePickerDialogViewController.m */,
+				928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */,
+				88DCF88F1ADCD600008F99C7 /* TabBarViewController.h */,
+				88DCF8901ADCD600008F99C7 /* TabBarViewController.m */,
+				88DCF8911ADCD600008F99C7 /* TabBarViewController.xib */,
+				8824326A1B0993C900A2B17C /* TabBarViewControllerViewController.h */,
+				8824326B1B0993C900A2B17C /* TabBarViewControllerViewController.m */,
+				8824326C1B0993C900A2B17C /* TabBarViewControllerViewController.xib */,
+				8807F0F51B09C6A4001C0D0B /* TabContentViewController.h */,
+				8807F0F61B09C6A4001C0D0B /* TabContentViewController.m */,
+				8807F0F71B09C6A4001C0D0B /* TabContentViewController.xib */,
+				884BEB721B16B5A8008B60B0 /* SnackBarViewController.h */,
+				884BEB731B16B5A8008B60B0 /* SnackBarViewController.m */,
+				884BEB741B16B5A8008B60B0 /* SnackBarViewController.xib */,
+				886D81BB1B1D644E0009217E /* ToastViewController.h */,
+				886D81BC1B1D644E0009217E /* ToastViewController.m */,
+				886D81BD1B1D644E0009217E /* ToastViewController.xib */,
+				88B698001B25A46600BF3B19 /* SliderViewController.h */,
+				88B698011B25A46600BF3B19 /* SliderViewController.m */,
+				88B698021B25A46600BF3B19 /* SliderViewController.xib */,
+			);
+			path = iOSUILibDemo;
+			sourceTree = "<group>";
+		};
+		88D8DE611A7A16E700D083A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88D8DE621A7A16E700D083A1 /* Info.plist */,
+				88D8DE631A7A16E700D083A1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88D8DE7D1A7A16E700D083A1 /* iOSUILibDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				88D8DE801A7A16E700D083A1 /* iOSUILibDemoTests.m */,
+				88D8DE7E1A7A16E700D083A1 /* Supporting Files */,
+			);
+			path = iOSUILibDemoTests;
+			sourceTree = "<group>";
+		};
+		88D8DE7E1A7A16E700D083A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88D8DE7F1A7A16E700D083A1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88D8DE5D1A7A16E700D083A1 /* iOSUILibDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88D8DE841A7A16E700D083A1 /* Build configuration list for PBXNativeTarget "iOSUILibDemo" */;
+			buildPhases = (
+				88D8DE5A1A7A16E700D083A1 /* Sources */,
+				88D8DE5B1A7A16E700D083A1 /* Frameworks */,
+				88D8DE5C1A7A16E700D083A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSUILibDemo;
+			productName = iOSUILibDemo;
+			productReference = 88D8DE5E1A7A16E700D083A1 /* iOSUILibDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88D8DE791A7A16E700D083A1 /* iOSUILibDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88D8DE871A7A16E700D083A1 /* Build configuration list for PBXNativeTarget "iOSUILibDemoTests" */;
+			buildPhases = (
+				88D8DE761A7A16E700D083A1 /* Sources */,
+				88D8DE771A7A16E700D083A1 /* Frameworks */,
+				88D8DE781A7A16E700D083A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88D8DE7C1A7A16E700D083A1 /* PBXTargetDependency */,
+			);
+			name = iOSUILibDemoTests;
+			productName = iOSUILibDemoTests;
+			productReference = 88D8DE7A1A7A16E700D083A1 /* iOSUILibDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88D8DE561A7A16E700D083A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "FPT Software";
+				TargetAttributes = {
+					88D8DE5D1A7A16E700D083A1 = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 854MF4G8EF;
+					};
+					88D8DE791A7A16E700D083A1 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 88D8DE5D1A7A16E700D083A1;
+					};
+				};
+			};
+			buildConfigurationList = 88D8DE591A7A16E700D083A1 /* Build configuration list for PBXProject "iOSUILibDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88D8DE551A7A16E700D083A1;
+			productRefGroup = 88D8DE5F1A7A16E700D083A1 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 882891421A7F218B00944560 /* Products */;
+					ProjectRef = 882891411A7F218B00944560 /* iOSUILib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				88D8DE5D1A7A16E700D083A1 /* iOSUILibDemo */,
+				88D8DE791A7A16E700D083A1 /* iOSUILibDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		882891471A7F218C00944560 /* libiOSUILib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiOSUILib.a;
+			remoteRef = 882891461A7F218C00944560 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		882891491A7F218C00944560 /* iOSUILibTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = iOSUILibTests.xctest;
+			remoteRef = 882891481A7F218C00944560 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88D8DE5C1A7A16E700D083A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8885FEA11AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf in Resources */,
+				8885FE9E1AA5B5D700AD4F04 /* Roboto-MediumItalic.ttf in Resources */,
+				8885FE9D1AA5B5D700AD4F04 /* Roboto-Medium.ttf in Resources */,
+				886D81BF1B1D644E0009217E /* ToastViewController.xib in Resources */,
+				88D8DEBA1A7A1B9B00D083A1 /* ButtonViewController.xib in Resources */,
+				88DCF8931ADCD600008F99C7 /* TabBarViewController.xib in Resources */,
+				8885FE9C1AA5B5D700AD4F04 /* Roboto-LightItalic.ttf in Resources */,
+				9251906D1AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib in Resources */,
+				8885FE9F1AA5B5D700AD4F04 /* Roboto-Regular.ttf in Resources */,
+				887E914D1AA45808002DE595 /* TextFieldViewController.xib in Resources */,
+				9251906F1AC90BD600D4FC0A /* NormalTextFieldViewController.xib in Resources */,
+				8824326E1B0993C900A2B17C /* TabBarViewControllerViewController.xib in Resources */,
+				8885FE9B1AA5B5D700AD4F04 /* Roboto-Light.ttf in Resources */,
+				8885FE981AA5B5D700AD4F04 /* Roboto-Bold.ttf in Resources */,
+				920F125D1ACCFD9700599E01 /* DatePickerDialogController.xib in Resources */,
+				884BEB761B16B5A8008B60B0 /* SnackBarViewController.xib in Resources */,
+				8807F0F91B09C6A4001C0D0B /* TabContentViewController.xib in Resources */,
+				8885FE9A1AA5B5D700AD4F04 /* Roboto-Italic.ttf in Resources */,
+				88B698081B25A5A500BF3B19 /* App Icon.png in Resources */,
+				8885FE951AA5B5D700AD4F04 /* LICENSE.txt in Resources */,
+				8885FE991AA5B5D700AD4F04 /* Roboto-BoldItalic.ttf in Resources */,
+				925190731AC90BD600D4FC0A /* TableViewController.xib in Resources */,
+				8885FE961AA5B5D700AD4F04 /* Roboto-Black.ttf in Resources */,
+				928026C21AD37C9500DFF739 /* CollectionViewCell.xib in Resources */,
+				8885FEA01AA5B5D700AD4F04 /* Roboto-Thin.ttf in Resources */,
+				925FFC1F1ABFC4B100740B93 /* DatePickerViewController.xib in Resources */,
+				8885FE971AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf in Resources */,
+				886B3AE41A81FF9E00D2CF3A /* ProgressViewController.xib in Resources */,
+				928026C41AD37C9500DFF739 /* CollectionViewController.xib in Resources */,
+				925190711AC90BD600D4FC0A /* SwitchViewController.xib in Resources */,
+				88D8DE721A7A16E700D083A1 /* Images.xcassets in Resources */,
+				928026CB1AD37CFF00DFF739 /* TimePickerDialogViewController.xib in Resources */,
+				88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88D8DE781A7A16E700D083A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88D8DE5A1A7A16E700D083A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				887E914C1AA45808002DE595 /* TextFieldViewController.m in Sources */,
+				88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */,
+				925FFC1E1ABFC4B100740B93 /* DatePickerViewController.m in Sources */,
+				886B3AE31A81FF9E00D2CF3A /* ProgressViewController.m in Sources */,
+				8824326D1B0993C900A2B17C /* TabBarViewControllerViewController.m in Sources */,
+				88D8DEB91A7A1B9B00D083A1 /* ButtonViewController.m in Sources */,
+				9251906C1AC90BD600D4FC0A /* FullWidthTextFieldViewController.m in Sources */,
+				920F125C1ACCFD9700599E01 /* DatePickerDialogController.m in Sources */,
+				9251906E1AC90BD600D4FC0A /* NormalTextFieldViewController.m in Sources */,
+				928026CA1AD37CFF00DFF739 /* TimePickerDialogViewController.m in Sources */,
+				88D8DE671A7A16E700D083A1 /* AppDelegate.m in Sources */,
+				928026C31AD37C9500DFF739 /* CollectionViewController.m in Sources */,
+				925190721AC90BD600D4FC0A /* TableViewController.m in Sources */,
+				88D8DE6A1A7A16E700D083A1 /* MasterViewController.m in Sources */,
+				88DCF8921ADCD600008F99C7 /* TabBarViewController.m in Sources */,
+				8807F0F81B09C6A4001C0D0B /* TabContentViewController.m in Sources */,
+				9251906B1AC90BD600D4FC0A /* FakeData.m in Sources */,
+				88D8DE641A7A16E700D083A1 /* main.m in Sources */,
+				925190701AC90BD600D4FC0A /* SwitchViewController.m in Sources */,
+				886D81BE1B1D644E0009217E /* ToastViewController.m in Sources */,
+				884BEB751B16B5A8008B60B0 /* SnackBarViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88D8DE761A7A16E700D083A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88D8DE811A7A16E700D083A1 /* iOSUILibDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88D8DE7C1A7A16E700D083A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88D8DE5D1A7A16E700D083A1 /* iOSUILibDemo */;
+			targetProxy = 88D8DE7B1A7A16E700D083A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88D8DE6E1A7A16E700D083A1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88D8DE6F1A7A16E700D083A1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88D8DE731A7A16E700D083A1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88D8DE741A7A16E700D083A1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88D8DE821A7A16E700D083A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		88D8DE831A7A16E700D083A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88D8DE851A7A16E700D083A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)/**",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/**",
+				);
+				INFOPLIST_FILE = iOSUILibDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Hierarchy.Viewer.1.4.7",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88D8DE861A7A16E700D083A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)/**",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/**",
+				);
+				INFOPLIST_FILE = iOSUILibDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Hierarchy.Viewer.1.4.7",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		88D8DE881A7A16E700D083A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iOSUILibDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSUILibDemo.app/iOSUILibDemo";
+			};
+			name = Debug;
+		};
+		88D8DE891A7A16E700D083A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iOSUILibDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSUILibDemo.app/iOSUILibDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88D8DE591A7A16E700D083A1 /* Build configuration list for PBXProject "iOSUILibDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88D8DE821A7A16E700D083A1 /* Debug */,
+				88D8DE831A7A16E700D083A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88D8DE841A7A16E700D083A1 /* Build configuration list for PBXNativeTarget "iOSUILibDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88D8DE851A7A16E700D083A1 /* Debug */,
+				88D8DE861A7A16E700D083A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88D8DE871A7A16E700D083A1 /* Build configuration list for PBXNativeTarget "iOSUILibDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88D8DE881A7A16E700D083A1 /* Debug */,
+				88D8DE891A7A16E700D083A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88D8DE561A7A16E700D083A1 /* Project object */;
+}
