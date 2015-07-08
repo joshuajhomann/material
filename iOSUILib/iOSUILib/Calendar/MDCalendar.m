@@ -517,7 +517,7 @@
     [_dateHeader setDate:date];
   }
 
-  [self didSelectDate:date];
+  [self didSelected];
 }
 
 - (void)didSelected {
