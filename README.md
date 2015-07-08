@@ -1,10 +1,30 @@
 # Material Design Controls For iOS
+===========
 
-In 2014, Google published the material design specification with a goal to provide guidelines for good design and beautiful UI across all device form factors.
+In 2014, Google published the [Google Material Design](http://www.google.com/design/spec/material-design/introduction.html) with a goal to provide guidelines for good design and beautiful UI across all device form factors.
 For Android, developers can use default Android controls.
 For iOS, we built those controls to bring Google material design to iOS application.
 
-They are native iOS controls which extend default iOS controls to add material design UI.
+They are native iOS controls built in Objective-C which extend default iOS controls to add material design UI.
+
+Please feel free to make any pull requests.
+
+Component List
+-----
+- [x] MDButton
+- [x] MDTableViewCell
+- [x] MDProgress
+- [x] MDSlider
+- [x] MDSwitch
+- [x] MDTabBar
+- [x] MDTabBarViewController
+- [x] MDTextField
+- [x] MDSwitch
+- [x] MDSnackbar
+- [x] MDToast
+- [x] MDSwitch
+- [x] MDDatePicker
+- [x] MDTimePicker
 
 #### MDButton
 <p align="center">
@@ -65,6 +85,8 @@ They are native iOS controls which extend default iOS controls to add material d
 <p align="center">
 <img style="-webkit-user-select: none;" src="https://dl.dropboxusercontent.com/u/80802400/MaterialDesign/MDTimePicker.gif">
 </p>
+
+
 # Get Started
 You can either use these controls in your app via 2 ways:
 1. Add source code of those controls directly
