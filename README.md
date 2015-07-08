@@ -1,5 +1,4 @@
 # Material Design Controls For iOS
-===========
 
 In 2014, Google published the [Google Material Design](http://www.google.com/design/spec/material-design/introduction.html) with a goal to provide guidelines for good design and beautiful UI across all device form factors.
 For Android, developers can use default Android controls.
@@ -89,8 +88,8 @@ Component List
 
 # Get Started
 You can either use these controls in your app via 2 ways:
-1. Add source code of those controls directly
-2. Use via cocoapods
+<p>1. Add source code of those controls directly</p>
+<p>2. Use via cocoapods</p>
 TODO: write details
 
 # Full controls documentation
