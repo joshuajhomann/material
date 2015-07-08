@@ -49,6 +49,9 @@
   return self;
 }
 
+- (void)initContents {
+}
+
 - (void)setProgress:(float)progress {
   if (!_determinate)
     return;
@@ -66,6 +69,15 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
   [self superLayerDidResize];
+}
+
+- (void)superLayerDidResize {
+}
+
+- (void)startAnimating {
+}
+
+- (void)stopAnimating {
 }
 
 - (void)dealloc {

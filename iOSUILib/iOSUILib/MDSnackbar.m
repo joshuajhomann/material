@@ -128,7 +128,10 @@ MDSnackbarManger *snackbarManagerInstance;
     [self addSubview:actionButton];
   }
 
-  NSDictionary *viewsDictionary = @{ @"label" : textLabel, @"button" : actionButton };
+  NSDictionary *viewsDictionary = @{
+    @"label" : textLabel,
+    @"button" : actionButton
+  };
   NSDictionary *metrics = @{
     @"normalPadding" : @kMDNormalPadding,
     @"largePadding" : @kMDLargePadding
@@ -257,7 +260,10 @@ MDSnackbarManger *snackbarManagerInstance;
 - (void)performDelegateAction:(SEL)aSelector {
   for (id<MDSnackbarDelegate> del in delegates) {
     if ([del respondsToSelector:aSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
       [del performSelector:aSelector withObject:self];
+#pragma clang diagnostic pop
     }
   }
 }

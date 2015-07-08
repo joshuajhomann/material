@@ -14,10 +14,7 @@
 @interface TimePickerDialogViewController () <
     MDCalendarTimePickerDialogDelegate>
 @property(weak, nonatomic) IBOutlet UITextField *txtTimerStart;
-@property(weak, nonatomic) IBOutlet UITextField *txtTimerFinish;
 @property(weak, nonatomic) IBOutlet UIButton *btnStartTime;
-@property(weak, nonatomic) IBOutlet UIButton *btnFinishTime;
-@property(weak, nonatomic) IBOutlet NSLayoutConstraint *btnStart;
 @property(nonatomic) NSDateFormatter *dateFormatter;
 
 @property(nonatomic) MDTimePickerDialog *timerPicker;
@@ -45,8 +42,9 @@
   [_timerPicker show];
 }
 
-- (void)timePickerDialogDidSelectTime:(NSInteger)hour
-                             andMinute:(NSInteger)minute {
+- (void)timePickerDialog:(MDTimePickerDialog *)timePickerDialog
+           didSelectHour:(NSInteger)hour
+               andMinute:(NSInteger)minute {
   _timeTextField.text = [NSString stringWithFormat:@"%.2i:%.2i", hour, minute];
 }
 @end

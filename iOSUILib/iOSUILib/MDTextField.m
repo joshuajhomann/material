@@ -107,10 +107,13 @@
         withAttributes:attributes];
   } else { // iOS 6
     [_hintColor setFill];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [self.placeholder drawInRect:rect
                         withFont:self.font
                    lineBreakMode:NSLineBreakByTruncatingTail
                        alignment:self.textAlignment];
+#pragma clang diagnostic pop
   }
 }
 

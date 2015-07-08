@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88010A911A88ABB60084B96F /* MDConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 88010A901A88ABB60084B96F /* MDConstants.h */; };
 		880295491B1811360046B885 /* MDDeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 880295481B1811360046B885 /* MDDeviceHelper.m */; };
 		8805D2031ADCAEF500AE1D9E /* MDCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8805D1E81ADCAEF500AE1D9E /* MDCalendar.m */; };
 		8805D2041ADCAEF500AE1D9E /* MDCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8805D1EA1ADCAEF500AE1D9E /* MDCalendarCell.m */; };
@@ -549,7 +548,6 @@
 				8861E2811AA9B05800BB8991 /* AutoResizeTextView.m in Sources */,
 				8805D20C1ADCAEF500AE1D9E /* NSCalendarHelper.m in Sources */,
 				88DF57481B2EDE5200A91304 /* UIFontHelper.m in Sources */,
-				88010A911A88ABB60084B96F /* MDConstants.h in Sources */,
 				8805D20D1ADCAEF500AE1D9E /* NSDate+MDExtension.m in Sources */,
 				889B01DC1ABFFB5700F16252 /* MDButton.m in Sources */,
 				8805D2071ADCAEF500AE1D9E /* MDCalendarYearSelector.m in Sources */,

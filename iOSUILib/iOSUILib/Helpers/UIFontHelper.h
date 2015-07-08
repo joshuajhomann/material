@@ -40,6 +40,4 @@ typedef NS_OPTIONS(NSInteger, MDFontFamilyType) {
 + (UIFont *)robotoFontWithName:(NSString *)fontName size:(CGFloat)fontSize;
 + (UIFont *)robotoFontOfSize:(CGFloat)fontSize;
 + (UIFont *)boldRobotoFontOfSize:(CGFloat)fontSize;
-+ (NSString *)robotoFontName:(MDFontFamilySize)fontFamily
-                    withType:(MDFontFamilyType)fontType;
 @end

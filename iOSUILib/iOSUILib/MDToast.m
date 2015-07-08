@@ -199,7 +199,10 @@ MDToastManager *managerInstance;
 - (void)performDelegateAction:(SEL)aSelector {
   for (id<MDToastDelegate> del in delegates) {
     if ([del respondsToSelector:aSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
       [del performSelector:aSelector withObject:self];
+#pragma clang diagnostic pop
     }
   }
 }
