@@ -89,8 +89,11 @@ Component List
 # Get Started
 You can either use these controls in your app via 2 ways:
 <p>1. Add source code of those controls directly</p>
+<p>   Just download all source code files from this github repository and add those files directly to your XCode project.</p>
+
 <p>2. Use via cocoapods</p>
-TODO: write details
+<p>   Add following line to Podfile:</p>
+<p>     pod 'MaterialControls4iOS'</p>
 
 # Full controls documentation
 TODO: Write full API for all controls
