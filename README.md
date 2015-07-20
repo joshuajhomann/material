@@ -18,10 +18,8 @@ Component List
 - [x] MDTabBar
 - [x] MDTabBarViewController
 - [x] MDTextField
-- [x] MDSwitch
 - [x] MDSnackbar
 - [x] MDToast
-- [x] MDSwitch
 - [x] MDDatePicker
 - [x] MDTimePicker
 
