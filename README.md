@@ -96,4 +96,4 @@ You can either use these controls in your app via 2 ways:
 <p>     pod 'MaterialControls4iOS'</p>
 
 # Full controls documentation
-TODO: Write full API for all controls
+Please go to [Material Controls](https://github.com/fpt-software/Material-Controls-For-iOS/wiki) wiki to see full controls documentation.
