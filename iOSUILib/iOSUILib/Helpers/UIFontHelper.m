@@ -31,6 +31,10 @@
   } else {
     font = [UIFont fontWithName:fontName size:fontSize];
   }
+
+  if (!font)
+    font = [UIFont systemFontOfSize:fontSize];
+
   return [font copy];
 }
 
