@@ -12,8 +12,6 @@
 	<dict>
 		<key>4C26C3EDBF2E1880D69EC96EB92121A2836BA66F</key>
 		<string>https://github.com/fpt-software/Material-Controls-For-iOS.git</string>
-		<key>503213e9-61b4-c845-85fc-16d5dd00447c++1444</key>
-		<string>https://fhn-svn.fsoft.com.vn/svn/FSB.FPT-Technology-Hub/XamarinUILib/src/iOSUILib</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>iOSUILibDemo.xcodeproj</string>
@@ -21,13 +19,6 @@
 	<dict>
 		<key>4C26C3EDBF2E1880D69EC96EB92121A2836BA66F</key>
 		<string>../..</string>
-		<key>503213e9-61b4-c845-85fc-16d5dd00447c++1444</key>
-		<string>../../../iOSUILib</string>
-	</dict>
-	<key>IDESourceControlProjectRepositoryRootDictionary</key>
-	<dict>
-		<key>503213e9-61b4-c845-85fc-16d5dd00447c++1444</key>
-		<string>https://fhn-svn.fsoft.com.vn/svn/FSB.FPT-Technology-Hub</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/fpt-software/Material-Controls-For-iOS.git</string>
@@ -37,14 +28,6 @@
 	<string>4C26C3EDBF2E1880D69EC96EB92121A2836BA66F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>503213e9-61b4-c845-85fc-16d5dd00447c++1444</string>
-			<key>IDESourceControlWCCName</key>
-			<string>iOSUILib</string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

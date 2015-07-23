@@ -50,7 +50,7 @@
 		88DCF8931ADCD600008F99C7 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DCF8911ADCD600008F99C7 /* TabBarViewController.xib */; };
 		920F125C1ACCFD9700599E01 /* DatePickerDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */; };
 		920F125D1ACCFD9700599E01 /* DatePickerDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */; };
-		9251906B1AC90BD600D4FC0A /* FakeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251905E1AC90BD600D4FC0A /* FakeData.m */; };
+		9251906B1AC90BD600D4FC0A /* MockData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251905E1AC90BD600D4FC0A /* MockData.m */; };
 		9251906C1AC90BD600D4FC0A /* FullWidthTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */; };
 		9251906D1AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */; };
 		9251906E1AC90BD600D4FC0A /* NormalTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190631AC90BD600D4FC0A /* NormalTextFieldViewController.m */; };
@@ -153,8 +153,8 @@
 		920F12591ACCFD9700599E01 /* DatePickerDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerDialogController.h; sourceTree = "<group>"; };
 		920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerDialogController.m; sourceTree = "<group>"; };
 		920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerDialogController.xib; sourceTree = "<group>"; };
-		9251905D1AC90BD600D4FC0A /* FakeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeData.h; sourceTree = "<group>"; };
-		9251905E1AC90BD600D4FC0A /* FakeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeData.m; sourceTree = "<group>"; };
+		9251905D1AC90BD600D4FC0A /* MockData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockData.h; sourceTree = "<group>"; };
+		9251905E1AC90BD600D4FC0A /* MockData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockData.m; sourceTree = "<group>"; };
 		9251905F1AC90BD600D4FC0A /* FullWidthTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthTextFieldViewController.h; sourceTree = "<group>"; };
 		925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullWidthTextFieldViewController.m; sourceTree = "<group>"; };
 		925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullWidthTextFieldViewController.xib; sourceTree = "<group>"; };
@@ -270,8 +270,8 @@
 				925FFC1B1ABFC4B100740B93 /* DatePickerViewController.h */,
 				925FFC1C1ABFC4B100740B93 /* DatePickerViewController.m */,
 				925FFC1D1ABFC4B100740B93 /* DatePickerViewController.xib */,
-				9251905D1AC90BD600D4FC0A /* FakeData.h */,
-				9251905E1AC90BD600D4FC0A /* FakeData.m */,
+				9251905D1AC90BD600D4FC0A /* MockData.h */,
+				9251905E1AC90BD600D4FC0A /* MockData.m */,
 				9251905F1AC90BD600D4FC0A /* FullWidthTextFieldViewController.h */,
 				925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */,
 				925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */,
@@ -518,7 +518,7 @@
 				88D8DE6A1A7A16E700D083A1 /* MasterViewController.m in Sources */,
 				88DCF8921ADCD600008F99C7 /* TabBarViewController.m in Sources */,
 				8807F0F81B09C6A4001C0D0B /* TabContentViewController.m in Sources */,
-				9251906B1AC90BD600D4FC0A /* FakeData.m in Sources */,
+				9251906B1AC90BD600D4FC0A /* MockData.m in Sources */,
 				88D8DE641A7A16E700D083A1 /* main.m in Sources */,
 				925190701AC90BD600D4FC0A /* SwitchViewController.m in Sources */,
 				886D81BE1B1D644E0009217E /* ToastViewController.m in Sources */,

@@ -122,6 +122,7 @@
 }
 
 - (void)setProgressStyle:(enum MDProgressStyle)progressStyle {
+
   if (_progressStyle != progressStyle) {
     _progressStyle = progressStyle;
     [drawingLayer removeFromSuperlayer];
@@ -146,8 +147,10 @@
       break;
     }
 
-    if (_progressType == Indeterminate)
+    drawingLayer.determinate = (_progressType == Determinate);
+    if (_progressType == Indeterminate) {
       [drawingLayer startAnimating];
+    }
   }
 }
 
@@ -155,13 +158,13 @@
   _progressType = progressType;
   switch (progressType) {
   case Indeterminate:
-    drawingLayer.determinate = false;
+    drawingLayer.determinate = NO;
     break;
   case Determinate:
-    drawingLayer.determinate = true;
+    drawingLayer.determinate = YES;
     drawingLayer.progress = _progress;
     break;
-  //  ca:se Buffer:
+  //  case Buffer:
   //    break;
   //  case QueryIndeterminateAndDeterminate:
   //    break;

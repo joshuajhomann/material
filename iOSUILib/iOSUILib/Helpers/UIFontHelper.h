@@ -23,7 +23,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UIFontHelper : NSObject
 typedef NS_OPTIONS(NSInteger, MDFontFamilySize) {
   MDFontFamilySizeRegular = 0,
   MDFontFamilySizeBold = 1,
@@ -37,6 +36,9 @@ typedef NS_OPTIONS(NSInteger, MDFontFamilyType) {
   MDFontFamilyBold = 1,
   MDFontFamilyItalic = 2
 };
+
+@interface UIFontHelper : NSObject
+
 + (UIFont *)robotoFontWithName:(NSString *)fontName size:(CGFloat)fontSize;
 + (UIFont *)robotoFontOfSize:(CGFloat)fontSize;
 + (UIFont *)boldRobotoFontOfSize:(CGFloat)fontSize;

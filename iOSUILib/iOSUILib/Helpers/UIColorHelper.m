@@ -58,14 +58,16 @@
         alpha = (hexValue & 0x000000FF) / 255.0;
         break;
       default:
-        NSLog(@"Invalid RGB string, number of characters after '#' should be "
-              @"either 3, 4, 6 or 8");
+        NSLog(
+            @"Invalid RGB string: '%@', number of characters after '#' should "
+            @"be " @"either 3, 4, 6 or 8",
+            rgba);
       }
     } else {
       NSLog(@"Scan hex error");
     }
   } else {
-    NSLog(@"Invalid RGB string, missing '#' as prefix");
+    NSLog(@"Invalid RGB string: '%@', missing '#' as prefix", rgba);
   }
 
   return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];

@@ -21,8 +21,8 @@
 // THE SOFTWARE.
 
 #import "MDToast.h"
-#import "UIFontHelper.h"
 #import "UIColorHelper.h"
+#import "UIFontHelper.h"
 #import "MDDeviceHelper.h"
 
 #define kMDAnimationDuration .2f
@@ -76,7 +76,7 @@ MDToastManager *managerInstance;
   _duration = kMDToastDurationShort;
 
   textLabel = [[UILabel alloc] init];
-  textLabel.font = [UIFontHelper robotoFontOfSize:14];
+  //  textLabel.font = [UIFontHelper robotoFontOfSize:14];
   textLabel.numberOfLines = 0;
 
   self.backgroundColor = [UIColorHelper colorWithRGBA:@"#323232EE"];
