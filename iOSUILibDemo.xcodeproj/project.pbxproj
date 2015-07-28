@@ -12,6 +12,7 @@
 		8824326D1B0993C900A2B17C /* TabBarViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8824326B1B0993C900A2B17C /* TabBarViewControllerViewController.m */; };
 		8824326E1B0993C900A2B17C /* TabBarViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8824326C1B0993C900A2B17C /* TabBarViewControllerViewController.xib */; };
 		8828911D1A7F196800944560 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8828911C1A7F196800944560 /* UIKit.framework */; };
+		8843770F1B65D453003E863D /* MaterialControls.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8843770E1B65D453003E863D /* MaterialControls.podspec */; };
 		884BEB751B16B5A8008B60B0 /* SnackBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BEB731B16B5A8008B60B0 /* SnackBarViewController.m */; };
 		884BEB761B16B5A8008B60B0 /* SnackBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884BEB741B16B5A8008B60B0 /* SnackBarViewController.xib */; };
 		886B3AE31A81FF9E00D2CF3A /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886B3AE11A81FF9E00D2CF3A /* ProgressViewController.m */; };
@@ -101,6 +102,7 @@
 		8824326C1B0993C900A2B17C /* TabBarViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarViewControllerViewController.xib; sourceTree = "<group>"; };
 		8828911C1A7F196800944560 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		882891411A7F218B00944560 /* iOSUILib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSUILib.xcodeproj; path = iOSUILib/iOSUILib.xcodeproj; sourceTree = "<group>"; };
+		8843770E1B65D453003E863D /* MaterialControls.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MaterialControls.podspec; sourceTree = "<group>"; };
 		884BEB721B16B5A8008B60B0 /* SnackBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnackBarViewController.h; sourceTree = "<group>"; };
 		884BEB731B16B5A8008B60B0 /* SnackBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnackBarViewController.m; sourceTree = "<group>"; };
 		884BEB741B16B5A8008B60B0 /* SnackBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnackBarViewController.xib; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 		88D8DE551A7A16E700D083A1 = {
 			isa = PBXGroup;
 			children = (
+				8843770E1B65D453003E863D /* MaterialControls.podspec */,
 				8885FE851AA5B5D700AD4F04 /* Roboto */,
 				882891411A7F218B00944560 /* iOSUILib.xcodeproj */,
 				8828911C1A7F196800944560 /* UIKit.framework */,
@@ -482,6 +485,7 @@
 				886B3AE41A81FF9E00D2CF3A /* ProgressViewController.xib in Resources */,
 				928026C41AD37C9500DFF739 /* CollectionViewController.xib in Resources */,
 				925190711AC90BD600D4FC0A /* SwitchViewController.xib in Resources */,
+				8843770F1B65D453003E863D /* MaterialControls.podspec in Resources */,
 				88D8DE721A7A16E700D083A1 /* Images.xcassets in Resources */,
 				928026CB1AD37CFF00DFF739 /* TimePickerDialogViewController.xib in Resources */,
 				88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */,

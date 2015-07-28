@@ -83,6 +83,11 @@
   [super removeFromSuperview];
 }
 
+- (void)setSelectedSegmentIndex:(NSInteger)selectedSegmentIndex {
+  [super setSelectedSegmentIndex:selectedSegmentIndex];
+  [self moveIndicatorToSelectedIndexWithAnimated:YES];
+}
+
 - (void)selectionChanged:(id)sender {
   [self moveIndicatorToSelectedIndexWithAnimated:YES];
   [tabBar updateSelectedIndex:self.selectedSegmentIndex];

@@ -194,9 +194,9 @@
 
 #pragma mark - PageViewController Delegate
 - (void)pageViewController:(UIPageViewController *)pageViewController
-         didFinishAnimating:(BOOL)finished
-    previousViewControllers:(NSArray *)previousViewControllers
-        transitionCompleted:(BOOL)completed {
+        didFinishAnimating:(BOOL)finished
+   previousViewControllers:(NSArray *)previousViewControllers
+       transitionCompleted:(BOOL)completed {
   if (!completed)
     return;
 
@@ -274,11 +274,9 @@
       UIView *leftTab = (UIView *)[_tabBar tabs][selectedIndex - 1];
 
       float widthDiff = selectedTab.frame.size.width - leftTab.frame.size.width;
-      ;
 
       float newOriginX = selectedTab.frame.origin.x +
                          xDriff / scrollViewWidth * leftTab.frame.size.width;
-      ;
 
       float newWidth =
           selectedTab.frame.size.width + xDriff / scrollViewWidth * widthDiff;
