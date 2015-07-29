@@ -1,10 +1,10 @@
 # Material Design Controls For iOS
 
 In 2014, Google published the [Google Material Design](http://www.google.com/design/spec/material-design/introduction.html) with a goal to provide guidelines for good design and beautiful UI across all device form factors.
-For Android, developers can use default Android controls.
-For iOS, we built those controls to bring Google material design to iOS application.
 
-They are native iOS controls built in Objective-C which extend default iOS controls to add material design UI.
+For Android, developers can use default Android controls.
+
+For iOS, [FPT Software](http://www.fpt-software.com/) built those controls to bring Google material design to iOS application. This is the most complete material design controls for iOS so far.
 
 Please feel free to make any pull requests.
 
@@ -91,7 +91,7 @@ You can either use these controls in your app via 2 ways:
 
 <p>2. Use via cocoapods</p>
 <p>   Add following line to Podfile:</p>
-<p>     pod 'MaterialControls4iOS'</p>
+<p>     pod 'MaterialControls', '~> 1.0.2'</p>
 
 # Full controls documentation
 Please go to [Material Controls](https://github.com/fpt-software/Material-Controls-For-iOS/wiki) wiki to see full controls documentation.
