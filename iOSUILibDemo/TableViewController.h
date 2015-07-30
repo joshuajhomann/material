@@ -23,6 +23,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TableViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *TableView;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

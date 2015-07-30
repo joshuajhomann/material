@@ -68,15 +68,23 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesBegan:touches withEvent:event];
   CGPoint point = [touches.allObjects[0] locationInView:self];
   [mdLayer startEffectsAtLocation:point];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesCancelled:touches withEvent:event];
   [mdLayer stopEffects];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesEnded:touches withEvent:event];
+  [mdLayer stopEffects];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesMoved:touches withEvent:event];
   [mdLayer stopEffects];
 }
 

@@ -25,7 +25,7 @@
 #import "iOSUILib/MDTableViewCell.h"
 #import "iOSUILib/UIFontHelper.h"
 
-@interface TableViewController () <UITableViewDataSource>
+@interface TableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -40,7 +40,8 @@ NSString *RowIdentifier = @"RowIdentifier";
   [super viewDidLoad];
   data = [MockData allCountriesArray];
   font = [UIFontHelper robotoFontOfSize:16];
-  _TableView.dataSource = self;
+  _tableView.dataSource = self;
+  _tableView.delegate = self;
   self.title = @"MDTableViewCell";
 }
 
@@ -71,6 +72,14 @@ NSString *RowIdentifier = @"RowIdentifier";
   return cell;
 }
 
+- (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSLog(@"did select row: %i:%i", indexPath.section, indexPath.row);
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
 /*
 #pragma mark - Navigation
 
