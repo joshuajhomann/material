@@ -37,20 +37,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    _header = [[MDCalendarDateHeader alloc]
-        initWithFrame:CGRectMake(0, 0, self.mdWidth, kHeaderHeight)];
-    [self addSubview:_header];
-
-    MDCalendar *calendar = [[MDCalendar alloc]
-        initWithFrame:CGRectMake(0, kHeaderHeight, self.mdWidth,
-                                 self.mdHeight - kHeaderHeight)];
-    calendar.dateHeader = _header;
-    [self addSubview:calendar];
-    self.calendar = calendar;
-
-    self.calendar.theme = MDCalendarThemeLight;
-
-    [self setBackgroundColor:self.calendar.backgroundColor];
+    [self setupContent];
   }
   return self;
 }
@@ -58,8 +45,26 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
+    [self setupContent];
   }
   return self;
+}
+
+- (void)setupContent {
+  _header = [[MDCalendarDateHeader alloc]
+      initWithFrame:CGRectMake(0, 0, self.mdWidth, kHeaderHeight)];
+  [self addSubview:_header];
+
+  MDCalendar *calendar = [[MDCalendar alloc]
+      initWithFrame:CGRectMake(0, kHeaderHeight, self.mdWidth,
+                               self.mdHeight - kHeaderHeight)];
+  calendar.dateHeader = _header;
+  [self addSubview:calendar];
+  self.calendar = calendar;
+
+  self.calendar.theme = MDCalendarThemeLight;
+
+  [self setBackgroundColor:self.calendar.backgroundColor];
 }
 
 - (void)layoutSubviews {

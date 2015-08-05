@@ -23,7 +23,11 @@
 #import <UIKit/UIKit.h>
 
 #import "iOSUILib/Calendar/MDCalendar.h"
+#import "iOSUILib/Calendar/NSDate+MDExtension.h"
+
+#import "iOSUILib/Calendar/MDDatePicker.h"
 
 @interface DatePickerViewController : UIViewController
+@property (weak, nonatomic) IBOutlet MDDatePicker *datePicker;
 
 @end
