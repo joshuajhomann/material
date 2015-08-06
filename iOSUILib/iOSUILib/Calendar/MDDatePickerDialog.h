@@ -24,7 +24,7 @@
 #define iOSUILib_MDDatePickerDialog_h
 #import <UIKit/UIKit.h>
 
-@protocol MDCalendarDatePickerDialogDelegate <NSObject>
+@protocol MDDatePickerDialogDelegate <NSObject>
 
 - (void)datePickerDialogDidSelectDate:(NSDate *)date;
 
@@ -33,7 +33,7 @@
 @class MDButton;
 @interface MDDatePickerDialog : UIButton
 
-@property(nonatomic) id<MDCalendarDatePickerDialogDelegate> delegate;
+@property(nonatomic) id<MDDatePickerDialogDelegate> delegate;
 
 - (void)show;
 

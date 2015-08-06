@@ -21,14 +21,9 @@
 // THE SOFTWARE.
 
 #import "DatePickerViewController.h"
-#import "iOSUILib/Calendar/NSDate+MDExtension.h"
 
-#import "iOSUILib/Calendar/MDDatePicker.h"
 @interface DatePickerViewController () <MDCalendarDelegate>
-@property(nonatomic) MDCalendar *calendar;
 @property(nonatomic) NSDateFormatter *dateFormatter;
-
-@property(nonatomic) MDDatePicker *datePicker;
 @end
 
 @implementation DatePickerViewController
@@ -39,46 +34,7 @@
 
   _dateFormatter = [[NSDateFormatter alloc] init];
 
-  MDDatePicker *datePicker =
-      [[MDDatePicker alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
-  datePicker.delegate = self;
-  [self.view addSubview:datePicker];
-  _datePicker = datePicker;
-  _datePicker.translatesAutoresizingMaskIntoConstraints = NO;
-
-  [self.view
-      addConstraint:[NSLayoutConstraint constraintWithItem:_datePicker
-                                                 attribute:NSLayoutAttributeTop
-                                                 relatedBy:NSLayoutRelationEqual
-                                                    toItem:self.view
-                                                 attribute:NSLayoutAttributeTop
-                                                multiplier:1
-                                                  constant:0]];
-  [self.view addConstraint:[NSLayoutConstraint
-                               constraintWithItem:_datePicker
-                                        attribute:NSLayoutAttributeLeading
-                                        relatedBy:NSLayoutRelationEqual
-                                           toItem:self.view
-                                        attribute:NSLayoutAttributeLeading
-                                       multiplier:1
-                                         constant:0]];
-  [self.view addConstraint:[NSLayoutConstraint
-                               constraintWithItem:_datePicker
-                                        attribute:NSLayoutAttributeTrailing
-                                        relatedBy:NSLayoutRelationEqual
-                                           toItem:self.view
-                                        attribute:NSLayoutAttributeTrailing
-                                       multiplier:1
-                                         constant:0]];
-  [self.view addConstraint:[NSLayoutConstraint
-                               constraintWithItem:_datePicker
-                                        attribute:NSLayoutAttributeBottom
-                                        relatedBy:NSLayoutRelationEqual
-                                           toItem:self.view
-                                        attribute:NSLayoutAttributeBottom
-                                       multiplier:1
-                                         constant:0]];
-
+  _datePicker.delegate = self;
   self.title = @"MDDatePicker";
 }
 

@@ -23,7 +23,7 @@
 #import "DatePickerDialogController.h"
 #import "iOSUILib/Calendar/NSDate+MDExtension.h"
 #import "iOSUILib/Calendar/MDDatePickerDialog.h"
-@interface DatePickerDialogController () <MDCalendarDatePickerDialogDelegate>
+@interface DatePickerDialogController () <MDDatePickerDialogDelegate>
 @property(weak, nonatomic) IBOutlet UITextField *txtDate;
 @property(nonatomic) NSDateFormatter *dateFormatter;
 
@@ -53,7 +53,7 @@
   }
   [_datePicker show];
 }
-/*
+/* ;
  #pragma mark - Navigation
 */
 

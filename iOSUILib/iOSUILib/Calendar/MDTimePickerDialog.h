@@ -32,7 +32,7 @@ typedef NS_OPTIONS(NSInteger, MDCalendarTimeMode) {
   MDCalendarTimeMode24H
 };
 
-@protocol MDCalendarTimePickerDialogDelegate <NSObject>
+@protocol MDTimePickerDialogDelegate <NSObject>
 
 - (void)timePickerDialog:(MDTimePickerDialog *)timePickerDialog
            didSelectHour:(NSInteger)hour
@@ -43,7 +43,7 @@ typedef NS_OPTIONS(NSInteger, MDCalendarTimeMode) {
 @class MDButton;
 @interface MDTimePickerDialog : UIButton <UIGestureRecognizerDelegate>
 
-@property(nonatomic) id<MDCalendarTimePickerDialogDelegate> delegate;
+@property(nonatomic) id<MDTimePickerDialogDelegate> delegate;
 
 @property(nonatomic) MDCalendarTimeMode timeMode;
 

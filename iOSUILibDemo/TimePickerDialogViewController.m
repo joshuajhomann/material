@@ -25,8 +25,7 @@
 #import "iOSUILib/Calendar/NSDate+MDExtension.h"
 
 #import "iOSUILib/Calendar/MDTimePickerDialog.h"
-@interface TimePickerDialogViewController () <
-    MDCalendarTimePickerDialogDelegate>
+@interface TimePickerDialogViewController () <MDTimePickerDialogDelegate>
 @property(weak, nonatomic) IBOutlet UITextField *txtTimerStart;
 @property(weak, nonatomic) IBOutlet UIButton *btnStartTime;
 @property(nonatomic) NSDateFormatter *dateFormatter;
