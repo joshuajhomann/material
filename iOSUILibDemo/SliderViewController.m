@@ -30,7 +30,38 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  //  _mdSlider.enabled = NO;
+  // create a MDSlider programmatically
+  //  MDSlider *slider = [[MDSlider alloc] init];
+  //  slider.minimumValue = 5;
+  //  slider.maximumValue = 50;
+  //  slider.step = 5;
+  //  slider.enabledValueLabel = YES;
+  //  [self.view addSubview:slider];
+  //  slider.translatesAutoresizingMaskIntoConstraints = NO;
+  //  [self.view addConstraint:[NSLayoutConstraint
+  //                               constraintWithItem:slider
+  //                                        attribute:NSLayoutAttributeLeading
+  //                                        relatedBy:NSLayoutRelationEqual
+  //                                           toItem:self.view
+  //                                        attribute:NSLayoutAttributeLeading
+  //                                       multiplier:1
+  //                                         constant:0]];
+  //  [self.view addConstraint:[NSLayoutConstraint
+  //                               constraintWithItem:slider
+  //                                        attribute:NSLayoutAttributeTrailing
+  //                                        relatedBy:NSLayoutRelationEqual
+  //                                           toItem:self.view
+  //                                        attribute:NSLayoutAttributeTrailing
+  //                                       multiplier:1
+  //                                         constant:0]];
+  //  [self.view
+  //      addConstraint:[NSLayoutConstraint constraintWithItem:slider
+  //                                                 attribute:NSLayoutAttributeTop
+  //                                                 relatedBy:NSLayoutRelationEqual
+  //                                                    toItem:self.view
+  //                                                 attribute:NSLayoutAttributeTop
+  //                                                multiplier:1
+  //                                                  constant:0]];
 }
 
 - (void)didReceiveMemoryWarning {

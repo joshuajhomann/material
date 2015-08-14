@@ -37,7 +37,6 @@
 		889D16F81B4BDFB700188687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D8DE6E1A7A16E700D083A1 /* Main.storyboard */; };
 		88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B698011B25A46600BF3B19 /* SliderViewController.m */; };
 		88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B698021B25A46600BF3B19 /* SliderViewController.xib */; };
-		88B698081B25A5A500BF3B19 /* App Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B698071B25A5A500BF3B19 /* App Icon.png */; };
 		88C2EA141A834CB00097F3D8 /* libiOSUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 882891471A7F218C00944560 /* libiOSUILib.a */; };
 		88D8DE641A7A16E700D083A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DE631A7A16E700D083A1 /* main.m */; };
 		88D8DE671A7A16E700D083A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DE661A7A16E700D083A1 /* AppDelegate.m */; };
@@ -131,7 +130,6 @@
 		88B698001B25A46600BF3B19 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
 		88B698011B25A46600BF3B19 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
 		88B698021B25A46600BF3B19 /* SliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderViewController.xib; sourceTree = "<group>"; };
-		88B698071B25A5A500BF3B19 /* App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon.png"; sourceTree = "<group>"; };
 		88D8DE5E1A7A16E700D083A1 /* iOSUILibDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSUILibDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D8DE621A7A16E700D083A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88D8DE631A7A16E700D083A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 		88D8DE601A7A16E700D083A1 /* iOSUILibDemo */ = {
 			isa = PBXGroup;
 			children = (
-				88B698071B25A5A500BF3B19 /* App Icon.png */,
 				88D8DE651A7A16E700D083A1 /* AppDelegate.h */,
 				88D8DE661A7A16E700D083A1 /* AppDelegate.m */,
 				88D8DEB61A7A1B9B00D083A1 /* ButtonViewController.h */,
@@ -473,7 +470,6 @@
 				884BEB761B16B5A8008B60B0 /* SnackBarViewController.xib in Resources */,
 				8807F0F91B09C6A4001C0D0B /* TabContentViewController.xib in Resources */,
 				8885FE9A1AA5B5D700AD4F04 /* Roboto-Italic.ttf in Resources */,
-				88B698081B25A5A500BF3B19 /* App Icon.png in Resources */,
 				8885FE951AA5B5D700AD4F04 /* LICENSE.txt in Resources */,
 				8885FE991AA5B5D700AD4F04 /* Roboto-BoldItalic.ttf in Resources */,
 				925190731AC90BD600D4FC0A /* TableViewController.xib in Resources */,

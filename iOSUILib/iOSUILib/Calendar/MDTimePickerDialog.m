@@ -65,6 +65,17 @@
 @property(nonatomic) UIColor *selectionCenterColor;
 @property(nonatomic) UIColor *backgroundPopupColor;
 @property(nonatomic) UIColor *backgroundClockColor;
+
+@property(nonatomic) UIView *header;
+@property(nonatomic) UILabel *headerLabelHour;
+@property(nonatomic) UILabel *headerLabelMinute;
+@property(nonatomic) UILabel *headerLabelTimeMode;
+
+@property(nonatomic) MDButton *buttonOk;
+@property(nonatomic) MDButton *buttonCancel;
+
+@property(nonatomic) UIFont *buttonFont;
+
 @end
 
 @implementation MDTimePickerDialog {

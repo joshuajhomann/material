@@ -35,11 +35,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  //  snackbar = [[MDSnackbar alloc]
-  //      initWithText:@"Connection time out. Test for long message."
-  //       actionTitle:@"retry"];
-  //  snackbar.multiline = true;
-  //  snackbar.actionTitleColor = [UIColorHelper colorWithRGBA:@"#4CAF50"];
   self.title = @"MDSnackbar";
 }
 

@@ -48,8 +48,8 @@
 
 - (IBAction)btnSelectTime:(id)sender {
   if (!_timerPicker) {
-    MDTimePickerDialog *datePicker = [[MDTimePickerDialog alloc] init];
-    _timerPicker = datePicker;
+    MDTimePickerDialog *timePicker = [[MDTimePickerDialog alloc] init];
+    _timerPicker = timePicker;
     _timerPicker.delegate = self;
   }
   [_timerPicker show];

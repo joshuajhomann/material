@@ -73,7 +73,7 @@
   NSMutableArray *data = [self.dataArray objectAtIndex:indexPath.section];
   NSString *cellData = [data objectAtIndex:indexPath.row];
   static NSString *cellIdentifier = @"cvCell";
-  MDCollectionViewCell *cell =
+  UICollectionViewCell *cell =
       [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
                                                 forIndexPath:indexPath];
   UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];

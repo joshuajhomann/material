@@ -40,6 +40,11 @@
   _mdSwitch.tag = 0;
   _customSwitch.tag = 1;
   self.title = @"MDSwitch";
+
+  // create a MDSwitch programmatically
+  //  MDSwitch *newSwitch =
+  //      [[MDSwitch alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+  //  [self.view addSubview:newSwitch];
 }
 
 - (void)didReceiveMemoryWarning {
