@@ -36,11 +36,11 @@ enum ThumbState { Normal, Focused, Disabled };
 @property(nonatomic) UIView *node;
 @property(nonatomic) enum ThumbState state;
 @property(nonatomic, weak) MDSlider *slider;
+@property(nonatomic) BOOL enableBubble;
 
 - (instancetype)initWithMDSlider:(MDSlider *)slider;
 - (void)focused:(void (^)(BOOL finished))completion;
 - (void)lostFocused:(void (^)(BOOL finished))completion;
 - (void)disabled:(void (^)(BOOL finished))completion;
 - (void)changeThumbShape:(BOOL)animated withValue:(float)rawValue;
-- (void)enableBubble:(BOOL)enabled;
 @end
