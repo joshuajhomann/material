@@ -233,7 +233,8 @@
       objectAtIndex:([[_dateFormatter stringFromDate:date] intValue] - 1)];
   if (_monthFormat == MDCalendarMonthSymbolsFormatShort ||
       _monthFormat == MDCalendarMonthSymbolsFormatShortUppercase) {
-    monthName = [monthName substringToIndex:3];
+#warning wrongCode 一月- 十月 是2个字符串,取3会越界
+      monthName = (monthName.length >= 3)? [monthName substringToIndex:3] :[monthName substringToIndex:2];
     if (_monthFormat == MDCalendarMonthSymbolsFormatShortUppercase) {
       monthName = [monthName uppercaseString];
     }
