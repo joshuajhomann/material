@@ -50,6 +50,8 @@
 		88DCF8931ADCD600008F99C7 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DCF8911ADCD600008F99C7 /* TabBarViewController.xib */; };
 		920F125C1ACCFD9700599E01 /* DatePickerDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */; };
 		920F125D1ACCFD9700599E01 /* DatePickerDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */; };
+		9225382A1BC64DE70067BE8B /* TestTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922538281BC64DE70067BE8B /* TestTextFieldViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9225382B1BC64DE70067BE8B /* TestTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922538291BC64DE70067BE8B /* TestTextFieldViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		9251906B1AC90BD600D4FC0A /* MockData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251905E1AC90BD600D4FC0A /* MockData.m */; };
 		9251906C1AC90BD600D4FC0A /* FullWidthTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */; };
 		9251906D1AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */; };
@@ -153,6 +155,9 @@
 		920F12591ACCFD9700599E01 /* DatePickerDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerDialogController.h; sourceTree = "<group>"; };
 		920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerDialogController.m; sourceTree = "<group>"; };
 		920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerDialogController.xib; sourceTree = "<group>"; };
+		922538271BC64DE70067BE8B /* TestTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTextFieldViewController.h; sourceTree = "<group>"; };
+		922538281BC64DE70067BE8B /* TestTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTextFieldViewController.m; sourceTree = "<group>"; };
+		922538291BC64DE70067BE8B /* TestTextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestTextFieldViewController.xib; sourceTree = "<group>"; };
 		9251905D1AC90BD600D4FC0A /* MockData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockData.h; sourceTree = "<group>"; };
 		9251905E1AC90BD600D4FC0A /* MockData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockData.m; sourceTree = "<group>"; };
 		9251905F1AC90BD600D4FC0A /* FullWidthTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthTextFieldViewController.h; sourceTree = "<group>"; };
@@ -317,6 +322,9 @@
 				88B698001B25A46600BF3B19 /* SliderViewController.h */,
 				88B698011B25A46600BF3B19 /* SliderViewController.m */,
 				88B698021B25A46600BF3B19 /* SliderViewController.xib */,
+				922538271BC64DE70067BE8B /* TestTextFieldViewController.h */,
+				922538281BC64DE70067BE8B /* TestTextFieldViewController.m */,
+				922538291BC64DE70067BE8B /* TestTextFieldViewController.xib */,
 			);
 			path = iOSUILibDemo;
 			sourceTree = "<group>";
@@ -458,6 +466,7 @@
 				886D81BF1B1D644E0009217E /* ToastViewController.xib in Resources */,
 				88D8DEBA1A7A1B9B00D083A1 /* ButtonViewController.xib in Resources */,
 				88DCF8931ADCD600008F99C7 /* TabBarViewController.xib in Resources */,
+				9225382B1BC64DE70067BE8B /* TestTextFieldViewController.xib in Resources */,
 				8885FE9C1AA5B5D700AD4F04 /* Roboto-LightItalic.ttf in Resources */,
 				9251906D1AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib in Resources */,
 				8885FE9F1AA5B5D700AD4F04 /* Roboto-Regular.ttf in Resources */,
@@ -504,6 +513,7 @@
 			files = (
 				887E914C1AA45808002DE595 /* TextFieldViewController.m in Sources */,
 				88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */,
+				9225382A1BC64DE70067BE8B /* TestTextFieldViewController.m in Sources */,
 				925FFC1E1ABFC4B100740B93 /* DatePickerViewController.m in Sources */,
 				886B3AE31A81FF9E00D2CF3A /* ProgressViewController.m in Sources */,
 				8824326D1B0993C900A2B17C /* TabBarViewControllerViewController.m in Sources */,

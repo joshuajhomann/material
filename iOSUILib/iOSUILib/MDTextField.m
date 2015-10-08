@@ -575,8 +575,16 @@
 
 - (void)setText:(NSString *)text {
   _text = text;
-  _textField.text = text;
-  _textView.text = text;
+//  _textField.text = text;
+//  _textView.text = text;
+    
+    if (![_text isEqualToString:_textField.text]) {
+        _textField.text = text;
+    }
+    if (![_text isEqualToString:_textView.text]) {
+        _textView.text = text;
+    }
+    
   [self updateTextLength:text.length];
   if ([_delegate respondsToSelector:@selector(textFieldDidChange:)]) {
     [_delegate textFieldDidChange:self];
