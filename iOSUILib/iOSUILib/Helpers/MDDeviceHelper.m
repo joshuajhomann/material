@@ -31,7 +31,10 @@
       window = [[UIApplication sharedApplication].windows objectAtIndex:0];
     return [window subviews].lastObject;
   } else {
-    return [[UIApplication sharedApplication] keyWindow];
+      UIWindow *window =[[UIApplication sharedApplication] keyWindow];
+      if (window == nil)
+          window = [[[UIApplication sharedApplication] delegate] window];//#14
+      return window;
   }
 }
 @end
