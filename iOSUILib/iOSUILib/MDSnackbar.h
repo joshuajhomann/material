@@ -45,6 +45,7 @@ IB_DESIGNABLE
 @property(nonatomic) UIColor *textColor;
 @property(nonatomic) UIColor *actionTitleColor;
 @property(nonatomic) double duration;
+@property(nonatomic) double bottomPadding;
 @property(nonatomic) BOOL swipeable;
 @property(nonatomic) BOOL multiline;
 @property(nonatomic, readonly) BOOL isShowing;

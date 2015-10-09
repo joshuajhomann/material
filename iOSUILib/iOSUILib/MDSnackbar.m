@@ -53,6 +53,8 @@ MDSnackbarManger *snackbarManagerInstance;
   UIButton *actionButton;
 }
 
+@synthesize bottomPadding = _bottomPadding;
+
 - (instancetype)init {
   if (self = [super init]) {
     [self createContent];
@@ -118,6 +120,8 @@ MDSnackbarManger *snackbarManagerInstance;
       [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(slideDown:)];
   swipeGesture.direction = UISwipeGestureRecognizerDirectionDown;
+    
+   _bottomPadding = 0.0;
   [self addGestureRecognizer:swipeGesture];
 }
 
@@ -242,7 +246,7 @@ MDSnackbarManger *snackbarManagerInstance;
                                       toItem:rootView
                                    attribute:NSLayoutAttributeBottom
                                   multiplier:1.0
-                                    constant:0.0];
+                                    constant:-_bottomPadding];
 
   [rootView addConstraint:hiddenConstraint];
 }
