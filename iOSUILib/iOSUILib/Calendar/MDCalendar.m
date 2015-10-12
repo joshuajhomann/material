@@ -140,6 +140,7 @@
   _currentDate = [NSDate date];
   _currentMonth = [_currentDate copy];
 
+ 
   _cellStyle = MDCalendarCellStyleCircle;
 
   _minimumDate = [NSDateHelper mdDateWithYear:1970 month:1 day:1];
@@ -152,6 +153,9 @@
   _yearSelector = yearSelector;
   _yearSelector.delegate = self;
   _yearSelector.hidden = YES;
+    
+  [self setSelectedDate:_currentDate]; //default selected date is current: #15
+    
   [self.yearSelector relayout];
   [self addSubview:_yearSelector];
 }
