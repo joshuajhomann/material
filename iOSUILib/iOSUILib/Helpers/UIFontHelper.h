@@ -33,13 +33,13 @@ typedef NS_OPTIONS(NSInteger, MDFontFamilySize) {
 };
 
 typedef NS_OPTIONS(NSInteger, MDFontFamilyType) {
-  MDFontFamilyBold = 1,
-  MDFontFamilyItalic = 2
+  MDFontFamilyTypeBold = 1,
+  MDFontFamilyTypeItalic = 2
 };
 
 @interface UIFontHelper : NSObject
 
-+ (UIFont *)robotoFontWithName:(NSString *)fontName size:(CGFloat)fontSize;
-+ (UIFont *)robotoFontOfSize:(CGFloat)fontSize;
-+ (UIFont *)boldRobotoFontOfSize:(CGFloat)fontSize;
++ (nullable UIFont *)robotoFontWithName:(nullable NSString *)fontName size:(CGFloat)fontSize;
++ (nullable UIFont *)robotoFontOfSize:(CGFloat)fontSize;
++ (nullable UIFont *)boldRobotoFontOfSize:(CGFloat)fontSize;
 @end

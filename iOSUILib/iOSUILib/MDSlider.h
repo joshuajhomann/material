@@ -23,23 +23,25 @@
 #import <UIKit/UIKit.h>
 #define kMDAnimationDuration .2f
 
+NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
 @interface MDSlider : UIControl
 
-@property(nonatomic) IBInspectable float value;
-@property(nonatomic) IBInspectable float maximumValue;
-@property(nonatomic) IBInspectable float minimumValue;
+@property(nonatomic) IBInspectable CGFloat value;
+@property(nonatomic) IBInspectable CGFloat maximumValue;
+@property(nonatomic) IBInspectable CGFloat minimumValue;
 @property(nonatomic) IBInspectable UIColor *thumbOnColor;
 @property(nonatomic) IBInspectable UIColor *trackOnColor;
 @property(nonatomic) IBInspectable UIColor *thumbOffColor;
 @property(nonatomic) IBInspectable UIColor *trackOffColor;
 @property(nonatomic) IBInspectable UIColor *disabledColor;
-@property(nonatomic) IBInspectable UIColor *tickMarksColor;
-@property(nonatomic) IBInspectable UIImage *leftImage;
-@property(nonatomic) IBInspectable UIImage *rightImage;
+@property(nullable, nonatomic) IBInspectable UIColor *tickMarksColor;
+@property(nullable, nonatomic) IBInspectable UIImage *leftImage;
+@property(nullable, nonatomic) IBInspectable UIImage *rightImage;
 @property(nonatomic, getter=isEnabled) IBInspectable BOOL enabled;
-@property(nonatomic) IBInspectable float step;
+@property(nonatomic) IBInspectable CGFloat step;
 @property(nonatomic) IBInspectable BOOL enabledValueLabel;
 @property(nonatomic) IBInspectable NSUInteger precision;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -45,7 +45,7 @@
     _node.layer.cornerRadius = kMDThumbRadius;
     [self addSubview:_node];
     [self setupConstraints];
-    _state = Normal;
+    _state = MDSliderThumbStateNormal;
   }
   return self;
 }
@@ -105,7 +105,7 @@
 }
 
 - (void)focused:(void (^)(BOOL finished))completion {
-  _state = Focused;
+  _state = MDSliderThumbStateFocused;
   [UIView animateWithDuration:kMDAnimationDuration
                    animations:^{
                      nodeWidthConstraint.constant = kMDThumbForcusedRadius * 2;
@@ -130,7 +130,7 @@
 }
 
 - (void)lostFocused:(void (^)(BOOL finished))completion {
-  _state = Normal;
+  _state = MDSliderThumbStateNormal;
   [UIView animateWithDuration:kMDAnimationDuration
                    animations:^{
                      nodeWidthConstraint.constant = kMDThumbRadius * 2;
@@ -155,7 +155,7 @@
 }
 
 - (void)disabled:(void (^)(BOOL finished))completion {
-  _state = Disabled;
+  _state = MDSliderThumbStateDisabled;
   [UIView animateWithDuration:kMDAnimationDuration
                    animations:^{
                      nodeWidthConstraint.constant = kMDThumbDisabledRadius * 2;
@@ -174,7 +174,7 @@
   [_node.layer addAnimation:animation forKey:@"cornerRadius"];
 }
 
-- (void)changeThumbShape:(BOOL)animated withValue:(float)rawValue {
+- (void)changeThumbShape:(BOOL)animated withValue:(CGFloat)rawValue {
   CAAnimationGroup *changeShape;
   if (animated) {
     changeShape = [CAAnimationGroup animation];

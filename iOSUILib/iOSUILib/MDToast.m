@@ -62,7 +62,7 @@ MDToastManager *managerInstance;
   return self;
 }
 
-- (instancetype)initWithText:(NSString *)text duration:(double)duration {
+- (instancetype)initWithText:(NSString *)text duration:(NSTimeInterval)duration {
   if (self = [super init]) {
     [self createContent];
     self.text = text;

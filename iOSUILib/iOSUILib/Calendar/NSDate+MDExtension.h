@@ -34,16 +34,16 @@
 
 @property(readonly, nonatomic) NSInteger mdNumberOfDaysInMonth;
 
-- (NSDate*)mdDateByAddingMonths:(NSInteger)months;
-- (NSDate*)mdDateBySubtractingMonths:(NSInteger)months;
-- (NSDate*)mdDateByAddingDays:(NSInteger)days;
-- (NSDate*)mdDateBySubtractingDays:(NSInteger)days;
-- (NSString*)mdStringWithFormat:(NSString*)format;
+- (nullable NSDate*)mdDateByAddingMonths:(NSInteger)months;
+- (nullable  NSDate*)mdDateBySubtractingMonths:(NSInteger)months;
+- (nullable  NSDate*)mdDateByAddingDays:(NSInteger)days;
+- (nullable NSDate*)mdDateBySubtractingDays:(NSInteger)days;
+- (nonnull NSString*)mdStringWithFormat:(nonnull NSString*)format;
 
-- (NSInteger)mdYearsFrom:(NSDate*)date;
-- (NSInteger)mdMonthsFrom:(NSDate*)date;
-- (NSInteger)mdDaysFrom:(NSDate*)date;
+- (NSInteger)mdYearsFrom:(nonnull NSDate*)date;
+- (NSInteger)mdMonthsFrom:(nonnull NSDate*)date;
+- (NSInteger)mdDaysFrom:(nonnull NSDate*)date;
 
-- (BOOL)mdIsEqualToDateForMonth:(NSDate*)date;
-- (BOOL)mdIsEqualToDateForDay:(NSDate*)date;
+- (BOOL)mdIsEqualToDateForMonth:(nonnull NSDate*)date;
+- (BOOL)mdIsEqualToDateForDay:(nonnull NSDate*)date;
 @end

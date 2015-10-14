@@ -22,26 +22,31 @@
 
 #import <UIKit/UIKit.h>
 
-enum MDProgressStyle { Circular, Linear };
 
-enum MDProgressType {
-  Indeterminate,
-  Determinate,
-  //  Buffer,
-  //  QueryIndeterminateAndDeterminate
+typedef NS_ENUM(NSInteger, MDProgressStyle) {
+    MDProgressStyleCircular,
+    MDProgressStyleLinear
 };
+
+typedef NS_ENUM(NSInteger, MDProgressType) {
+    MDProgressTypeIndeterminate,
+    MDProgressTypeDeterminate,
+    //  MDProgressTypeBuffer,
+    //  MDProgressTypeQueryIndeterminateAndDeterminate
+};
+
 IB_DESIGNABLE
 @interface MDProgress : UIView
 
 @property(nonatomic) IBInspectable UIColor *progressColor;
 @property(nonatomic) IBInspectable UIColor *trackColor;
-@property(nonatomic) enum MDProgressType progressType;
-@property(nonatomic) enum MDProgressStyle progressStyle;
+@property(nonatomic) MDProgressType progressType;
+@property(nonatomic) MDProgressStyle progressStyle;
 
-@property(nonatomic) IBInspectable int type;
-@property(nonatomic) IBInspectable int style;
-@property(nonatomic) IBInspectable float trackWidth;
+@property(nonatomic) IBInspectable NSInteger type;
+@property(nonatomic) IBInspectable NSInteger style;
+@property(nonatomic) IBInspectable CGFloat trackWidth;
 
-@property(nonatomic) IBInspectable float progress;
+@property(nonatomic) IBInspectable CGFloat progress;
 @property(nonatomic) IBInspectable BOOL enableTrackColor;
 @end

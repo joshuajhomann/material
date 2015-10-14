@@ -52,7 +52,7 @@
 - (void)initContents {
 }
 
-- (void)setProgress:(float)progress {
+- (void)setProgress:(CGFloat)progress {
   if (!_determinate)
     return;
 

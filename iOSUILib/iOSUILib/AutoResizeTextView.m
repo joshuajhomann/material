@@ -86,12 +86,12 @@
   [placeholderLabel setTextColor:_placeholderColor];
 }
 
-- (void)setMinVisibleLines:(int)minVisibleLines {
+- (void)setMinVisibleLines:(NSInteger)minVisibleLines {
   _minVisibleLines = minVisibleLines;
   [self calculateTextViewHeight];
 }
 
-- (void)setMaxVisibleLines:(int)maxVisibleLines {
+- (void)setMaxVisibleLines:(NSInteger)maxVisibleLines {
   _maxVisibleLines = maxVisibleLines;
   [self calculateTextViewHeight];
 }

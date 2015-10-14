@@ -79,6 +79,6 @@
 - (void)tabBar:(MDTabBar *)tabBar
     didChangeSelectedIndex:(NSUInteger)selectedIndex {
   _selectedLabel.text =
-      [NSString stringWithFormat:@"Selected: %i", selectedIndex];
+      [NSString stringWithFormat:@"Selected: %lu", (unsigned long)selectedIndex];
 }
 @end

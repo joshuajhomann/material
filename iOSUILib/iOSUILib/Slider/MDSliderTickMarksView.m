@@ -47,17 +47,17 @@
   [tickLayers removeAllObjects];
   [tickValues removeAllObjects];
 
-  float step = _step;
+  CGFloat step = _step;
   if (_maximumValue < _minimumValue) {
-    step = -fabsf(step);
+    step = -fabs(step);
   }
 
   if (step != 0) {
-    float space = (float)self.frame.size.width * fabsf(_step) /
-                  fabsf(_maximumValue - _minimumValue);
+    CGFloat space = (CGFloat)self.frame.size.width * fabs(_step) /
+                  fabs(_maximumValue - _minimumValue);
     if (space > 0) {
-      float x = 0;
-      float value = _minimumValue;
+      CGFloat x = 0;
+      CGFloat value = _minimumValue;
       while (x < self.frame.size.width) {
         CALayer *tick = [self createTick:x];
         [self.layer addSublayer:tick];
@@ -76,7 +76,7 @@
   }
 }
 
-- (CALayer *)createTick:(float)x {
+- (CALayer *)createTick:(CGFloat)x {
   CALayer *tick = [[CALayer alloc] init];
   tick.frame = CGRectMake(x - kMDTickSize / 2,
                           (self.bounds.size.height - kMDTickSize) / 2,
@@ -86,17 +86,17 @@
 }
 
 #pragma mark setters
-- (void)setStep:(float)step {
+- (void)setStep:(CGFloat)step {
   _step = step;
   [self arrangeTickMarks];
 }
 
-- (void)setMinimumValue:(float)minimumValue {
+- (void)setMinimumValue:(CGFloat)minimumValue {
   _minimumValue = minimumValue;
   [self arrangeTickMarks];
 }
 
-- (void)setMaximumValue:(float)maximumValue {
+- (void)setMaximumValue:(CGFloat)maximumValue {
   _maximumValue = maximumValue;
   [self arrangeTickMarks];
 }
@@ -123,16 +123,16 @@
 }
 
 #pragma mark public methods
-- (float)theNearestTickValueFromValue:(float)value {
+- (CGFloat)theNearestTickValueFromValue:(CGFloat)value {
   for (int i = 0; i < tickLayers.count; i++) {
-    float tickValue = [tickValues[i] floatValue];
+    CGFloat tickValue = [tickValues[i] floatValue];
     if (_minimumValue < _maximumValue) {
       if (tickValue >= value) {
         if (i == 0) {
           return tickValue;
         }
-        float previousTickValue = [tickValues[i - 1] floatValue];
-        if (fabsf(value - previousTickValue) > fabsf(tickValue - value)) {
+        CGFloat previousTickValue = [tickValues[i - 1] floatValue];
+        if (fabs(value - previousTickValue) > fabs(tickValue - value)) {
           return tickValue;
         } else {
           return previousTickValue;
@@ -143,8 +143,8 @@
         if (i == 0) {
           return tickValue;
         }
-        float previousTickValue = [tickValues[i - 1] floatValue];
-        if (fabsf(value - previousTickValue) > fabsf(tickValue - value)) {
+        CGFloat previousTickValue = [tickValues[i - 1] floatValue];
+        if (fabs(value - previousTickValue) > fabs(tickValue - value)) {
           return tickValue;
         } else {
           return previousTickValue;

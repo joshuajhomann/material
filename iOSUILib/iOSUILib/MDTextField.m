@@ -542,17 +542,17 @@
   [self relayout];
 }
 
-- (void)setMaxVisibleLines:(int)maxVisibleLines {
+- (void)setMaxVisibleLines:(NSInteger)maxVisibleLines {
   _maxVisibleLines = maxVisibleLines;
   [_textView setMaxVisibleLines:maxVisibleLines];
 }
 
-- (void)setMinVisibleLines:(int)minVisibleLines {
+- (void)setMinVisibleLines:(NSInteger)minVisibleLines {
   _minVisibleLines = minVisibleLines;
   [_textView setMinVisibleLines:minVisibleLines];
 }
 
-- (void)setMaxCharacterCount:(int)maxCharacterCount {
+- (void)setMaxCharacterCount:(NSInteger)maxCharacterCount {
   _maxCharacterCount = maxCharacterCount;
   if (_maxCharacterCount > 0) {
     _characterCountView.hidden = NO;
@@ -793,7 +793,7 @@
 - (void)updateState {
   if (self.enabled) {
     if (_hasError || exceedsCharacterLimits) {
-      [self setViewState:ERROR];
+      [self setViewState:MDTextFieldViewStateError];
       if (!_fullWidth) {
         [[self getInputView] setTintColor:_errorColor];
       }
@@ -802,14 +802,14 @@
     } else {
       [[self getInputView] setTintColor:_highlightColor];
       if ([[self getInputView] isFirstResponder]) {
-        [self setViewState:HIGHLIGHT];
+        [self setViewState:MDTextFieldViewStateHighlighted];
       } else {
-        [self setViewState:NORMAL];
+        [self setViewState:MDTextFieldViewStateNormal];
       }
       _errorView.hidden = YES;
     }
   } else {
-    [self setViewState:DISABLED];
+    [self setViewState:MDTextFieldViewStateDisabled];
   }
 }
 
@@ -838,20 +838,20 @@
 - (void)updateTextLength:(NSUInteger)textLength {
   if (self.enabled) {
     [_characterCountView
-        setText:[NSString stringWithFormat:@"%lu / %i",
+        setText:[NSString stringWithFormat:@"%lu / %li",
                                            (unsigned long)textLength,
-                                           _maxCharacterCount]];
+                                           (long)_maxCharacterCount]];
     if (_maxCharacterCount > 0 && textLength > _maxCharacterCount) {
       exceedsCharacterLimits = YES;
-      [self setViewState:ERROR];
+      [self setViewState:MDTextFieldViewStateError];
       [_characterCountView setTextColor:_errorColor];
     } else {
       exceedsCharacterLimits = NO;
       if (!_hasError) {
         if ([self getInputView].isFirstResponder)
-          [self setViewState:HIGHLIGHT];
+          [self setViewState:MDTextFieldViewStateHighlighted];
         else
-          [self setViewState:NORMAL];
+          [self setViewState:MDTextFieldViewStateNormal];
       }
 
       [_characterCountView setTextColor:_normalColor];
@@ -859,9 +859,9 @@
   }
 }
 
-- (void)setViewState:(enum ViewState)state {
+- (void)setViewState:(MDTextFieldViewState)state {
   switch (state) {
-  case NORMAL:
+  case MDTextFieldViewStateNormal:
     if (!_fullWidth) {
       [_dividerHolder setDividerColor:_normalColor];
       [_dividerHolder setDividerHeight:kMDDividerHeight];
@@ -869,7 +869,7 @@
     [_labelView setTextColor:_normalColor];
     [self updateTextColor:_textColor];
     break;
-  case HIGHLIGHT:
+  case MDTextFieldViewStateHighlighted:
     if (!_fullWidth) {
       [_dividerHolder setDividerHeight:kMDFocusedDividerHeight];
       [_dividerHolder setDividerColor:_highlightColor];
@@ -879,7 +879,7 @@
     }
     [self updateTextColor:_textColor];
     break;
-  case ERROR:
+  case MDTextFieldViewStateError:
     if (!_fullWidth) {
       [_dividerHolder setDividerHeight:kMDFocusedDividerHeight];
       [_dividerHolder setDividerColor:_errorColor];
@@ -889,7 +889,7 @@
     }
     [self updateTextColor:_textColor];
     break;
-  case DISABLED:
+  case MDTextFieldViewStateDisabled:
     [_dividerHolder setDividerHeight:kMDDividerHeight];
     [_dividerHolder setDividerColor:_normalColor];
     [self updateTextColor:_disabledColor];
@@ -907,12 +907,12 @@
 
 - (void)inputTextDidBeginEditing:(NSUInteger)textLength {
   if (_hasError)
-    [self setViewState:ERROR];
+    [self setViewState:MDTextFieldViewStateError];
   else if (_maxCharacterCount > 0 && textLength > _maxCharacterCount) {
-    [self setViewState:ERROR];
+    [self setViewState:MDTextFieldViewStateError];
     [_characterCountView setTextColor:_errorColor];
   } else
-    [self setViewState:HIGHLIGHT];
+    [self setViewState:MDTextFieldViewStateHighlighted];
 
   if (_floatingLabel && (textLength == 0) && !_fullWidth) {
     CABasicAnimation *scaleAnim =
@@ -946,9 +946,9 @@
 
 - (void)inputTextDidEndEditing:(NSUInteger)textLength {
   if (_hasError)
-    [self setViewState:ERROR];
+    [self setViewState:MDTextFieldViewStateError];
   else
-    [self setViewState:NORMAL];
+    [self setViewState:MDTextFieldViewStateNormal];
 
   if (_floatingLabel && (textLength == 0) && !_fullWidth) {
     CABasicAnimation *scaleAnim =

@@ -45,12 +45,12 @@
   return constraint;
 }
 
-+ (NSArray *)addConstraintsWithVisualFormat:(NSString *)format
++ (NSArray <NSLayoutConstraint*>*)addConstraintsWithVisualFormat:(NSString *)format
                                     options:(NSLayoutFormatOptions)opts
-                                    metrics:(NSDictionary *)metrics
-                                      views:(NSDictionary *)views
+                                    metrics:(NSDictionary <NSString *,id>*)metrics
+                                      views:(NSDictionary <NSString *,id>*)views
                                      toView:(UIView *)view {
-  NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format
+  NSArray <NSLayoutConstraint*>*constraints = [NSLayoutConstraint constraintsWithVisualFormat:format
                                                                  options:opts
                                                                  metrics:metrics
                                                                    views:views];

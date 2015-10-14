@@ -48,9 +48,10 @@ typedef NS_OPTIONS(NSInteger, MDCalendarTheme) {
   MDCalendarThemeDark = 2
 };
 
+NS_ASSUME_NONNULL_BEGIN
 @protocol MDCalendarDelegate <NSObject>
 @required
-- (void)calendar:(MDCalendar *)calendar didSelectDate:(NSDate *)date;
+- (void)calendar:(MDCalendar *)calendar didSelectDate:(nullable NSDate *)date;
 @end
 
 @interface MDCalendar : UIView <UIAppearance>
@@ -71,3 +72,4 @@ typedef NS_OPTIONS(NSInteger, MDCalendarTheme) {
 - (void)reloadData;
 
 @end
+NS_ASSUME_NONNULL_END

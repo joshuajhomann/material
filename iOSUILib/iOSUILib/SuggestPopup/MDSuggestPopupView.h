@@ -22,12 +22,15 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @class MDTextField;
 @interface MDSuggestPopupView
     : UIButton <UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic) NSArray *suggestionsDictionary;
+@property(nullable, nonatomic) NSArray <NSString*>*suggestionsDictionary;
 
-- (id)initWithTextField:(MDTextField *)textField;
+- (instancetype)initWithTextField:(MDTextField *)textField;
 - (void)textView:(MDTextField *)textField didChangeText:(NSString *)text;
+
 @end
+NS_ASSUME_NONNULL_END

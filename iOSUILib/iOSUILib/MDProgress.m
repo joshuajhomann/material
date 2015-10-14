@@ -64,7 +64,7 @@
       [[MDCircularProgressLayer alloc] initWithSuperLayer:self.layer];
   drawingLayer.progressColor = _progressColor;
   drawingLayer.trackColor = _trackColor;
-  if (_progressType == Indeterminate)
+  if (_progressType == MDProgressTypeIndeterminate)
     [drawingLayer startAnimating];
 }
 
@@ -89,15 +89,15 @@
   drawingLayer.drawTrack = enableTrackColor;
 }
 
-- (void)setTrackWidth:(float)trackWidth {
+- (void)setTrackWidth:(CGFloat)trackWidth {
   _trackWidth = trackWidth;
   drawingLayer.trackWidth = trackWidth;
 }
 
-- (void)setType:(int)type {
+- (void)setType:(NSInteger)type {
   switch (type) {
   case 1:
-    [self setProgressType:Determinate];
+    [self setProgressType:MDProgressTypeDeterminate];
     break;
   //  case 2:
   //    [self setProgressType:Buffer];
@@ -106,28 +106,28 @@
   //    [self setProgressType:QueryIndeterminateAndDeterminate];
   //    break;
   default:
-    [self setProgressType:Indeterminate];
+    [self setProgressType:MDProgressTypeIndeterminate];
   }
 }
 
-- (void)setStyle:(int)style {
+- (void)setStyle:(NSInteger)style {
   switch (style) {
   case 1:
-    [self setProgressStyle:Linear];
+    [self setProgressStyle:MDProgressStyleLinear];
     break;
   default:
-    [self setProgressStyle:Circular];
+    [self setProgressStyle:MDProgressStyleCircular];
     break;
   }
 }
 
-- (void)setProgressStyle:(enum MDProgressStyle)progressStyle {
+- (void)setProgressStyle:(MDProgressStyle)progressStyle {
 
   if (_progressStyle != progressStyle) {
     _progressStyle = progressStyle;
     [drawingLayer removeFromSuperlayer];
     switch (progressStyle) {
-    case Circular:
+    case MDProgressStyleCircular:
       drawingLayer =
           [[MDCircularProgressLayer alloc] initWithSuperLayer:self.layer];
       //      drawingLayer =
@@ -136,7 +136,7 @@
       drawingLayer.progressColor = _progressColor;
       drawingLayer.trackColor = _trackColor;
       break;
-    case Linear:
+    case MDProgressStyleLinear:
       drawingLayer =
           [[MDLinearProgressLayer alloc] initWithSuperLayer:self.layer];
       drawingLayer.progressColor = _progressColor;
@@ -147,20 +147,20 @@
       break;
     }
 
-    drawingLayer.determinate = (_progressType == Determinate);
-    if (_progressType == Indeterminate) {
+    drawingLayer.determinate = (_progressType == MDProgressTypeDeterminate);
+    if (_progressType == MDProgressTypeIndeterminate) {
       [drawingLayer startAnimating];
     }
   }
 }
 
-- (void)setProgressType:(enum MDProgressType)progressType {
+- (void)setProgressType:(MDProgressType)progressType {
   _progressType = progressType;
   switch (progressType) {
-  case Indeterminate:
+  case MDProgressTypeIndeterminate:
     drawingLayer.determinate = NO;
     break;
-  case Determinate:
+  case MDProgressTypeDeterminate:
     drawingLayer.determinate = YES;
     drawingLayer.progress = _progress;
     break;
@@ -174,7 +174,7 @@
   }
 }
 
-- (void)setProgress:(float)progress {
+- (void)setProgress:(CGFloat)progress {
   _progress = progress;
   drawingLayer.progress = progress;
 }

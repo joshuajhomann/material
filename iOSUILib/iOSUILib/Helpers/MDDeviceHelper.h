@@ -46,5 +46,5 @@
    NSOrderedDescending)
 
 @interface MDDeviceHelper : NSObject
-+ (UIView *)getMainView;
++ (nullable UIView *)getMainView;
 @end

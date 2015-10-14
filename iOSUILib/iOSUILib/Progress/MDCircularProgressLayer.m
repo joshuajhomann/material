@@ -110,7 +110,7 @@ CAMediaTimingFunction *timmingFunction;
   _trackLayer.strokeColor = self.trackColor.CGColor;
 }
 
-- (void)setTrackWidth:(float)trackWidth {
+- (void)setTrackWidth:(CGFloat)trackWidth {
   [super setTrackWidth:trackWidth];
   _progressLayer.lineWidth = self.trackWidth;
   _trackLayer.lineWidth = self.trackWidth;
@@ -134,7 +134,7 @@ CAMediaTimingFunction *timmingFunction;
   }
 }
 
-- (void)setProgress:(float)progress {
+- (void)setProgress:(CGFloat)progress {
   [super setProgress:progress];
   if (!self.determinate)
     return;

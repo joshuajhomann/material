@@ -24,6 +24,6 @@
 
 @interface NSCalendarHelper : NSObject
 
-+ (NSCalendar *)mdSharedCalendar;
++ (nonnull NSCalendar *)mdSharedCalendar;
 
 @end

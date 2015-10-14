@@ -25,18 +25,23 @@
 
 #import <UIKit/UIKit.h>
 
-enum MDButtonType { Raised, Flat, FloatingAction };
-
+typedef NS_ENUM(NSInteger, MDButtonType){
+    MDButtonTypeRaised,
+    MDButtonTypeFlat,
+    MDButtonTypeFloatingAction
+};
+NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
 @interface MDButton : UIButton
-@property(nonatomic) IBInspectable UIColor *rippleColor;
-@property(nonatomic) IBInspectable int type;
-@property(nonatomic) enum MDButtonType mdButtonType;
+@property(null_unspecified, nonatomic) IBInspectable UIColor *rippleColor;
+@property(nonatomic) IBInspectable NSInteger type;
+@property(nonatomic) MDButtonType mdButtonType;
 @property(nonatomic, getter=isEnabled) IBInspectable BOOL enabled;
 
-- (id)initWithFrame:(CGRect)frame
-               type:(enum MDButtonType)buttonType
-        rippleColor:(UIColor *)rippleColor;
+- (instancetype)initWithFrame:(CGRect)frame
+               type:(MDButtonType)buttonType
+        rippleColor:(nullable UIColor *)rippleColor;
 
 @end
+NS_ASSUME_NONNULL_END
 #endif

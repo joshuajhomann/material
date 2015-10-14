@@ -91,7 +91,7 @@
                           popupHolder.mdHeight - kCalendarActionBarHeight,
                           2 * kCalendarActionBarHeight * 3.0 / 4.0,
                           kCalendarActionBarHeight * 3.0 / 4.0)
-                 type:Flat
+                 type:MDButtonTypeFlat
           rippleColor:nil];
     [buttonOk setTitle:@"OK" forState:normal];
     [buttonOk setTitleColor:[UIColor blueColor] forState:normal];
@@ -108,7 +108,7 @@
                           popupHolder.mdHeight - kCalendarActionBarHeight,
                           2 * kCalendarActionBarHeight * 3.0 / 4.0,
                           kCalendarActionBarHeight * 3.0 / 4.0)
-                 type:Flat
+                 type:MDButtonTypeFlat
           rippleColor:nil];
     [buttonCancel setTitle:@"CANCEL" forState:normal];
     [buttonCancel setTitleColor:[UIColor blueColor] forState:normal];

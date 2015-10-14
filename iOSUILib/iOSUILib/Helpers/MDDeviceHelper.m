@@ -24,7 +24,7 @@
 
 @implementation MDDeviceHelper
 
-+ (id)getMainView {
++ (UIView *)getMainView {
   if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     if (!window)

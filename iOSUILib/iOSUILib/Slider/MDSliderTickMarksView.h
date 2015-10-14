@@ -24,10 +24,10 @@
 
 @interface MDSliderTickMarksView : UIView
 
-@property(nonatomic) float maximumValue;
-@property(nonatomic) float minimumValue;
-@property(nonatomic) float step;
-@property(nonatomic) UIColor *tickColor;
+@property(nonatomic) CGFloat maximumValue;
+@property(nonatomic) CGFloat minimumValue;
+@property(nonatomic) CGFloat step;
+@property(nonnull, nonatomic) UIColor *tickColor;
 
-- (float)theNearestTickValueFromValue:(float)value;
+- (CGFloat)theNearestTickValueFromValue:(CGFloat)value;
 @end

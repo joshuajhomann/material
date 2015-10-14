@@ -342,13 +342,13 @@
   if (!self.enabled) {
     float thumbRadius;
     switch (thumbView.state) {
-    case Normal:
+    case MDSliderThumbStateNormal:
       thumbRadius = kMDThumbRadius;
       break;
-    case Focused:
+    case MDSliderThumbStateFocused:
       thumbRadius = kMDThumbForcusedRadius;
       break;
-    case Disabled:
+    case MDSliderThumbStateDisabled:
       thumbRadius = kMDThumbDisabledRadius;
       break;
 
@@ -376,7 +376,7 @@
   }
 }
 
-- (void)setRawValue:(float)value {
+- (void)setRawValue:(CGFloat)value {
   rawValue = value;
   [self updateIntensity];
 }
@@ -392,7 +392,7 @@
   [self layoutContent];
 }
 
-- (void)setMinimumValue:(float)minimumValue {
+- (void)setMinimumValue:(CGFloat)minimumValue {
   _minimumValue = minimumValue;
   if (_minimumValue > _maximumValue) {
     float f = _minimumValue;
@@ -410,7 +410,7 @@
   tickMarksView.minimumValue = _minimumValue;
 }
 
-- (void)setMaximumValue:(float)maximumValue {
+- (void)setMaximumValue:(CGFloat)maximumValue {
   _maximumValue = maximumValue;
   if (_minimumValue > _maximumValue) {
     float f = _minimumValue;
@@ -429,7 +429,7 @@
   tickMarksView.maximumValue = _maximumValue;
 }
 
-- (void)setStep:(float)step {
+- (void)setStep:(CGFloat)step {
   _step = step;
   tickMarksView.step = step;
 }
@@ -443,7 +443,7 @@
   }
 }
 
-- (void)setValue:(float)value {
+- (void)setValue:(CGFloat)value {
   if (_value != value) {
     if (value < _minimumValue)
       _value = _minimumValue;
