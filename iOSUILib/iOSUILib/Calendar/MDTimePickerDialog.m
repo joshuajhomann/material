@@ -36,7 +36,7 @@
 #define kCalendarTimerModeHeight 60
 #define kCalendarActionBarHeight 50
 #define kCalendarClockHeight                                                   \
-  (MIN(popupHolder.mdWidth, popupHolder.mdHeight) * 4.5 / 6.0)
+  (MAX(popupHolder.mdWidth, popupHolder.mdHeight)/2 * 4.5 / 6.0)
 
 #define kMainCircleRadius 15
 #define kSmallCircleRadius 2
