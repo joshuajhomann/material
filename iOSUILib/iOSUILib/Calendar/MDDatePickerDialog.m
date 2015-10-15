@@ -42,6 +42,8 @@
 @property(nonatomic) MDButton *buttonOk;
 @property(nonatomic) MDButton *buttonCancel;
 
+@property(nonatomic) NSString *okTitle;
+@property (nonatomic) NSString *cancelTitle;
 @end
 
 @implementation MDDatePickerDialog {
@@ -93,7 +95,8 @@
                           kCalendarActionBarHeight * 3.0 / 4.0)
                  type:MDButtonTypeFlat
           rippleColor:nil];
-    [buttonOk setTitle:@"OK" forState:normal];
+      
+      
     [buttonOk setTitleColor:[UIColor blueColor] forState:normal];
     [buttonOk addTarget:self
                   action:@selector(didSelected)
@@ -110,7 +113,6 @@
                           kCalendarActionBarHeight * 3.0 / 4.0)
                  type:MDButtonTypeFlat
           rippleColor:nil];
-    [buttonCancel setTitle:@"CANCEL" forState:normal];
     [buttonCancel setTitleColor:[UIColor blueColor] forState:normal];
     [buttonCancel addTarget:self
                      action:@selector(didCancelled)
@@ -119,6 +121,8 @@
     [popupHolder addSubview:buttonCancel];
     self.buttonCancel = buttonCancel;
 
+    [self setTitleOk:@"OK" andTitleCancel:@"CANCEL"];
+      
     [self.buttonCancel
         setTitleColor:self.calendar.titleColors[@(MDCalendarCellStateButton)]
              forState:UIControlStateNormal];
@@ -140,6 +144,14 @@
              object:nil];
   }
   return self;
+}
+
+-(void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle {
+    _okTitle =  okTitle;
+    _cancelTitle = cancelTitle;
+    
+    [_buttonOk setTitle:_okTitle forState:normal];
+    [_buttonCancel setTitle:_cancelTitle forState:normal];
 }
 
 - (void)addSelfToMainWindow {

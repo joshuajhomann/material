@@ -36,6 +36,6 @@
 @property(weak, nonatomic) id<MDDatePickerDialogDelegate> delegate;
 
 - (void)show;
-
+- (void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle;
 @end
 #endif

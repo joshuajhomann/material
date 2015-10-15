@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithHour:(NSInteger)hour andWithMinute:(NSInteger)minute;
 - (void)show;
-
+- (void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle;
 @end
 NS_ASSUME_NONNULL_END
 #endif

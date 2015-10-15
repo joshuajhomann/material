@@ -76,6 +76,8 @@
 
 @property(nonatomic) UIFont *buttonFont;
 
+@property(nonatomic) NSString *okTitle;
+@property (nonatomic) NSString *cancelTitle;
 @end
 
 @implementation MDTimePickerDialog {
@@ -271,10 +273,13 @@
   [buttonCancel addTarget:self
                    action:@selector(didCancell)
          forControlEvents:UIControlEventTouchUpInside];
+    
   [buttonCancel.titleLabel setFont:_buttonFont];
   [popupHolder addSubview:buttonCancel];
   self.buttonCancel = buttonCancel;
 
+  [self setTitleOk:@"OK" andTitleCancel:@"CANCEL"];
+    
   [self.buttonCancel setTitleColor:_titleColor forState:UIControlStateNormal];
   [self.buttonOk setTitleColor:_titleColor forState:UIControlStateNormal];
 
@@ -1074,6 +1079,14 @@
 }
 
 #pragma mark Delagate & Actions
+
+-(void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle {
+    _okTitle =  okTitle;
+    _cancelTitle = cancelTitle;
+    
+    [_buttonOk setTitle:_okTitle forState:normal];
+    [_buttonCancel setTitle:_cancelTitle forState:normal];
+}
 
 - (void)changeTimeModeAM {
   currentTimeModeStr = @"AM";
