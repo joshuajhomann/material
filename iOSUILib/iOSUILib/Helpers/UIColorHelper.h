@@ -22,8 +22,10 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface UIColorHelper : NSObject
 + (UIColor *)colorWithRGBA:(NSString *)rgba;
 
 + (UIColor *)colorFromRGB:(NSString *)rgb withAlpha:(float)alpha;
 @end
+NS_ASSUME_NONNULL_END

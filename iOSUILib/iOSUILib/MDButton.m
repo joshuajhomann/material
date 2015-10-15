@@ -90,16 +90,16 @@
   _mdLayer.effectColor = _rippleColor;
 }
 
-- (void)setType:(int)type {
+- (void)setType:(NSInteger)type {
   switch (type) {
   case 1:
-    [self setMdButtonType:Flat];
+    [self setMdButtonType:MDButtonTypeFlat];
     break;
   case 2:
-    [self setMdButtonType:FloatingAction];
+    [self setMdButtonType:MDButtonTypeFloatingAction];
     break;
   default:
-    [self setMdButtonType:Raised];
+    [self setMdButtonType:MDButtonTypeRaised];
   }
 }
 
@@ -117,15 +117,15 @@
 - (void)setupButtonType {
   if (self.enabled) {
     switch (_mdButtonType) {
-    case Raised:
+    case MDButtonTypeRaised:
       _mdLayer.enableElevation = true;
       _mdLayer.restingElevation = 2;
       break;
-    case Flat:
+    case MDButtonTypeFlat:
       _mdLayer.enableElevation = false;
       self.backgroundColor = [UIColor clearColor];
       break;
-    case FloatingAction: {
+    case MDButtonTypeFloatingAction: {
       float size = MIN(self.bounds.size.width, self.bounds.size.height);
       self.layer.cornerRadius = size / 2;
 

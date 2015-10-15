@@ -22,11 +22,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MDCalendar.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @interface MDCalendarCell : UICollectionViewCell
 
-@property(weak, nonatomic) NSDictionary* titleColors;
-@property(weak, nonatomic) NSDictionary* backgroundColors;
+@property(weak, nonatomic) NSDictionary <NSNumber*, UIColor*>* titleColors;
+@property(weak, nonatomic) NSDictionary <NSNumber*, UIColor*>* backgroundColors;
 
 @property(copy, nonatomic) NSDate* date;
 @property(copy, nonatomic) NSDate* month;
@@ -44,3 +44,4 @@
 - (void)configureCell;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -164,8 +164,8 @@
 }
 
 - (void)setEffectColor:(UIColor *)color
-       withRippleAlpha:(float)rippleAlpha
-       backgroundAlpha:(float)backgroundAlpha {
+       withRippleAlpha:(CGFloat)rippleAlpha
+       backgroundAlpha:(CGFloat)backgroundAlpha {
   _effectColor = color;
   _rippleLayer.fillColor =
       [[color colorWithAlphaComponent:rippleAlpha] CGColor];
@@ -173,7 +173,7 @@
       [[color colorWithAlphaComponent:backgroundAlpha] CGColor];
 }
 
-- (void)setRippleScaleRatio:(float)rippleScaleRatio {
+- (void)setRippleScaleRatio:(CGFloat)rippleScaleRatio {
   _rippleScaleRatio = rippleScaleRatio;
   [self calculateRippleSize];
 }
@@ -239,9 +239,9 @@
   if (dist <= _backgroundLayer.bounds.size.width / 2) {
     return point;
   } else {
-    float d = _backgroundLayer.bounds.size.width / (2 * dist);
-    float x = centerX + d * (point.x - centerX);
-    float y = centerY + d * (point.y - centerY);
+    CGFloat d = _backgroundLayer.bounds.size.width / (2 * dist);
+    CGFloat x = centerX + d * (point.x - centerX);
+    CGFloat y = centerY + d * (point.y - centerY);
     return CGPointMake(x, y);
   }
 }
@@ -311,7 +311,7 @@
 }
 
 - (void)startRippleEffect:(CGPoint)touchLocation {
-  float time = (_rippleLayer.bounds.size.width) / _effectSpeed;
+  CGFloat time = (_rippleLayer.bounds.size.width) / _effectSpeed;
   [_rippleLayer removeAllAnimations];
   [_backgroundLayer removeAllAnimations];
   [self removeAllAnimations];

@@ -22,10 +22,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface NSDateHelper : NSObject
-+ (NSDate *)mdDateFromString:(NSString *)string format:(NSString *)format;
-+ (NSDate *)mdDateWithYear:(NSInteger)year
++ (nullable NSDate *)mdDateFromString:(NSString *)string format:(NSString *)format;
++ (nullable NSDate *)mdDateWithYear:(NSInteger)year
                      month:(NSInteger)month
                        day:(NSInteger)day;
 + (BOOL)prefers24Hour;
 @end
+NS_ASSUME_NONNULL_END

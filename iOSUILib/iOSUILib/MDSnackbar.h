@@ -26,7 +26,7 @@
 #define kMDSnackbarDurationShort 2
 
 @class MDSnackbar;
-
+NS_ASSUME_NONNULL_BEGIN
 @protocol MDSnackbarDelegate <NSObject>
 
 @optional
@@ -62,3 +62,4 @@ IB_DESIGNABLE
 - (void)removeDelegate:(id<MDSnackbarDelegate>)delegate;
 
 @end
+NS_ASSUME_NONNULL_END

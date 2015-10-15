@@ -25,13 +25,13 @@
 
 @interface MDMathHelper : NSObject
 
-+ (float)distanceBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2;
++ (CGFloat)distanceBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2;
 
-+ (NSArray *)findIntersectionsBetweenCircleCenter:(CGPoint)c1
-                                           radius:(float)r1
++ (nonnull NSArray <NSValue*>*)findIntersectionsBetweenCircleCenter:(CGPoint)c1
+                                           radius:(CGFloat)r1
                                   andCircleCenter:(CGPoint)c2
-                                           radius:(float)r2;
-+ (NSArray *)findTangentsWithCircle:(CGPoint)c
-                             radius:(float)r1
+                                           radius:(CGFloat)r2;
++ (nonnull NSArray <NSValue*>*)findTangentsWithCircle:(CGPoint)c
+                             radius:(CGFloat)r1
                           fromPoint:(CGPoint)p;
 @end

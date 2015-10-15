@@ -136,7 +136,7 @@
 }
 
 #pragma mark public methods
-- (void)setValue:(float)value {
+- (void)setValue:(CGFloat)value {
   [label setText:[NSString stringWithFormat:[self valueFormatString], value]];
 }
 
@@ -154,7 +154,7 @@
   [self calculateLabelWidth];
 }
 
-- (void)setMaxValue:(float)maxValue {
+- (void)setMaxValue:(CGFloat)maxValue {
   _maxValue = maxValue;
   [self calculateLabelWidth];
 }

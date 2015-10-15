@@ -24,24 +24,28 @@
 #define iOSUILib_MDCalendarYearSelector_h
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @protocol MDCalendarYearSelectorDelegate<NSObject>
 @required
 - (void)calendarYearDidSelected:(NSInteger)year;
 @optional
 @end
 
-@interface MDCalendarYearSelector
-: UIView<UITableViewDelegate, UITableViewDataSource>
+@interface MDCalendarYearSelector: UIView<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic) UITableView* tableView;
 @property(weak, nonatomic) IBOutlet id<MDCalendarYearSelectorDelegate> delegate;
-@property(nonatomic) NSDictionary* titleColors UI_APPEARANCE_SELECTOR;
-@property(nonatomic) NSDictionary* backgroundColors UI_APPEARANCE_SELECTOR;
+@property(nonatomic) NSDictionary <NSNumber*, UIColor*>* titleColors UI_APPEARANCE_SELECTOR;
+@property(nonatomic) NSDictionary <NSNumber*, UIColor*>* backgroundColors UI_APPEARANCE_SELECTOR;
 
 @property(nonatomic) NSInteger currentYear;
+
 - (instancetype)initWithFrame:(CGRect)frame
               withMiniminDate:(NSDate*)minDate
                andMaximumDate:(NSDate*)maxDate;
 - (void)relayout;
 
 @end
+NS_ASSUME_NONNULL_END
 #endif
+
+

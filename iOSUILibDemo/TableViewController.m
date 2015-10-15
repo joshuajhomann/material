@@ -74,7 +74,7 @@ NSString *RowIdentifier = @"RowIdentifier";
 
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSLog(@"did select row: %i:%i", indexPath.section, indexPath.row);
+  NSLog(@"did select row: %li:%li", (long)indexPath.section, (long)indexPath.row);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

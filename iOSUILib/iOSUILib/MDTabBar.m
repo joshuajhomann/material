@@ -43,7 +43,7 @@
 
 @property(nonatomic) UIColor *rippleColor;
 @property(nonatomic) UIColor *indicatorColor;
-@property(nonatomic) NSMutableArray *tabs;
+@property(nonatomic) NSMutableArray <UIView*>*tabs;
 - (CGRect)getSelectedSegmentFrame;
 - (void)setTextFont:(UIFont *)textFont withColor:(UIColor *)textColor;
 
@@ -591,8 +591,8 @@
   return segmentedControl.numberOfSegments;
 }
 
-- (NSMutableArray *)tabs {
-  return segmentedControl.tabs;
+- (NSArray <UIView*>*)tabs {
+  return [segmentedControl.tabs copy];
 }
 
 @end

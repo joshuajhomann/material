@@ -22,16 +22,17 @@
 
 #import <UIKit/UIKit.h>
 #import <UIKit/UIGestureRecognizerSubclass.h>
-
+NS_ASSUME_NONNULL_BEGIN
 @protocol MDTouchGestureRecognizerDelegate <NSObject>
 @optional
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *_Nullable)event;
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *_Nullable)event;
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *_Nullable)event;
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *_Nullable)event;
 @end
 
 @interface MDTouchGestureRecognizer : UIGestureRecognizer
 
 @property(nonatomic, weak) id<MDTouchGestureRecognizerDelegate> touchDelegate;
 @end
+NS_ASSUME_NONNULL_END

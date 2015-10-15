@@ -27,26 +27,26 @@
 
 @class MDTabBar;
 
+NS_ASSUME_NONNULL_BEGIN
 @protocol MDTabBarDelegate <NSObject>
 - (void)tabBar:(MDTabBar *)tabBar
     didChangeSelectedIndex:(NSUInteger)selectedIndex;
 
 @end
-
 IB_DESIGNABLE
 @interface MDTabBar : UIControl
 
-@property(nonatomic) IBInspectable UIColor *textColor;
-@property(nonatomic) IBInspectable UIColor *backgroundColor;
-@property(nonatomic) IBInspectable UIColor *indicatorColor;
-@property(nonatomic) IBInspectable UIColor *rippleColor;
+@property(null_unspecified, nonatomic) IBInspectable UIColor *textColor;
+@property(null_unspecified, nonatomic) IBInspectable UIColor *backgroundColor;
+@property(null_unspecified, nonatomic) IBInspectable UIColor *indicatorColor;
+@property(null_unspecified, nonatomic) IBInspectable UIColor *rippleColor;
 
-@property(nonatomic) UIFont *textFont;
+@property(nullable, nonatomic) UIFont *textFont;
 @property(nonatomic) NSUInteger selectedIndex;
 @property(nonatomic, weak) id<MDTabBarDelegate> delegate;
 @property(nonatomic, readonly) NSInteger numberOfItems;
 
-- (void)setItems:(NSArray *)items;
+- (void)setItems:(NSArray <id>*)items;
 
 - (void)insertItem:(id)item atIndex:(NSUInteger)index animated:(BOOL)animated;
 
@@ -54,8 +54,9 @@ IB_DESIGNABLE
 
 - (void)replaceItem:(id)item atIndex:(NSUInteger)index;
 
-- (NSMutableArray *)tabs;
+- (NSArray <UIView*>*)tabs;
 
 - (void)moveIndicatorToFrame:(CGRect)frame withAnimated:(BOOL)animated;
 
 @end
+NS_ASSUME_NONNULL_END

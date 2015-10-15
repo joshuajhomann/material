@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MaterialControls"
-  s.version          = "1.0.2"
+  s.version          = "1.1.0"
   s.summary          = "Material Design controls for iOS writen in Objective-C."
 
   s.homepage         = "https://github.com/fpt-software/Material-Controls-For-iOS"

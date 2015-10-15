@@ -58,6 +58,6 @@
 - (void)timePickerDialog:(MDTimePickerDialog *)timePickerDialog
            didSelectHour:(NSInteger)hour
                andMinute:(NSInteger)minute {
-  _timeTextField.text = [NSString stringWithFormat:@"%.2i:%.2i", hour, minute];
+  _timeTextField.text = [NSString stringWithFormat:@"%.2li:%.2li", (long)hour, (long)minute];
 }
 @end

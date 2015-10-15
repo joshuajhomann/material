@@ -23,16 +23,17 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface MDProgressLayer : CALayer
 
-@property(nonatomic) UIColor *progressColor;
-@property(nonatomic) UIColor *trackColor;
-@property(nonatomic) float trackWidth;
+@property(nullable, nonatomic) UIColor *progressColor;
+@property(nullable, nonatomic) UIColor *trackColor;
+@property(nonatomic) CGFloat trackWidth;
 @property(nonatomic) BOOL drawTrack;
 @property(nonatomic) BOOL determinate;
-@property(nonatomic) float progress;
+@property(nonatomic) CGFloat progress;
 @property(nonatomic) CALayer *superLayer;
-@property(nonatomic) UIView *superView;
+@property(nullable, nonatomic) UIView *superView;
 
 @property(nonatomic) BOOL isAnimating;
 
@@ -44,3 +45,4 @@
 - (void)initContents;
 
 @end
+NS_ASSUME_NONNULL_END

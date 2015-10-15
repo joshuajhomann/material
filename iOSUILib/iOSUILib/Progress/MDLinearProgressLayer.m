@@ -97,7 +97,7 @@
   self.trackLayer.strokeColor = self.trackColor.CGColor;
 }
 
-- (void)setTrackWidth:(float)trackWidth {
+- (void)setTrackWidth:(CGFloat)trackWidth {
   [super setTrackWidth:trackWidth];
   self.progressLayer.lineWidth = self.trackWidth;
   self.secondaryProgressLayer.lineWidth = self.trackWidth;
@@ -113,7 +113,7 @@
   }
 }
 
-- (void)setProgress:(float)progress {
+- (void)setProgress:(CGFloat)progress {
   [super setProgress:progress];
   if (!self.determinate)
     return;

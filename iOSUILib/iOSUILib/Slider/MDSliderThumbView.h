@@ -28,19 +28,25 @@
 #define kMDThumbDisabledRadius 6
 #define kMDThumbForcusedRadius 12
 
-enum ThumbState { Normal, Focused, Disabled };
+typedef NS_ENUM(NSInteger, MDSliderThumbState) {
+    MDSliderThumbStateNormal,
+    MDSliderThumbStateFocused,
+    MDSliderThumbStateDisabled
+};
 
+NS_ASSUME_NONNULL_BEGIN
 @interface MDSliderThumbView : UIView
 
 @property(nonatomic) MDBubbleLabel *bubble;
 @property(nonatomic) UIView *node;
-@property(nonatomic) enum ThumbState state;
+@property(nonatomic) MDSliderThumbState state;
 @property(nonatomic, weak) MDSlider *slider;
 @property(nonatomic) BOOL enableBubble;
 
-- (instancetype)initWithMDSlider:(MDSlider *)slider;
-- (void)focused:(void (^)(BOOL finished))completion;
-- (void)lostFocused:(void (^)(BOOL finished))completion;
-- (void)disabled:(void (^)(BOOL finished))completion;
-- (void)changeThumbShape:(BOOL)animated withValue:(float)rawValue;
+- (instancetype)initWithMDSlider:(MDSlider *)MDSlider;
+- (void)focused:(nullable void (^)(BOOL finished))completion;
+- (void)lostFocused:(nullable void (^)(BOOL finished))completion;
+- (void)disabled:(nullable void (^)(BOOL finished))completion;
+- (void)changeThumbShape:(BOOL)animated withValue:(CGFloat)rawValue;
 @end
+NS_ASSUME_NONNULL_END

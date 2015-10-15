@@ -25,14 +25,16 @@
 #define kMDToastDurationLong 3.5f
 #define kMDToastDurationShort 2
 
+NS_ASSUME_NONNULL_BEGIN
 @interface MDToast : UIControl
 
-@property(nonatomic) NSString *text;
-@property(nonatomic) UIColor *textColor;
-@property(nonatomic) double duration;
+@property(nullable, nonatomic) NSString *text;
+@property(nullable, nonatomic) UIColor *textColor;
+@property(nonatomic) NSTimeInterval duration;
 @property(nonatomic, readonly) BOOL isShowing;
 
-- (instancetype)initWithText:(NSString *)text duration:(double)duration;
+- (instancetype)initWithText:(NSString *)text duration:(NSTimeInterval)duration;
 - (void)show;
 - (void)dismiss;
 @end
+NS_ASSUME_NONNULL_END
