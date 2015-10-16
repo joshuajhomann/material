@@ -505,6 +505,7 @@
 
 - (void)setErrorColor:(UIColor *)errorColor {
   _errorColor = errorColor;
+  [_errorView setTextColor:errorColor]; //#19
   [self updateState];
 }
 
