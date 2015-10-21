@@ -49,6 +49,9 @@
 @interface MDTextField ()
 @property(nonatomic) AutoResizeTextView *textView;
 @property(nonatomic) CustomTextField *textField;
+
+@property(nonatomic) MDTextFieldViewState viewState;
+@property(nonatomic) CALayer *highlightLayer;
 @end
 
 @implementation CustomTextField
@@ -123,7 +126,11 @@
 @interface DividerView : UIView
 @property(nonatomic) BOOL enabled;
 @property(nonatomic) UIColor *dividerColor;
-@property(nonatomic) int dividerHeight;
+@property(nonatomic) UIColor *highlightColor;
+@property(nonatomic) UIColor *normalColor;
+@property(assign, nonatomic) NSUInteger dividerHeight;
+@property(assign, nonatomic) MDTextFieldViewState state;
+@property(assign, nonatomic) BOOL useAnimation;
 @end
 
 @implementation DividerView
@@ -141,9 +148,104 @@
   }
 }
 
-- (void)setDividerHeight:(int)dividerHeight {
+- (void) setUseAnimation:(BOOL)useAnimation {
+    if (_useAnimation != useAnimation) _useAnimation = useAnimation;
+    if (_useAnimation) {
+        [self setBackgroundColor:_normalColor];
+    } else {
+        [self setBackgroundColor: [UIColor clearColor]];
+    }
+}
+
+- (void)setDividerHeight:(NSUInteger)dividerHeight {
   _dividerHeight = dividerHeight;
   [self updateDividerLine];
+}
+
+- (void) setState:(MDTextFieldViewState)aState {
+    if (_state != aState) _state = aState;
+    
+    if (!_useAnimation) return;
+    
+    if ([[[self layer] sublayers] objectAtIndex:0]) {
+        self.layer.sublayers = nil;
+    }
+    
+    switch (aState) {
+        case MDTextFieldViewStateNormal:
+        {
+            CAShapeLayer *line = [CAShapeLayer layer];
+            UIBezierPath *hlBgPath = [UIBezierPath bezierPath];
+            [hlBgPath moveToPoint:CGPointMake(0, CGRectGetMidY(self.bounds))];
+            [hlBgPath addLineToPoint:CGPointMake(self.bounds.size.width, CGRectGetMidY(self.bounds))];
+            [line setPath:hlBgPath.CGPath];
+            [line setLineWidth:self.bounds.size.height];
+            [line setFillColor:nil];
+            [line setStrokeColor:[_highlightColor CGColor]];
+            
+            [CATransaction begin];
+            CABasicAnimation *hlAnimation =
+            [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+            hlAnimation.duration = .4f;
+            hlAnimation.fromValue = @(1.0f);
+            hlAnimation.toValue = @(0.0f);
+            hlAnimation.timingFunction =
+            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+            hlAnimation.removedOnCompletion = false;
+            hlAnimation.fillMode = kCAFillModeForwards;
+            
+            [CATransaction setCompletionBlock:^{
+                
+            }];
+            
+            [self.layer insertSublayer:line atIndex:0];
+            [line addAnimation:hlAnimation forKey:@"strokeEnd"];
+            
+            
+            [CATransaction commit];
+        }
+            break;
+        case MDTextFieldViewStateHighlighted:
+        {
+            CAShapeLayer *line = [CAShapeLayer layer];
+            [line setContentsScale:[[UIScreen mainScreen] scale]];
+            [line setFrame:self.bounds];
+            UIBezierPath *hlBgPath = [UIBezierPath bezierPath];
+            [hlBgPath moveToPoint:CGPointMake(0, CGRectGetMidY(self.bounds))];
+            [hlBgPath addLineToPoint:CGPointMake(self.bounds.size.width, CGRectGetMidY(self.bounds))];
+            [line setPath:hlBgPath.CGPath];
+            [line setLineWidth:self.bounds.size.height];
+            [line setFillColor:[[UIColor clearColor] CGColor]];
+            [line setStrokeColor:[_highlightColor CGColor]];
+            
+            [CATransaction begin];
+            CABasicAnimation *hlAnimation =
+            [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+            hlAnimation.duration = .4f;
+            hlAnimation.fromValue = @(0.f);
+            hlAnimation.toValue = @(1.0f);
+            hlAnimation.timingFunction =
+            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+            hlAnimation.removedOnCompletion = false;
+            hlAnimation.fillMode = kCAFillModeForwards;
+            
+            [CATransaction setCompletionBlock:^{
+                
+            }];
+            
+            [line addAnimation:hlAnimation forKey:@"strokeEnd"];
+            [self.layer insertSublayer:line atIndex:0];
+            
+            [CATransaction commit];
+        }
+            break;
+        case MDTextFieldViewStateError:
+            
+            break;
+        case MDTextFieldViewStateDisabled:
+            
+            break;
+    }
 }
 
 - (void)layoutSubviews {
@@ -162,9 +264,12 @@
 }
 
 - (void)drawLineDivider {
+    if (_useAnimation) return;
+    
   if ([[[self layer] sublayers] objectAtIndex:0]) {
     self.layer.sublayers = nil;
   }
+    
   CAShapeLayer *line = [CAShapeLayer layer];
   UIBezierPath *linePath = [UIBezierPath bezierPath];
   [linePath moveToPoint:CGPointMake(0, 0)];
@@ -173,6 +278,7 @@
   [line setLineWidth:_dividerHeight];
   [line setFillColor:[[UIColor clearColor] CGColor]];
   [line setStrokeColor:[_dividerColor CGColor]];
+    
   [self.layer addSublayer:line];
 }
 
@@ -276,8 +382,12 @@
       initWithFrame:CGRectMake(0, 67, self.bounds.size.width, 2)];
   if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1)
     [_dividerHolder setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
-  [_dividerHolder setDividerColor:_normalColor];
-
+    [_dividerHolder setDividerColor:_normalColor];
+    [_dividerHolder setNormalColor:_normalColor];
+    [_dividerHolder setHighlightColor:_highlightColor];
+    
+    [self setDividerAnimation:YES];
+    
   _errorView = [[UILabel alloc]
       initWithFrame:CGRectMake(0, 77, self.bounds.size.width, 15)];
   [_errorView setFont:_labelsFont];
@@ -376,7 +486,7 @@
   constraint_V = [NSLayoutConstraint
       constraintsWithVisualFormat:[NSString
                                       stringWithFormat:@"V:[dividerHolder(%i)]",
-                                                       kMDFocusedDividerHeight]
+                                                       kMDDividerHeight]
                           options:0
                           metrics:nil
                             views:viewsDictionary];
@@ -614,6 +724,11 @@
   _keyboardType = keyboardType;
   _textField.keyboardType = keyboardType;
   _textView.keyboardType = keyboardType;
+}
+
+-(void) setDividerAnimation:(BOOL)dividerAnimation {
+    _dividerAnimation = dividerAnimation;
+    [_dividerHolder setUseAnimation:_dividerAnimation];
 }
 
 #pragma mark getters
@@ -861,6 +976,8 @@
 }
 
 - (void)setViewState:(MDTextFieldViewState)state {
+  if (_viewState != state) _viewState = state;
+    
   switch (state) {
   case MDTextFieldViewStateNormal:
     if (!_fullWidth) {
@@ -869,6 +986,7 @@
     }
     [_labelView setTextColor:_normalColor];
     [self updateTextColor:_textColor];
+    [_dividerHolder setState:MDTextFieldViewStateNormal];
     break;
   case MDTextFieldViewStateHighlighted:
     if (!_fullWidth) {
@@ -879,6 +997,7 @@
       [_labelView setTextColor:_highlightColor];
     }
     [self updateTextColor:_textColor];
+    [_dividerHolder setState:MDTextFieldViewStateHighlighted];
     break;
   case MDTextFieldViewStateError:
     if (!_fullWidth) {
@@ -889,11 +1008,13 @@
       [_labelView setTextColor:_errorColor];
     }
     [self updateTextColor:_textColor];
+    [_dividerHolder setState:MDTextFieldViewStateError];
     break;
   case MDTextFieldViewStateDisabled:
     [_dividerHolder setDividerHeight:kMDDividerHeight];
     [_dividerHolder setDividerColor:_normalColor];
     [self updateTextColor:_disabledColor];
+    [_dividerHolder setState:MDTextFieldViewStateDisabled];
     break;
 
   default:

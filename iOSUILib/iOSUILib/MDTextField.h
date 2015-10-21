@@ -95,6 +95,7 @@ IB_DESIGNABLE
 @property(nonatomic) IBInspectable NSInteger maxVisibleLines;
 @property(null_unspecified, nonatomic) IBInspectable NSString *text;
 @property(nonatomic) IBInspectable BOOL secureTextEntry;
+@property(nonatomic) IBInspectable BOOL dividerAnimation;
 
 @property(nonatomic) UIReturnKeyType returnKeyType;
 @property(nonatomic) UIKeyboardType keyboardType;
