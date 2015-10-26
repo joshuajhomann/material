@@ -28,15 +28,31 @@
 typedef NS_ENUM(NSInteger, MDButtonType){
     MDButtonTypeRaised,
     MDButtonTypeFlat,
-    MDButtonTypeFloatingAction
+    MDButtonTypeFloatingAction,
+    MDButtonTypeFloatingActionRotation
 };
 NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
+@protocol MDButtonDelegate <NSObject>
+
+@optional
+-(void)rotationStarted:(id)sender;
+-(void)rotationCompleted:(id)sender;
+@end
+
+
 @interface MDButton : UIButton
 @property(null_unspecified, nonatomic) IBInspectable UIColor *rippleColor;
 @property(nonatomic) IBInspectable NSInteger type;
-@property(nonatomic) MDButtonType mdButtonType;
 @property(nonatomic, getter=isEnabled) IBInspectable BOOL enabled;
+@property(nonatomic) IBInspectable BOOL enabledRotation;
+@property(nonatomic) IBInspectable UIImage * imageNormal;
+@property(nonatomic) IBInspectable UIImage * imageRotated;
+
+@property(nonatomic) MDButtonType mdButtonType;
+@property(nonatomic, getter=isRotated) BOOL rotated;;
+
+@property(nonatomic, weak) id<MDButtonDelegate> mdButtonDelegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
                type:(MDButtonType)buttonType

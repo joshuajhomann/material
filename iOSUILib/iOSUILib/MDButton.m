@@ -91,16 +91,19 @@
 }
 
 - (void)setType:(NSInteger)type {
-  switch (type) {
-  case 1:
-    [self setMdButtonType:MDButtonTypeFlat];
-    break;
-  case 2:
-    [self setMdButtonType:MDButtonTypeFloatingAction];
-    break;
-  default:
-    [self setMdButtonType:MDButtonTypeRaised];
-  }
+    switch (type) {
+        case 1:
+            [self setMdButtonType:MDButtonTypeFlat];
+            break;
+        case 2:
+            [self setMdButtonType:MDButtonTypeFloatingAction];
+            break;
+        case 3:
+            [self setMdButtonType:MDButtonTypeFloatingActionRotation];
+            break;
+        default:
+            [self setMdButtonType:MDButtonTypeRaised];
+    }
 }
 
 - (void)setMdButtonType:(enum MDButtonType)mdButtonType {
@@ -115,27 +118,158 @@
 
 #pragma mark private methods
 - (void)setupButtonType {
-  if (self.enabled) {
-    switch (_mdButtonType) {
-    case MDButtonTypeRaised:
-      _mdLayer.enableElevation = true;
-      _mdLayer.restingElevation = 2;
-      break;
-    case MDButtonTypeFlat:
-      _mdLayer.enableElevation = false;
-      self.backgroundColor = [UIColor clearColor];
-      break;
-    case MDButtonTypeFloatingAction: {
-      float size = MIN(self.bounds.size.width, self.bounds.size.height);
-      self.layer.cornerRadius = size / 2;
-
-      _mdLayer.restingElevation = 6;
-      _mdLayer.enableElevation = true;
+    if (self.enabled) {
+        switch (_mdButtonType) {
+            case MDButtonTypeRaised:
+                _mdLayer.enableElevation = true;
+                _mdLayer.restingElevation = 2;
+                break;
+            case MDButtonTypeFlat:
+                _mdLayer.enableElevation = false;
+                self.backgroundColor = [UIColor clearColor];
+                break;
+            case MDButtonTypeFloatingAction: {
+                float size = MIN(self.bounds.size.width, self.bounds.size.height);
+                self.layer.cornerRadius = size / 2;
+                
+                _mdLayer.restingElevation = 6;
+                _mdLayer.enableElevation = true;
+            }
+                break;
+                
+            case MDButtonTypeFloatingActionRotation: {
+                float size = MIN(self.bounds.size.width, self.bounds.size.height);
+                self.layer.cornerRadius = size / 2;
+                
+                _mdLayer.restingElevation = 0;
+                _mdLayer.enableElevation = false;
+            }
+                break;
+        }
+    } else {
+        _mdLayer.enableElevation = false;
     }
-    }
-  } else {
-    _mdLayer.enableElevation = false;
-  }
 }
 
+-(void)setImageNormal:(UIImage *)imageNormal {
+    [self setImage:imageNormal forState:UIControlStateNormal];
+    if (imageNormal != nil) {
+        self.imageView.clipsToBounds = NO;
+        self.imageView.contentMode = UIViewContentModeCenter;
+    }
+    _imageNormal = imageNormal;
+}
+
+#pragma Touch Delegate
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+
+    if (!_enabledRotation) {
+        return;
+    }
+    
+    if (_mdButtonType != MDButtonTypeFloatingActionRotation) {
+        return;
+    } else {
+        
+    }
+    _mdLayer.enableElevation = false;
+    
+    CGFloat duration = 0.3f;
+    if (_imageNormal == nil || _imageRotated == nil) {
+        if (!_rotated) {
+            [UIView animateWithDuration:duration
+                                  delay:0.0
+                                options: kNilOptions
+                             animations:^{
+                                 self.transform = CGAffineTransformMakeRotation(M_PI/4);
+                             } completion:^(BOOL finished) {
+                                _rotated = true;
+                                 if (_mdButtonDelegate) {
+                                     [_mdButtonDelegate rotationCompleted:self];
+                                 }
+                             }];
+            if (_mdButtonDelegate) {
+                [_mdButtonDelegate rotationStarted:self];
+            }
+        } else {
+            [UIView animateWithDuration:duration
+                                  delay:0.0
+                                options: kNilOptions
+                             animations:^{
+                                 self.transform = CGAffineTransformMakeRotation(0);
+                             } completion:^(BOOL finished) {
+                                 _rotated = false;
+                                 if (_mdButtonDelegate) {
+                                     [_mdButtonDelegate rotationCompleted:self];
+                                 }
+                             }];
+            if (_mdButtonDelegate) {
+                [_mdButtonDelegate rotationStarted:self];
+            }
+        }
+    } else {
+        if (!_rotated) {
+            [UIView animateWithDuration:duration/2
+                                  delay:0.0
+                                options: kNilOptions
+                             animations:^{
+                                 self.imageView.alpha = 0.0;
+                                 self.transform = CGAffineTransformMakeRotation(M_PI/4);
+                             } completion:^(BOOL finished) {
+                                 [self setImage:_imageRotated forState:UIControlStateNormal];
+                                 self.transform = CGAffineTransformMakeRotation(-M_PI/2);
+                                 [UIView animateWithDuration:duration/2 animations:^{
+                                     self.imageView.alpha = 1;
+                                     self.transform = CGAffineTransformMakeRotation(0);
+                                 }completion:^(BOOL finished) {
+                                     _rotated = true;
+                                     if (_mdButtonDelegate) {
+                                         [_mdButtonDelegate rotationCompleted:self];
+                                     }
+                                 }];
+                             }];
+            if (_mdButtonDelegate) {
+                [_mdButtonDelegate rotationStarted:self];
+            }
+        } else {
+            [UIView animateWithDuration:duration/2
+                                  delay:0.0
+                                options: kNilOptions
+                             animations:^{
+                                 self.imageView.alpha = 0.0;
+                                 self.transform = CGAffineTransformMakeRotation(-M_PI/4);
+                             } completion:^(BOOL finished) {
+                                 [self setImage:_imageNormal forState:UIControlStateNormal];
+                                 self.transform = CGAffineTransformMakeRotation(M_PI/2);
+                                 [UIView animateWithDuration:duration/2 animations:^{
+                                     self.imageView.alpha = 1;
+                                     self.transform = CGAffineTransformMakeRotation(0);
+                                 }completion:^(BOOL finished) {
+                                     _rotated = false;
+                                     if (_mdButtonDelegate) {
+                                         [_mdButtonDelegate rotationCompleted:self];
+                                     }
+                                 }];
+                             }];
+            if (_mdButtonDelegate) {
+                [_mdButtonDelegate rotationStarted:self];
+            }
+        }
+    }
+    
+}
+
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesCancelled:touches withEvent:event];
+}
 @end
