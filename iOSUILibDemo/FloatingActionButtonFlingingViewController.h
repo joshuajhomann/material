@@ -20,43 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifndef MDUILIB_MDBUTTONTYPE
-#define MDUILIB_MDBUTTONTYPE
-
 #import <UIKit/UIKit.h>
+#import "iOSUILib/MDButton.h"
 
-typedef NS_ENUM(NSInteger, MDButtonType){
-    MDButtonTypeRaised,
-    MDButtonTypeFlat,
-    MDButtonTypeFloatingAction,
-    MDButtonTypeFloatingActionRotation
-};
-NS_ASSUME_NONNULL_BEGIN
-IB_DESIGNABLE
-@protocol MDButtonDelegate <NSObject>
-
-@optional
--(void)rotationStarted:(id)sender;
--(void)rotationCompleted:(id)sender;
+@interface FloatingActionButtonFlingingViewController : UIViewController
+@property (weak, nonatomic) IBOutlet MDButton *btShare;
+@property (weak, nonatomic) IBOutlet MDButton *b1;
+@property (weak, nonatomic) IBOutlet MDButton *b2;
+@property (weak, nonatomic) IBOutlet MDButton *b3;
+@property (weak, nonatomic) IBOutlet MDButton *b4;
+@property (weak, nonatomic) IBOutlet MDButton *b5;
 @end
-
-
-@interface MDButton : UIButton
-@property(null_unspecified, nonatomic) IBInspectable UIColor *rippleColor;
-@property(nonatomic) IBInspectable NSInteger type;
-@property(nonatomic, getter=isEnabled) IBInspectable BOOL enabled;
-@property(nonatomic) IBInspectable UIImage * imageNormal;
-@property(nonatomic) IBInspectable UIImage * imageRotated;
-
-@property(nonatomic) MDButtonType mdButtonType;
-@property(nonatomic, getter=isRotated) BOOL rotated;;
-
-@property(nonatomic, weak) id<MDButtonDelegate> mdButtonDelegate;
-
-- (instancetype)initWithFrame:(CGRect)frame
-               type:(MDButtonType)buttonType
-        rippleColor:(nullable UIColor *)rippleColor;
-
-@end
-NS_ASSUME_NONNULL_END
-#endif

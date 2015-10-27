@@ -67,6 +67,8 @@
 		928026C41AD37C9500DFF739 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928026C11AD37C9500DFF739 /* CollectionViewController.xib */; };
 		928026CA1AD37CFF00DFF739 /* TimePickerDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928026C81AD37CFF00DFF739 /* TimePickerDialogViewController.m */; };
 		928026CB1AD37CFF00DFF739 /* TimePickerDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */; };
+		92B26C4B1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B26C491BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		92B26C4C1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B26C4A1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +182,9 @@
 		928026C71AD37CFF00DFF739 /* TimePickerDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerDialogViewController.h; sourceTree = "<group>"; };
 		928026C81AD37CFF00DFF739 /* TimePickerDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerDialogViewController.m; sourceTree = "<group>"; };
 		928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerDialogViewController.xib; sourceTree = "<group>"; };
+		92B26C481BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingActionButtonFlingingViewController.h; sourceTree = "<group>"; };
+		92B26C491BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingActionButtonFlingingViewController.m; sourceTree = "<group>"; };
+		92B26C4A1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingActionButtonFlingingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +278,9 @@
 				925FFC1B1ABFC4B100740B93 /* DatePickerViewController.h */,
 				925FFC1C1ABFC4B100740B93 /* DatePickerViewController.m */,
 				925FFC1D1ABFC4B100740B93 /* DatePickerViewController.xib */,
+				92B26C481BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.h */,
+				92B26C491BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m */,
+				92B26C4A1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib */,
 				9251905F1AC90BD600D4FC0A /* FullWidthTextFieldViewController.h */,
 				925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */,
 				925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */,
@@ -313,7 +321,7 @@
 				9251906A1AC90BD600D4FC0A /* TableViewController.xib */,
 				887E91491AA45807002DE595 /* TextFieldViewController.h */,
 				922538281BC64DE70067BE8B /* TextFieldViewController.m */,
-				887E914B1AA45808002DE595 /* TextFieldViewController.xib */,
+				922538291BC64DE70067BE8B /* TextFieldViewController.xib */,
 				928026C71AD37CFF00DFF739 /* TimePickerDialogViewController.h */,
 				928026C81AD37CFF00DFF739 /* TimePickerDialogViewController.m */,
 				928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */,
@@ -321,7 +329,6 @@
 				886D81BC1B1D644E0009217E /* ToastViewController.m */,
 				886D81BD1B1D644E0009217E /* ToastViewController.xib */,
 				922538271BC64DE70067BE8B /* TextFieldViewController.h */,
-				922538281BC64DE70067BE8B /* TextFieldViewController.m */,
 				922538291BC64DE70067BE8B /* TextFieldViewController.xib */,
 			);
 			path = iOSUILibDemo;
@@ -478,6 +485,7 @@
 				8807F0F91B09C6A4001C0D0B /* TabContentViewController.xib in Resources */,
 				8885FE9A1AA5B5D700AD4F04 /* Roboto-Italic.ttf in Resources */,
 				8885FE951AA5B5D700AD4F04 /* LICENSE.txt in Resources */,
+				92B26C4C1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib in Resources */,
 				8885FE991AA5B5D700AD4F04 /* Roboto-BoldItalic.ttf in Resources */,
 				925190731AC90BD600D4FC0A /* TableViewController.xib in Resources */,
 				8885FE961AA5B5D700AD4F04 /* Roboto-Black.ttf in Resources */,
@@ -523,6 +531,7 @@
 				928026C31AD37C9500DFF739 /* CollectionViewController.m in Sources */,
 				925190721AC90BD600D4FC0A /* TableViewController.m in Sources */,
 				88D8DE6A1A7A16E700D083A1 /* MasterViewController.m in Sources */,
+				92B26C4B1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m in Sources */,
 				88DCF8921ADCD600008F99C7 /* TabBarViewController.m in Sources */,
 				8807F0F81B09C6A4001C0D0B /* TabContentViewController.m in Sources */,
 				9251906B1AC90BD600D4FC0A /* MockData.m in Sources */,

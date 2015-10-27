@@ -160,21 +160,14 @@
     _imageNormal = imageNormal;
 }
 
-#pragma Touch Delegate
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesBegan:touches withEvent:event];
+-(void)setRotated:(BOOL)rotated{
+    if(_rotated != rotated) {
+        [self rotate];
+        _rotated = rotated;
+    }
+}
 
-    if (!_enabledRotation) {
-        return;
-    }
-    
-    if (_mdButtonType != MDButtonTypeFloatingActionRotation) {
-        return;
-    } else {
-        
-    }
-    _mdLayer.enableElevation = false;
-    
+-(void)rotate {
     CGFloat duration = 0.3f;
     if (_imageNormal == nil || _imageRotated == nil) {
         if (!_rotated) {
@@ -184,7 +177,7 @@
                              animations:^{
                                  self.transform = CGAffineTransformMakeRotation(M_PI/4);
                              } completion:^(BOOL finished) {
-                                _rotated = true;
+                                 _rotated = true;
                                  if (_mdButtonDelegate) {
                                      [_mdButtonDelegate rotationCompleted:self];
                                  }
@@ -257,6 +250,18 @@
             }
         }
     }
+}
+#pragma Touch Delegate
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+
+    if (_mdButtonType != MDButtonTypeFloatingActionRotation) {
+        return;
+    } else {
+        
+    }
+    
+    [self rotate];
     
 }
 
