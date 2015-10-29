@@ -30,4 +30,6 @@
 @property (weak, nonatomic) IBOutlet MDButton *b3;
 @property (weak, nonatomic) IBOutlet MDButton *b4;
 @property (weak, nonatomic) IBOutlet MDButton *b5;
+@property (weak, nonatomic) IBOutlet MDButton *btShareToolbar;
+@property (weak, nonatomic) IBOutlet UIView *viewToolbar;
 @end

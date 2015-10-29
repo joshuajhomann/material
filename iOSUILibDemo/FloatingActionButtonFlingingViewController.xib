@@ -13,16 +13,18 @@
                 <outlet property="b4" destination="ebB-v9-5Mb" id="8SG-fQ-KeK"/>
                 <outlet property="b5" destination="FIs-oy-LzH" id="qXZ-R6-K4r"/>
                 <outlet property="btShare" destination="eS0-mB-QSS" id="ejq-QV-4aN"/>
+                <outlet property="btShareToolbar" destination="wLu-kN-6H3" id="8w3-D0-9PQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewToolbar" destination="SGP-YN-uNP" id="h9Q-xx-aHu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="64" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eS0-mB-QSS" customClass="MDButton">
-                    <rect key="frame" x="212" y="460" width="100" height="100"/>
+                    <rect key="frame" x="277" y="393" width="80" height="80"/>
                     <animations/>
                     <color key="backgroundColor" red="1" green="0.0" blue="0.084490335540000003" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
@@ -35,7 +37,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIs-oy-LzH" customClass="MDButton">
-                    <rect key="frame" x="232" y="385" width="60" height="60"/>
+                    <rect key="frame" x="287" y="309" width="60" height="60"/>
                     <animations/>
                     <color key="backgroundColor" red="0.25490196079999999" green="0.63529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
@@ -48,7 +50,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebB-v9-5Mb" customClass="MDButton">
-                    <rect key="frame" x="232" y="304" width="60" height="60"/>
+                    <rect key="frame" x="287" y="228" width="60" height="60"/>
                     <animations/>
                     <color key="backgroundColor" red="0.25490196079999999" green="0.63529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
@@ -61,7 +63,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ss-2R-fnr" customClass="MDButton">
-                    <rect key="frame" x="232" y="223" width="60" height="60"/>
+                    <rect key="frame" x="287" y="160" width="60" height="60"/>
                     <animations/>
                     <color key="backgroundColor" red="0.25490196079999999" green="0.63529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
@@ -74,7 +76,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-49-vII" customClass="MDButton">
-                    <rect key="frame" x="232" y="141" width="60" height="60"/>
+                    <rect key="frame" x="287" y="92" width="60" height="60"/>
                     <animations/>
                     <color key="backgroundColor" red="0.25490196079999999" green="0.63529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
@@ -88,7 +90,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-Db-auD" customClass="MDButton">
-                    <rect key="frame" x="232" y="47" width="60" height="60"/>
+                    <rect key="frame" x="287" y="24" width="60" height="60"/>
                     <animations/>
                     <color key="backgroundColor" red="0.25490196079999999" green="0.63529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
@@ -101,13 +103,77 @@
                         <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="oT4-vI-bkX"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SGP-YN-uNP">
+                    <rect key="frame" x="0.0" y="527" width="375" height="76"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAD-DA-vdA" customClass="MDButton">
+                            <rect key="frame" x="40" y="13" width="50" height="50"/>
+                            <animations/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="bt-icon-plus"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcw-QJ-NV5" customClass="MDButton">
+                            <rect key="frame" x="124" y="13" width="50" height="50"/>
+                            <animations/>
+                            <state key="normal" image="bt-icon-plus"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbZ-nF-mrZ" customClass="MDButton">
+                            <rect key="frame" x="277" y="13" width="50" height="50"/>
+                            <animations/>
+                            <state key="normal" image="bt-icon-plus"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TxU-0q-dHr" customClass="MDButton">
+                            <rect key="frame" x="204" y="13" width="50" height="50"/>
+                            <animations/>
+                            <state key="normal" image="bt-icon-plus"/>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.019141109359999998" green="0.01234467473" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="GAj-MT-SY1" appends="YES" id="Awf-9J-Ms6"/>
+                    </connections>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLu-kN-6H3" customClass="MDButton">
+                    <rect key="frame" x="307" y="500" width="60" height="60"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.019141109359999998" green="0.01234467473" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="bt-icon1"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="type">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="cdH-MY-Buf"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
+        <tapGestureRecognizer id="GAj-MT-SY1">
+            <connections>
+                <action selector="tapGesture:" destination="-1" id="0AF-l4-Apt"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="bt-icon-plus" width="32" height="32"/>
+        <image name="bt-icon1" width="32" height="32"/>
         <image name="bt-icon1.png" width="32" height="32"/>
         <image name="bt-icon2.png" width="32" height="32"/>
     </resources>

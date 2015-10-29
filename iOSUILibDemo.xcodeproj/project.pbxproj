@@ -19,7 +19,6 @@
 		886B3AE41A81FF9E00D2CF3A /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886B3AE21A81FF9E00D2CF3A /* ProgressViewController.xib */; };
 		886D81BE1B1D644E0009217E /* ToastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886D81BC1B1D644E0009217E /* ToastViewController.m */; };
 		886D81BF1B1D644E0009217E /* ToastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886D81BD1B1D644E0009217E /* ToastViewController.xib */; };
-		887E914D1AA45808002DE595 /* TextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887E914B1AA45808002DE595 /* TextFieldViewController.xib */; };
 		8885FE951AA5B5D700AD4F04 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE871AA5B5D700AD4F04 /* LICENSE.txt */; };
 		8885FE961AA5B5D700AD4F04 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE881AA5B5D700AD4F04 /* Roboto-Black.ttf */; };
 		8885FE971AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE891AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf */; };
@@ -33,7 +32,6 @@
 		8885FE9F1AA5B5D700AD4F04 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE911AA5B5D700AD4F04 /* Roboto-Regular.ttf */; };
 		8885FEA01AA5B5D700AD4F04 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE921AA5B5D700AD4F04 /* Roboto-Thin.ttf */; };
 		8885FEA11AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8885FE931AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf */; };
-		889D16F81B4BDFB700188687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D8DE6E1A7A16E700D083A1 /* Main.storyboard */; };
 		88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B698011B25A46600BF3B19 /* SliderViewController.m */; };
 		88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B698021B25A46600BF3B19 /* SliderViewController.xib */; };
 		88C2EA141A834CB00097F3D8 /* libiOSUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 882891471A7F218C00944560 /* libiOSUILib.a */; };
@@ -49,8 +47,6 @@
 		88DCF8931ADCD600008F99C7 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DCF8911ADCD600008F99C7 /* TabBarViewController.xib */; };
 		920F125C1ACCFD9700599E01 /* DatePickerDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */; };
 		920F125D1ACCFD9700599E01 /* DatePickerDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */; };
-		9225382A1BC64DE70067BE8B /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922538281BC64DE70067BE8B /* TextFieldViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9225382B1BC64DE70067BE8B /* TextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922538291BC64DE70067BE8B /* TextFieldViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		9251906B1AC90BD600D4FC0A /* MockData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251905E1AC90BD600D4FC0A /* MockData.m */; };
 		9251906C1AC90BD600D4FC0A /* FullWidthTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925190601AC90BD600D4FC0A /* FullWidthTextFieldViewController.m */; };
 		9251906D1AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925190611AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib */; };
@@ -69,6 +65,9 @@
 		928026CB1AD37CFF00DFF739 /* TimePickerDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */; };
 		92B26C4B1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B26C491BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		92B26C4C1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B26C4A1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		92FA76751BE0868E00BDE6E7 /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FA76741BE0868E00BDE6E7 /* TextFieldViewController.m */; settings = {ASSET_TAGS = (); }; };
+		92FA76771BE0874C00BDE6E7 /* TextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FA76761BE0874C00BDE6E7 /* TextFieldViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		92FA76781BE08BB400BDE6E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D8DE6E1A7A16E700D083A1 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,8 +113,6 @@
 		886D81BB1B1D644E0009217E /* ToastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastViewController.h; sourceTree = "<group>"; };
 		886D81BC1B1D644E0009217E /* ToastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastViewController.m; sourceTree = "<group>"; };
 		886D81BD1B1D644E0009217E /* ToastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToastViewController.xib; sourceTree = "<group>"; };
-		887E91491AA45807002DE595 /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
-		887E914B1AA45808002DE595 /* TextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldViewController.xib; sourceTree = "<group>"; };
 		8885FE871AA5B5D700AD4F04 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		8885FE881AA5B5D700AD4F04 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		8885FE891AA5B5D700AD4F04 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -155,9 +152,6 @@
 		920F12591ACCFD9700599E01 /* DatePickerDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerDialogController.h; sourceTree = "<group>"; };
 		920F125A1ACCFD9700599E01 /* DatePickerDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerDialogController.m; sourceTree = "<group>"; };
 		920F125B1ACCFD9700599E01 /* DatePickerDialogController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerDialogController.xib; sourceTree = "<group>"; };
-		922538271BC64DE70067BE8B /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
-		922538281BC64DE70067BE8B /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
-		922538291BC64DE70067BE8B /* TextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldViewController.xib; sourceTree = "<group>"; };
 		9251905D1AC90BD600D4FC0A /* MockData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockData.h; sourceTree = "<group>"; };
 		9251905E1AC90BD600D4FC0A /* MockData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockData.m; sourceTree = "<group>"; };
 		9251905F1AC90BD600D4FC0A /* FullWidthTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthTextFieldViewController.h; sourceTree = "<group>"; };
@@ -185,6 +179,9 @@
 		92B26C481BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingActionButtonFlingingViewController.h; sourceTree = "<group>"; };
 		92B26C491BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingActionButtonFlingingViewController.m; sourceTree = "<group>"; };
 		92B26C4A1BDE21F800DCAFD1 /* FloatingActionButtonFlingingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingActionButtonFlingingViewController.xib; sourceTree = "<group>"; };
+		92FA76731BE0868E00BDE6E7 /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
+		92FA76741BE0868E00BDE6E7 /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
+		92FA76761BE0874C00BDE6E7 /* TextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +260,9 @@
 		88D8DE601A7A16E700D083A1 /* iOSUILibDemo */ = {
 			isa = PBXGroup;
 			children = (
+				92FA76761BE0874C00BDE6E7 /* TextFieldViewController.xib */,
+				92FA76731BE0868E00BDE6E7 /* TextFieldViewController.h */,
+				92FA76741BE0868E00BDE6E7 /* TextFieldViewController.m */,
 				88D8DE651A7A16E700D083A1 /* AppDelegate.h */,
 				88D8DE661A7A16E700D083A1 /* AppDelegate.m */,
 				88D8DEB61A7A1B9B00D083A1 /* ButtonViewController.h */,
@@ -319,17 +319,12 @@
 				925190681AC90BD600D4FC0A /* TableViewController.h */,
 				925190691AC90BD600D4FC0A /* TableViewController.m */,
 				9251906A1AC90BD600D4FC0A /* TableViewController.xib */,
-				887E91491AA45807002DE595 /* TextFieldViewController.h */,
-				922538281BC64DE70067BE8B /* TextFieldViewController.m */,
-				922538291BC64DE70067BE8B /* TextFieldViewController.xib */,
 				928026C71AD37CFF00DFF739 /* TimePickerDialogViewController.h */,
 				928026C81AD37CFF00DFF739 /* TimePickerDialogViewController.m */,
 				928026C91AD37CFF00DFF739 /* TimePickerDialogViewController.xib */,
 				886D81BB1B1D644E0009217E /* ToastViewController.h */,
 				886D81BC1B1D644E0009217E /* ToastViewController.m */,
 				886D81BD1B1D644E0009217E /* ToastViewController.xib */,
-				922538271BC64DE70067BE8B /* TextFieldViewController.h */,
-				922538291BC64DE70067BE8B /* TextFieldViewController.xib */,
 			);
 			path = iOSUILibDemo;
 			sourceTree = "<group>";
@@ -464,18 +459,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				889D16F81B4BDFB700188687 /* Main.storyboard in Resources */,
+				92FA76781BE08BB400BDE6E7 /* Main.storyboard in Resources */,
 				8885FEA11AA5B5D700AD4F04 /* Roboto-ThinItalic.ttf in Resources */,
 				8885FE9E1AA5B5D700AD4F04 /* Roboto-MediumItalic.ttf in Resources */,
 				8885FE9D1AA5B5D700AD4F04 /* Roboto-Medium.ttf in Resources */,
 				886D81BF1B1D644E0009217E /* ToastViewController.xib in Resources */,
 				88D8DEBA1A7A1B9B00D083A1 /* ButtonViewController.xib in Resources */,
 				88DCF8931ADCD600008F99C7 /* TabBarViewController.xib in Resources */,
-				9225382B1BC64DE70067BE8B /* TextFieldViewController.xib in Resources */,
 				8885FE9C1AA5B5D700AD4F04 /* Roboto-LightItalic.ttf in Resources */,
 				9251906D1AC90BD600D4FC0A /* FullWidthTextFieldViewController.xib in Resources */,
 				8885FE9F1AA5B5D700AD4F04 /* Roboto-Regular.ttf in Resources */,
-				887E914D1AA45808002DE595 /* TextFieldViewController.xib in Resources */,
 				9251906F1AC90BD600D4FC0A /* NormalTextFieldViewController.xib in Resources */,
 				8824326E1B0993C900A2B17C /* TabBarViewControllerViewController.xib in Resources */,
 				8885FE9B1AA5B5D700AD4F04 /* Roboto-Light.ttf in Resources */,
@@ -497,6 +490,7 @@
 				928026C41AD37C9500DFF739 /* CollectionViewController.xib in Resources */,
 				925190711AC90BD600D4FC0A /* SwitchViewController.xib in Resources */,
 				8843770F1B65D453003E863D /* MaterialControls.podspec in Resources */,
+				92FA76771BE0874C00BDE6E7 /* TextFieldViewController.xib in Resources */,
 				88D8DE721A7A16E700D083A1 /* Images.xcassets in Resources */,
 				928026CB1AD37CFF00DFF739 /* TimePickerDialogViewController.xib in Resources */,
 				88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */,
@@ -518,7 +512,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */,
-				9225382A1BC64DE70067BE8B /* TextFieldViewController.m in Sources */,
 				925FFC1E1ABFC4B100740B93 /* DatePickerViewController.m in Sources */,
 				886B3AE31A81FF9E00D2CF3A /* ProgressViewController.m in Sources */,
 				8824326D1B0993C900A2B17C /* TabBarViewControllerViewController.m in Sources */,
@@ -538,6 +531,7 @@
 				88D8DE641A7A16E700D083A1 /* main.m in Sources */,
 				925190701AC90BD600D4FC0A /* SwitchViewController.m in Sources */,
 				886D81BE1B1D644E0009217E /* ToastViewController.m in Sources */,
+				92FA76751BE0868E00BDE6E7 /* TextFieldViewController.m in Sources */,
 				884BEB751B16B5A8008B60B0 /* SnackBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
