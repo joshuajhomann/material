@@ -20,14 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
-#import "iOSUILib/MDButton.h"
 
-@interface FloatingActionButtonFlingingViewController : UIViewController
-@property (weak, nonatomic) IBOutlet MDButton *btShare;
-@property (weak, nonatomic) IBOutlet MDButton *b1;
-@property (weak, nonatomic) IBOutlet MDButton *b2;
-@property (weak, nonatomic) IBOutlet MDButton *b3;
-@property (weak, nonatomic) IBOutlet MDButton *b4;
-@property (weak, nonatomic) IBOutlet MDButton *b5;
+#import <UIKit/UIKit.h>
+
+@interface FloatingButtonTableViewController : UITableViewController
+
 @end

@@ -35,7 +35,7 @@
 #import "SnackBarViewController.h"
 #import "ToastViewController.h"
 #import "SliderViewController.h"
-#import "FloatingActionButtonFlingingViewController.h"
+#import "FloatingButtonTableViewController.h"
 
 @interface MasterViewController ()
 
@@ -50,7 +50,7 @@ static NSArray *controlsName;
 + (NSArray *)controlsName {
   if (!controlsName)
     controlsName = [NSArray
-        arrayWithObjects:@"Button", @"ButtonFloating Flinging", @"TableView Cell", @"Progress Bar",
+        arrayWithObjects:@"Button", @"ButtonFloating", @"TableView Cell", @"Progress Bar",
                          @"Text Field", @"Switch", @"Date Picker",
                          @"Date Picker Dialog", @"Collection View Cell",
                          @"Tab Bar", @"Time Picker Dialog",
@@ -111,8 +111,8 @@ static NSArray *controlsName;
   NSString *row = self.controls[indexPath.row];
   if ([row isEqualToString:@"Button"]) {
     controller = [[ButtonViewController alloc] init];
-  } else if ([row isEqualToString:@"ButtonFloating Flinging"]) {
-      controller = [[FloatingActionButtonFlingingViewController alloc] init];
+  } else if ([row isEqualToString:@"ButtonFloating"]) {
+      controller = [[FloatingButtonTableViewController alloc] init];
   } else if ([row isEqualToString:@"TableView Cell"]) {
     controller = [[TableViewController alloc] init];
   } else if ([row isEqualToString:@"Progress Bar"]) {

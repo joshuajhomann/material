@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FloatingButtonToolbarViewController">
+            <connections>
+                <outlet property="btShareToolbar" destination="F6W-n7-vLY" id="1hh-hz-uk2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewToolbar" destination="sfQ-63-zdG" id="WwU-wh-xCo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sfQ-63-zdG">
+                    <rect key="frame" x="0.0" y="488" width="320" height="80"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOu-30-WZG" customClass="MDButton">
+                            <rect key="frame" x="164" y="15" width="50" height="50"/>
+                            <animations/>
+                            <color key="backgroundColor" red="1" green="0.97471766709999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="bt-icon-plus"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayw-KK-swy" customClass="MDButton">
+                            <rect key="frame" x="220" y="15" width="50" height="50"/>
+                            <animations/>
+                            <color key="backgroundColor" red="1" green="0.97471766709999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="bt-icon-plus"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Noa-d1-Uxd" customClass="MDButton">
+                            <rect key="frame" x="106" y="15" width="50" height="50"/>
+                            <animations/>
+                            <color key="backgroundColor" red="1" green="0.97471766709999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="bt-icon-plus"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McE-Or-5id" customClass="MDButton">
+                            <rect key="frame" x="48" y="15" width="50" height="50"/>
+                            <animations/>
+                            <color key="backgroundColor" red="1" green="0.97471766709999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="bt-icon-plus"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.019141109359999998" green="0.01234467473" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <gestureRecognizers/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6W-n7-vLY" customClass="MDButton">
+                    <rect key="frame" x="252" y="457" width="60" height="60"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.019141109359999998" green="0.01234467473" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="bt-icon1"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="type">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btShareClicked:" destination="-1" eventType="touchUpInside" id="L4n-cV-Xl1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="6hD-Oh-zfK" appends="YES" id="tKx-L9-1OX"/>
+            </connections>
+        </view>
+        <tapGestureRecognizer id="6hD-Oh-zfK" userLabel="Mainview Tap Gesture Recognizer">
+            <connections>
+                <action selector="mainViewTap:" destination="-1" id="RTO-ry-JZC"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="bt-icon-plus" width="32" height="32"/>
+        <image name="bt-icon1" width="32" height="32"/>
+    </resources>
+</document>

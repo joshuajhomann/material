@@ -39,9 +39,6 @@
     self.b3.alpha = 0.f;
     self.b4.alpha = 0.f;
     self.b5.alpha = 0.f;
-    
-    self.viewToolbar.alpha = 0.f;
-
 }
 -(void)viewDidLayoutSubviews{
     _startPoint = CGPointMake(self.btShare.center.x, self.btShare.center.y - 100);
@@ -59,139 +56,8 @@
 - (IBAction)btnClicked:(id)sender {
     if (sender == self.btShare) {
         self.btShare.rotated = false;//reset floating finging button
-    } else if (sender == self.btShareToolbar){
-        //show toolbar view
-
-        CGFloat duration = 0.2f;
-        
-        //Animation type1: scale animation
-//        self.viewToolbar.hidden = NO;
-//        self.btShareToolbar.hidden = YES;
-//        [self.viewToolbar setClipsToBounds:NO];
-//        self.viewToolbar.transform = CGAffineTransformMakeScale(0.1,0.1);
-//        [self.viewToolbar.layer setCornerRadius:0.f];
-//        
-//        [self.viewToolbar.layer setMask:nil];
-//        [UIView animateWithDuration:duration
-//                              delay:0.0
-//                            options: (UIViewAnimationOptionAllowUserInteraction|UIViewAnimationCurveEaseOut)
-//                         animations:^{
-//                             self.viewToolbar.alpha = 1;
-//                             self.viewToolbar.transform = CGAffineTransformMakeScale(1.0,1.0);
-//                         } completion:^(BOOL finished) {
-//                             
-//                         }];
-        
-        
-        //Animation type2: expand circle
-        CGPoint btShareToolbarCenter = self.btShareToolbar.center;
-        
-        [CATransaction begin];
-        [self.viewToolbar.layer removeAllAnimations];
-        [self.btShareToolbar.layer removeAllAnimations];
-        
-        CAKeyframeAnimation *moveBtnShareToolbarAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-        moveBtnShareToolbarAnimation.calculationMode = kCAAnimationPaced;
-        moveBtnShareToolbarAnimation.fillMode = kCAFillModeForwards;
-        moveBtnShareToolbarAnimation.removedOnCompletion = NO;
-        //Setting Endpoint of the animation
-        CGPoint endPoint = self.viewToolbar.center;
-        //to end animation in last tab use
-        CGMutablePathRef curvedPath = CGPathCreateMutable();
-        CGPathMoveToPoint(curvedPath, NULL, btShareToolbarCenter.x, btShareToolbarCenter.y);
-        CGPathAddCurveToPoint(curvedPath, NULL, endPoint.x, btShareToolbarCenter.y, endPoint.x, btShareToolbarCenter.y, endPoint.x, endPoint.y);
-        moveBtnShareToolbarAnimation.path = curvedPath;
-        moveBtnShareToolbarAnimation.duration = duration;
-        CGPathRelease(curvedPath);
-        
-        
-        [CATransaction setCompletionBlock:^{
-            [CATransaction begin];
-            
-            self.viewToolbar.alpha = 1;
-            self.viewToolbar.hidden = NO;
-            self.btShareToolbar.hidden = YES;
-            
-            CAShapeLayer *aCircle=[CAShapeLayer layer];
-            CGFloat ratio = self.btShareToolbar.bounds.size.width/self.viewToolbar.bounds.size.width;
-            int circleLayerWidth = self.viewToolbar.bounds.size.width;
-            UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.viewToolbar.center.x - self.btShareToolbar.bounds.size.width/2, -(self.viewToolbar.bounds.size.width*ratio)/2 + self.viewToolbar.bounds.size.height/2, circleLayerWidth*ratio, circleLayerWidth*ratio)];
-            aCircle.path = path.CGPath;
-            aCircle.fillColor=[UIColor blackColor].CGColor;
-            [self.viewToolbar.layer setMask:aCircle];
-            
-            CGRect _rect = CGRectMake(0, - self.viewToolbar.bounds.size.width/2 + self.viewToolbar.bounds.size.height/2, circleLayerWidth, circleLayerWidth);
-            
-            CABasicAnimation *circleLayerAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-            circleLayerAnimation.toValue = (__bridge id)[UIBezierPath bezierPathWithOvalInRect:_rect].CGPath;
-            circleLayerAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            circleLayerAnimation.autoreverses = NO;
-            circleLayerAnimation.repeatCount = 1;
-            circleLayerAnimation.duration = duration;
-            circleLayerAnimation.fillMode = kCAFillModeForwards;
-            circleLayerAnimation.removedOnCompletion = NO;
-            
-            [CATransaction setCompletionBlock:^{
-                [self.viewToolbar.layer setMask:nil];
-            }];
-            [aCircle addAnimation:circleLayerAnimation forKey:circleLayerAnimation.keyPath];
-            [CATransaction commit];
-        }];
-        
-        [self.btShareToolbar.layer addAnimation:moveBtnShareToolbarAnimation forKey:moveBtnShareToolbarAnimation.keyPath];
-        
-        [CATransaction commit];
     }
     
-}
-- (IBAction)tapGesture:(id)sender {
-    //hide view toolbar
-    CGFloat duration = 0.2f;
-    CGPoint btShareToolbarCenter = self.btShareToolbar.center;
-    
-    CAShapeLayer *aCircle=[CAShapeLayer layer];
-    int circleLayerWidth = self.viewToolbar.bounds.size.width;
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, -self.viewToolbar.bounds.size.width/2 + self.viewToolbar.bounds.size.height/2, circleLayerWidth, circleLayerWidth)];
-    aCircle.path = path.CGPath;
-    aCircle.fillColor=[UIColor blackColor].CGColor;
-    [self.viewToolbar.layer setMask:aCircle];
-    
-    [CATransaction begin];
-    CGFloat ratio = self.btShareToolbar.bounds.size.width/self.viewToolbar.bounds.size.width;
-    
-    CGRect _rect = CGRectMake(self.viewToolbar.center.x - self.btShareToolbar.bounds.size.width/2, -(self.viewToolbar.bounds.size.width*ratio)/2 + self.viewToolbar.bounds.size.height/2, circleLayerWidth*ratio, circleLayerWidth*ratio);
-    
-    CABasicAnimation *circleLayerAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-    circleLayerAnimation.toValue = (__bridge id)[UIBezierPath bezierPathWithOvalInRect:_rect].CGPath;
-    circleLayerAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    circleLayerAnimation.autoreverses = NO;
-    circleLayerAnimation.repeatCount = 1;
-    circleLayerAnimation.duration = duration;
-    
-    [CATransaction setCompletionBlock:^{
-        [self.btShareToolbar.layer removeAllAnimations];
-        self.viewToolbar.hidden = YES;
-        self.btShareToolbar.hidden = NO;
-
-        CAKeyframeAnimation *moveBtnShareToolbarAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-        moveBtnShareToolbarAnimation.calculationMode = kCAAnimationPaced;
-        moveBtnShareToolbarAnimation.fillMode = kCAFillModeForwards;
-        moveBtnShareToolbarAnimation.removedOnCompletion = NO;
-        //Setting Endpoint of the animation
-        CGPoint endPoint = btShareToolbarCenter;
-        //to end animation in last tab use
-        CGMutablePathRef curvedPath = CGPathCreateMutable();
-        CGPathMoveToPoint(curvedPath, NULL, self.viewToolbar.center.x, self.viewToolbar.center.y);
-        CGPathAddCurveToPoint(curvedPath, NULL, endPoint.x, self.viewToolbar.center.y, endPoint.x, self.viewToolbar.center.y, endPoint.x, endPoint.y);
-        moveBtnShareToolbarAnimation.path = curvedPath;
-        moveBtnShareToolbarAnimation.duration = duration/2;
-        CGPathRelease(curvedPath);
-        [self.btShareToolbar.layer addAnimation:moveBtnShareToolbarAnimation forKey:moveBtnShareToolbarAnimation.keyPath];
-    }];
-    
-    [aCircle addAnimation:circleLayerAnimation forKey:circleLayerAnimation.keyPath];
-    
-    [CATransaction commit];
 }
 
 -(void)rotationStarted:(id)sender {
@@ -257,6 +123,7 @@
         NSLog(@"btShare rotationCompleted %s", self.btShare.isRotated?"rotated":"normal");
     }
 }
+
 /*
 #pragma mark - Navigation
 
