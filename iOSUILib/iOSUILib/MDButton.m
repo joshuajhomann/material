@@ -28,7 +28,7 @@
 @interface MDButton ()
 
 @property MDRippleLayer *mdLayer;
-
+@property UIImageView *btImage;//avoid layout issue when using button imageView
 @end
 
 @implementation MDButton
@@ -74,6 +74,9 @@
   _mdLayer = [[MDRippleLayer alloc] initWithSuperView:self];
   _mdLayer.effectColor = _rippleColor;
   _mdLayer.rippleScaleRatio = 1;
+    
+    self.imageView.clipsToBounds = NO;
+    self.imageView.contentMode = UIViewContentModeCenter;
 }
 
 - (void)layoutSubviews {
@@ -140,9 +143,8 @@
             case MDButtonTypeFloatingActionRotation: {
                 float size = MIN(self.bounds.size.width, self.bounds.size.height);
                 self.layer.cornerRadius = size / 2;
-                
-                _mdLayer.restingElevation = 0;
-                _mdLayer.enableElevation = false;
+                _mdLayer.restingElevation = 6;
+                _mdLayer.enableElevation = true;
             }
                 break;
         }
@@ -152,12 +154,16 @@
 }
 
 -(void)setImageNormal:(UIImage *)imageNormal {
-    [self setImage:imageNormal forState:UIControlStateNormal];
-    if (imageNormal != nil) {
-        self.imageView.clipsToBounds = NO;
-        self.imageView.contentMode = UIViewContentModeCenter;
-    }
     _imageNormal = imageNormal;
+    
+    if (_btImage == nil) {
+        _btImage = [[UIImageView alloc] initWithImage:_imageNormal];
+        _btImage.frame = self.bounds;
+        _btImage.contentMode = UIViewContentModeCenter;
+        _btImage.clipsToBounds = NO;
+        
+        [self addSubview:_btImage];
+    }
 }
 
 -(void)setRotated:(BOOL)rotated{
@@ -175,7 +181,7 @@
                                   delay:0.0
                                 options: kNilOptions
                              animations:^{
-                                 self.transform = CGAffineTransformMakeRotation(M_PI/4);
+                                 self.btImage.transform = CGAffineTransformMakeRotation(M_PI/4);
                              } completion:^(BOOL finished) {
                                  _rotated = true;
                                  if (_mdButtonDelegate) {
@@ -190,7 +196,7 @@
                                   delay:0.0
                                 options: kNilOptions
                              animations:^{
-                                 self.transform = CGAffineTransformMakeRotation(0);
+                                 self.btImage.transform = CGAffineTransformMakeRotation(0);
                              } completion:^(BOOL finished) {
                                  _rotated = false;
                                  if (_mdButtonDelegate) {
@@ -207,14 +213,25 @@
                                   delay:0.0
                                 options: kNilOptions
                              animations:^{
-                                 self.imageView.alpha = 0.0;
-                                 self.transform = CGAffineTransformMakeRotation(M_PI/4);
+                                 self.btImage.alpha = 0.0;
                              } completion:^(BOOL finished) {
-                                 [self setImage:_imageRotated forState:UIControlStateNormal];
-                                 self.transform = CGAffineTransformMakeRotation(-M_PI/2);
                                  [UIView animateWithDuration:duration/2 animations:^{
-                                     self.imageView.alpha = 1;
-                                     self.transform = CGAffineTransformMakeRotation(0);
+                                     self.btImage.alpha = 1;
+                                 }completion:^(BOOL finished) {
+                                     
+                                 }];
+                             }];
+            [UIView animateWithDuration:duration/2
+                                  delay:0.0
+                                options: kNilOptions
+                             animations:^{
+                                 self.btImage.transform = CGAffineTransformMakeRotation(M_PI/4);
+                             } completion:^(BOOL finished) {
+                                 //[self setImage:_imageRotated forState:UIControlStateNormal];
+                                 [self.btImage setImage:_imageRotated];
+                                 self.btImage.transform = CGAffineTransformMakeRotation(-M_PI/2);
+                                 [UIView animateWithDuration:duration/2 animations:^{
+                                     self.btImage.transform = CGAffineTransformMakeRotation(0);
                                  }completion:^(BOOL finished) {
                                      _rotated = true;
                                      if (_mdButtonDelegate) {
@@ -230,14 +247,26 @@
                                   delay:0.0
                                 options: kNilOptions
                              animations:^{
-                                 self.imageView.alpha = 0.0;
-                                 self.transform = CGAffineTransformMakeRotation(-M_PI/4);
+                                 self.btImage.alpha = 0.0;
                              } completion:^(BOOL finished) {
-                                 [self setImage:_imageNormal forState:UIControlStateNormal];
-                                 self.transform = CGAffineTransformMakeRotation(M_PI/2);
+                                 
                                  [UIView animateWithDuration:duration/2 animations:^{
-                                     self.imageView.alpha = 1;
-                                     self.transform = CGAffineTransformMakeRotation(0);
+                                     self.btImage.alpha = 1;
+                                 }completion:^(BOOL finished) {
+                                     
+                                 }];
+                             }];
+            [UIView animateWithDuration:duration/2
+                                  delay:0.0
+                                options: kNilOptions
+                             animations:^{
+                                 self.btImage.transform = CGAffineTransformMakeRotation(-M_PI/4);
+                             } completion:^(BOOL finished) {
+                                 //[self setImage:_imageNormal forState:UIControlStateNormal];
+                                 [self.btImage setImage:_imageNormal];
+                                 self.btImage.transform = CGAffineTransformMakeRotation(M_PI/2);
+                                 [UIView animateWithDuration:duration/2 animations:^{
+                                     self.btImage.transform = CGAffineTransformMakeRotation(0);
                                  }completion:^(BOOL finished) {
                                      _rotated = false;
                                      if (_mdButtonDelegate) {
@@ -260,7 +289,6 @@
     } else {
         
     }
-    
     [self rotate];
     
 }
