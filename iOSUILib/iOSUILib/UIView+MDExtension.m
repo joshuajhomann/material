@@ -69,7 +69,7 @@
 }
 
 - (void)setMdRight:(CGFloat)mdRight {
-  self.mdLeft = self.mdRight - self.mdWidth;
+  self.mdLeft = mdRight - self.mdWidth;
 }
 
 - (CGFloat)mdCenterX {
