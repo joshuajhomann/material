@@ -21,6 +21,8 @@
 // THE SOFTWARE.
 
 #import "FloatingActionButtonFlingingViewController.h"
+#import "MDDeviceHelper.h"
+#import "UIView+MDExtension.h"
 
 @interface FloatingActionButtonFlingingViewController () <MDButtonDelegate>
 @property(nonatomic) CGPoint startPoint;
@@ -39,20 +41,44 @@
     self.b3.alpha = 0.f;
     self.b4.alpha = 0.f;
     self.b5.alpha = 0.f;
+    
+    _startPoint = CGPointMake(0, 0);
+            CGRect screenRect = [[UIScreen mainScreen] bounds];
+            CGFloat screenWidth = screenRect.size.width;
+            CGFloat screenHeight = screenRect.size.height;
+            self.btShare.center = CGPointMake(screenWidth,screenHeight) ;
+    
+            _startPoint = CGPointMake(self.btShare.center.x, self.btShare.center.y - 100);
+            self.b1.center = _startPoint;
+            self.b2.center = _startPoint;
+            self.b3.center = _startPoint;
+            self.b4.center = _startPoint;
+            self.b5.center = _startPoint;
 }
+-(void)viewWillLayoutSubviews{
+
+}
+
 -(void)viewDidLayoutSubviews{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    self.btShare.center = CGPointMake(screenWidth - self.btShare.mdWidth/2 - 10,screenHeight - self.btShare.mdHeight/2 - 10 - (self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y)) ;
+
     _startPoint = CGPointMake(self.btShare.center.x, self.btShare.center.y - 100);
     self.b1.center = _startPoint;
     self.b2.center = _startPoint;
     self.b3.center = _startPoint;
     self.b4.center = _startPoint;
     self.b5.center = _startPoint;
-
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 - (IBAction)btnClicked:(id)sender {
     if (sender == self.btShare) {
         self.btShare.rotated = false;//reset floating finging button
@@ -120,7 +146,7 @@
 }
 -(void)rotationCompleted:(id)sender{
     if (self.btShare == sender){
-        NSLog(@"btShare rotationCompleted %s", self.btShare.isRotated?"rotated":"normal");
+        //NSLog(@"btShare rotationCompleted %s", self.btShare.isRotated?"rotated":"normal");
     }
 }
 

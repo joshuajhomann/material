@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FIJ-6W-AW2">
-                    <rect key="frame" x="110" y="247" width="202" height="313"/>
+                    <rect key="frame" x="110" y="180" width="202" height="313"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYs-Mm-UCv">
                             <rect key="frame" x="8" y="15" width="158" height="21"/>
@@ -64,14 +64,14 @@
                         </label>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.023811070409999999" green="1" blue="0.085165503710000007" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="YP0-kO-rLE" appends="YES" id="Nwa-fl-W01"/>
                     </connections>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDO-Q1-fov" customClass="MDButton">
-                    <rect key="frame" x="262" y="510" width="50" height="50"/>
+                    <rect key="frame" x="262" y="444" width="50" height="50"/>
                     <animations/>
                     <color key="backgroundColor" red="1" green="0.97471766709999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="bt-icon-plus"/>
@@ -87,6 +87,7 @@
             </subviews>
             <animations/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <tapGestureRecognizer id="YP0-kO-rLE" userLabel="composeViewTap">

@@ -7,6 +7,8 @@
 //
 
 #import "FloatingButtonTranformingSheetViewController.h"
+#import "MDDeviceHelper.h"
+#import "UIView+MDExtension.h"
 
 @interface FloatingButtonTranformingSheetViewController ()
 
@@ -23,8 +25,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)viewDidLayoutSubviews {
+    UIView *mainView = [MDDeviceHelper getMainView];
+    self.btCompose.mdRight = mainView.mdWidth - 10;
+    self.btCompose.mdTop = mainView.mdHeight - self.btCompose.mdHeight - (self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y) - 10;
+    
+    self.viewComposeOptions.mdBottom = self.btCompose.mdBottom;
+    self.viewComposeOptions.mdRight = self.btCompose.mdRight;
+}
+
 - (IBAction)btnComposeClicked:(id)sender {
-    NSLog(@"Compose clicked");
     self.viewComposeOptions.alpha = 1.f;
     self.viewComposeOptions.hidden = NO;
     self.btCompose.hidden = YES;
@@ -75,7 +86,6 @@
 }
 
 - (IBAction)composeViewTap:(id)sender {
-    NSLog(@"compose view tapped");
     //hide view
     CGFloat duration = .3f;
     self.viewComposeOptions.alpha = 1.f;

@@ -7,6 +7,8 @@
 //
 
 #import "FloatingButtonToolbarViewController.h"
+#import "MDDeviceHelper.h"
+#import "UIView+MDExtension.h"
 
 @interface FloatingButtonToolbarViewController ()
 
@@ -23,6 +25,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void) viewWillLayoutSubviews
+{
+    
+    [super viewWillLayoutSubviews];
+    
+}
+
+-(void)viewDidLayoutSubviews {
+    UIView *mainView = [MDDeviceHelper getMainView];
+    self.viewToolbar.mdWidth = mainView.mdWidth;
+    self.viewToolbar.mdTop = mainView.mdHeight - self.viewToolbar.mdHeight - (self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y);
+    
+    self.btShareToolbar.mdTop = self.viewToolbar.mdTop - self.btShareToolbar.mdHeight/2;
+    self.btShareToolbar.mdLeft = mainView.mdWidth - self.btShareToolbar.mdWidth - 10;
+}
+
 - (IBAction)btShareClicked:(id)sender {
     //show toolbar view
     
