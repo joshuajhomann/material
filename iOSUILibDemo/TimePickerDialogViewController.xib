@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimePickerDialogViewController">
             <connections>
                 <outlet property="btnStartTime" destination="2jQ-R7-rgr" id="ojY-xt-gu3"/>
+                <outlet property="lightThemeSwitch" destination="1DK-GJ-0PR" id="KiP-YV-0t6"/>
                 <outlet property="timeTextField" destination="nZW-fM-tCV" id="WcO-ai-vpQ"/>
                 <outlet property="txtTimerStart" destination="nZW-fM-tCV" id="KVb-Jv-z9E"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -20,12 +21,14 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer Setting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kq-G0-zpH">
                     <rect key="frame" x="136" y="20" width="103" height="21"/>
+                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jQ-R7-rgr">
                     <rect key="frame" x="312" y="58" width="43" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="G4f-Js-yo2"/>
                         <constraint firstAttribute="width" constant="43" id="hlt-Oz-UsF"/>
@@ -39,16 +42,18 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nZW-fM-tCV">
                     <rect key="frame" x="70" y="58" width="202" height="30"/>
+                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I86-Np-0qJ">
                     <rect key="frame" x="8" y="62" width="37" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="37" id="eAS-1k-bP6"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -56,17 +61,41 @@
                         </mask>
                     </variation>
                 </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1DK-GJ-0PR">
+                    <rect key="frame" x="223" y="112" width="51" height="31"/>
+                    <animations/>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Light Theme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZk-hp-a8U">
+                    <rect key="frame" x="98" y="117" width="117" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="37" id="exm-bK-dm7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="exm-bK-dm7"/>
+                        </mask>
+                    </variation>
+                </label>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="nZW-fM-tCV" firstAttribute="leading" secondItem="I86-Np-0qJ" secondAttribute="trailing" constant="25" id="5Bz-Dq-Kzd"/>
                 <constraint firstItem="2jQ-R7-rgr" firstAttribute="leading" secondItem="nZW-fM-tCV" secondAttribute="trailing" constant="40" id="7up-m0-PMn"/>
+                <constraint firstItem="1DK-GJ-0PR" firstAttribute="leading" secondItem="mZk-hp-a8U" secondAttribute="trailing" constant="8" id="A4g-8e-X8L"/>
+                <constraint firstItem="1DK-GJ-0PR" firstAttribute="top" secondItem="nZW-fM-tCV" secondAttribute="bottom" constant="24" id="AYe-6j-oLT"/>
                 <constraint firstItem="7Kq-G0-zpH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="DO1-Cg-7BM"/>
                 <constraint firstItem="nZW-fM-tCV" firstAttribute="centerY" secondItem="2jQ-R7-rgr" secondAttribute="centerY" id="Qvb-nE-p5D"/>
                 <constraint firstItem="nZW-fM-tCV" firstAttribute="top" secondItem="7Kq-G0-zpH" secondAttribute="bottom" constant="17" id="aWZ-tV-yUD"/>
                 <constraint firstAttribute="trailing" secondItem="2jQ-R7-rgr" secondAttribute="trailing" constant="20" id="bKB-Wk-GCt"/>
                 <constraint firstItem="I86-Np-0qJ" firstAttribute="centerY" secondItem="nZW-fM-tCV" secondAttribute="centerY" constant="-0.5" id="cad-hj-f03"/>
                 <constraint firstAttribute="centerX" secondItem="7Kq-G0-zpH" secondAttribute="centerX" id="eKe-fR-v9a"/>
+                <constraint firstItem="mZk-hp-a8U" firstAttribute="centerY" secondItem="1DK-GJ-0PR" secondAttribute="centerY" id="iwf-Jb-hUa"/>
+                <constraint firstItem="1DK-GJ-0PR" firstAttribute="trailing" secondItem="nZW-fM-tCV" secondAttribute="trailing" id="ix7-EF-EQ2"/>
                 <constraint firstItem="I86-Np-0qJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="kTm-Oc-2CP"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
