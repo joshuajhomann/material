@@ -33,6 +33,7 @@
 @class MDButton;
 @interface MDDatePickerDialog : UIButton
 
+@property (nullable, strong, nonatomic) NSDate *date;
 @property(weak, nonatomic) id<MDDatePickerDialogDelegate> delegate;
 
 - (void)show;

@@ -146,6 +146,16 @@
   return self;
 }
 
+-(NSDate*)date;
+{
+    return self.calendar.selectedDate;
+}
+
+-(void)setDate:(NSDate *)date;
+{
+    self.calendar.selectedDate = date;
+}
+
 -(void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle {
     _okTitle =  okTitle;
     _cancelTitle = cancelTitle;
