@@ -43,7 +43,7 @@ typedef NS_OPTIONS(NSInteger, MDCalendarCellState) {
   MDCalendarCellStateButton = 1 << 7
 };
 
-typedef NS_OPTIONS(NSInteger, MDCalendarTheme) {
+typedef NS_ENUM(NSInteger, MDCalendarTheme) {
   MDCalendarThemeLight = 1,
   MDCalendarThemeDark = 2
 };

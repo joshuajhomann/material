@@ -44,7 +44,7 @@
 
 @interface MDTimePickerDialog ()
 
-@property(nonatomic) CAShapeLayer *backgroundColock;
+@property(nonatomic) CAShapeLayer *backgroundClock;
 
 @property(nonatomic) MDCalendarTimeMode pickerClockMode;
 @property(nonatomic) UILabel *labelTimeModeAM;
@@ -57,14 +57,10 @@
 @property(nonatomic) CAShapeLayer *maskVisibleIndexLayer;
 @property(nonatomic) CAShapeLayer *maskInvisibleIndexLayer;
 
-@property(nonatomic) UIColor *headerTextColor;
-@property(nonatomic) UIColor *headerBackgroundColor;
-@property(nonatomic) UIColor *titleColor;
-@property(nonatomic) UIColor *titleSelectedColor;
-@property(nonatomic) UIColor *selectionColor;
-@property(nonatomic) UIColor *selectionCenterColor;
-@property(nonatomic) UIColor *backgroundPopupColor;
-@property(nonatomic) UIColor *backgroundClockColor;
+@property(nonatomic, strong) CAShapeLayer *smallInvisibleIndexCircleLayer;
+@property(nonatomic, strong) CAShapeLayer *centerInvisibleIndexCircleLayer;
+@property(nonatomic, strong) CAShapeLayer *selectorInvisibleIndexCircleLayer;
+@property(nonatomic, strong) CAShapeLayer *centerCircleLayer;
 
 @property(nonatomic) UIView *header;
 @property(nonatomic) UILabel *headerLabelHour;
@@ -96,6 +92,10 @@
   UIBezierPath *selectorMinCirclePath;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)init {
   self = [super init];
   if (self) {
@@ -120,17 +120,19 @@
 }
 
 - (void)initialize {
-  [self initDefaultValues];
-  [self initTheme];
+  
+  self.theme = MDTimePickerThemeDark;
 
+  [self initDefaultValues];
   [self initComponents];
   [self initClockHandView];
   [self initClock];
-
+  
+  [self updateColors];
+  
   UIPanGestureRecognizer *panGesture =
       [[UIPanGestureRecognizer alloc] initWithTarget:self
                                               action:@selector(rotateHand:)];
-  panGesture.delegate = self;
   [panGesture setMaximumNumberOfTouches:1];
   [self addGestureRecognizer:panGesture];
 
@@ -142,10 +144,7 @@
   [self updateHeaderView];
   [popupHolder bringSubviewToFront:_labelTimeModeAM];
   [popupHolder bringSubviewToFront:_labelTimeModePM];
-
-  [self addTarget:self
-                action:@selector(btnClick:)
-      forControlEvents:UIControlEventTouchUpInside];
+    
   [[NSNotificationCenter defaultCenter]
       addObserver:self
          selector:@selector(deviceOrientationDidChange:)
@@ -197,38 +196,97 @@
   preMinuteTag = -1;
 }
 
-- (void)initTheme {
-  int theme = 1;
-  if (theme == 0) { // light
-    _headerTextColor = [UIColor whiteColor];
-    _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#009688"];
+- (void)setTheme:(MDTimePickerTheme)theme {
+  _theme = theme;
+  
+  _headerTextColor = [UIColor whiteColor];
+  _titleSelectedColor = [UIColor whiteColor];
 
+  if (theme == MDTimePickerThemeLight) {
+    
+    _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#009688"];
     _titleColor = [UIColorHelper colorWithRGBA:@"#2F2F2F"];
-    _titleSelectedColor = [UIColor whiteColor];
     _selectionColor = [UIColorHelper colorWithRGBA:@"#009688"];
     _selectionCenterColor = [UIColorHelper colorWithRGBA:@"#000302"];
-
     _backgroundPopupColor = [UIColor whiteColor];
     _backgroundClockColor = [UIColorHelper colorWithRGBA:@"#ECEFF1"];
-  } else { // dark
-    _headerTextColor = [UIColor whiteColor];
+    
+  } else if (theme == MDTimePickerThemeDark) {
+    
     _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#80CBC4"];
-
     _titleColor = [UIColor whiteColor];
-    _titleSelectedColor = [UIColor whiteColor];
     _selectionColor = [UIColorHelper colorWithRGBA:@"#80CBC4"];
     _selectionCenterColor = [UIColor whiteColor];
-
     _backgroundPopupColor = [UIColorHelper colorWithRGBA:@"#263238"];
     _backgroundClockColor = [UIColorHelper colorWithRGBA:@"#364147"];
+    
+  } else {
+    NSAssert(nil, @"uknown theme: %d", (int)theme);
   }
+  [self updateColors];
+}
+
+- (void) updateColors;
+{
+  // configure views
+  popupHolder.backgroundColor = _backgroundPopupColor;
+  _backgroundClock.fillColor = _backgroundClockColor.CGColor;
+  _headerLabelHour.textColor = _headerTextColor;
+  _headerLabelMinute.textColor = _headerTextColor;
+  _header.backgroundColor = _headerBackgroundColor;
+  
+  [self.buttonCancel setTitleColor:_titleColor forState:UIControlStateNormal];
+  [self.buttonOk setTitleColor:_titleColor forState:UIControlStateNormal];
+  _labelTimeModeAM.textColor = _titleColor;
+  _labelTimeModePM.textColor = _titleColor;
+  _backgroundTimeMode.fillColor = _selectionColor.CGColor;
+  
+  selectorCircleLayer.fillColor = _selectionColor.CGColor;
+  self.smallInvisibleIndexCircleLayer.fillColor = _selectionColor.CGColor;
+  self.smallInvisibleIndexCircleLayer.strokeColor = _selectionColor.CGColor;
+  // [self.smallInvisibleIndexCircleLayer setNeedsDisplay];
+  
+  self.centerInvisibleIndexCircleLayer.fillColor = _selectionColor.CGColor;
+  self.centerInvisibleIndexCircleLayer.strokeColor = _selectionColor.CGColor;
+  
+  self.selectorInvisibleIndexCircleLayer.strokeColor = [_selectionColor colorWithAlphaComponent:0.5f].CGColor;
+
+  selectorCircleLayer.fillColor = _selectionColor.CGColor;
+  selectorCircleLayer.strokeColor = _selectionColor.CGColor;
+  
+  _backgroundTimeMode.fillColor = _selectionColor.CGColor;
+  
+  self.centerCircleLayer.fillColor = _selectionCenterColor.CGColor;
+  self.centerCircleLayer.strokeColor = _selectionCenterColor.CGColor;
+  // [self.centerCircleLayer setNeedsDisplay];
+  
+  for (UIButton *button in [_clockHour subviews]) {
+    [button setTitleColor:_titleColor forState:UIControlStateNormal];
+  }
+
+  for (UIButton *button in [_clockMinute subviews]) {
+    [button setTitleColor:_titleColor forState:UIControlStateNormal];
+  }
+  
+}
+
+- (void) setHeaderBackgroundColor:(UIColor *)headerBackgroundColor;
+{
+  _headerBackgroundColor = headerBackgroundColor;
+  [self updateColors];
+}
+
+- (void) setSelectionColor:(UIColor *)selectionColor;
+{
+  _selectionColor = selectionColor;
+  [self updateColors];
 }
 
 - (void)initComponents {
   UIView *rootView = [MDDeviceHelper getMainView];
   [self setFrame:rootView.bounds];
 
-  popupHolder = [[UIView alloc] init];
+  popupHolder = [[UIView alloc] init]; // TODO: use initWithFrame:
   popupHolder.layer.shadowOpacity = 0.5;
   popupHolder.layer.shadowRadius = 8;
   popupHolder.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -251,8 +309,6 @@
                                kCalendarActionBarHeight * 3.0 / 4.0)
                type:MDButtonTypeFlat
         rippleColor:nil];
-  [buttonOk setTitle:@"OK" forState:normal];
-  [buttonOk setTitleColor:[UIColor blueColor] forState:normal];
   [buttonOk addTarget:self
                 action:@selector(didSelect)
       forControlEvents:UIControlEventTouchUpInside];
@@ -268,10 +324,8 @@
                                kCalendarActionBarHeight * 3.0 / 4.0)
                type:MDButtonTypeFlat
         rippleColor:nil];
-  [buttonCancel setTitle:@"CANCEL" forState:normal];
-  [buttonCancel setTitleColor:[UIColor blueColor] forState:normal];
   [buttonCancel addTarget:self
-                   action:@selector(didCancell)
+                   action:@selector(didCancel)
          forControlEvents:UIControlEventTouchUpInside];
     
   [buttonCancel.titleLabel setFont:_buttonFont];
@@ -279,14 +333,7 @@
   self.buttonCancel = buttonCancel;
 
   [self setTitleOk:@"OK" andTitleCancel:@"CANCEL"];
-    
-  [self.buttonCancel setTitleColor:_titleColor forState:UIControlStateNormal];
-  [self.buttonOk setTitleColor:_titleColor forState:UIControlStateNormal];
-
-  [self addTarget:self
-                action:@selector(btnClick:)
-      forControlEvents:UIControlEventTouchUpInside];
-
+  
   [self initHeaderView];
 
   // time mode component
@@ -296,7 +343,6 @@
                           40, kCalendarHeaderHeight + kCalendarClockHeight +
                                   (popupHolder.mdWidth - kCalendarClockHeight),
                           40, 40)];
-    _labelTimeModeAM.textColor = _titleColor;
     _labelTimeModeAM.text = @"AM";
     _labelTimeModeAM.textAlignment = NSTextAlignmentCenter;
 
@@ -306,7 +352,6 @@
                           kCalendarHeaderHeight + kCalendarClockHeight +
                               (popupHolder.mdWidth - kCalendarClockHeight),
                           40, 40)];
-    _labelTimeModePM.textColor = _titleColor;
     _labelTimeModePM.text = @"PM";
     _labelTimeModePM.textAlignment = NSTextAlignmentCenter;
 
@@ -319,7 +364,7 @@
     _backgroundTimeMode.path =
         [UIBezierPath bezierPathWithOvalInRect:_backgroundTimeMode.bounds]
             .CGPath;
-    _backgroundTimeMode.fillColor = _selectionColor.CGColor;
+    
     [popupHolder.layer insertSublayer:_backgroundTimeMode atIndex:0];
 
     [popupHolder addSubview:_labelTimeModeAM];
@@ -348,7 +393,6 @@
     }
   }
 
-  [popupHolder setBackgroundColor:_backgroundPopupColor];
   [self addSubview:popupHolder];
   [self setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:0.5]];
 }
@@ -368,13 +412,9 @@
   _headerLabelMinute.textAlignment = NSTextAlignmentLeft;
   _headerLabelMinute.font = [UIFontHelper robotoFontOfSize:43];
 
-  [_headerLabelHour setTextColor:_headerTextColor];
-  [_headerLabelMinute setTextColor:_headerTextColor];
-
   [_header addSubview:_headerLabelHour];
   [_header addSubview:_headerLabelMinute];
   [popupHolder addSubview:_header];
-  [_header setBackgroundColor:_headerBackgroundColor];
 
   UITapGestureRecognizer *showClockHourSelectorGesture =
       [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -398,13 +438,12 @@
                             (popupHolder.mdWidth - kCalendarClockHeight) / 2,
                         kCalendarClockHeight, kCalendarClockHeight)];
 
-  _backgroundColock = [[CAShapeLayer alloc] init];
-  _backgroundColock.backgroundColor = [UIColor clearColor].CGColor;
-  _backgroundColock.frame = _clockHour.frame;
-  _backgroundColock.path =
-      [UIBezierPath bezierPathWithOvalInRect:_backgroundColock.bounds].CGPath;
-  _backgroundColock.fillColor = _backgroundClockColor.CGColor;
-  [popupHolder.layer insertSublayer:_backgroundColock atIndex:0];
+  _backgroundClock = [[CAShapeLayer alloc] init];
+  _backgroundClock.backgroundColor = [UIColor clearColor].CGColor;
+  _backgroundClock.frame = _clockHour.frame;
+  _backgroundClock.path =
+      [UIBezierPath bezierPathWithOvalInRect:_backgroundClock.bounds].CGPath;
+  [popupHolder.layer insertSublayer:_backgroundClock atIndex:0];
 
   double stepAngle = 2 * M_PI / 12;
   float x_point;
@@ -544,12 +583,6 @@
   [_clockHandView setBackgroundColor:[UIColor clearColor]];
   [popupHolder addSubview:_clockHandView];
 
-  NSEnumerator *enumerator =
-      [_maskVisibleIndexLayer.sublayers reverseObjectEnumerator];
-  for (CALayer *layer in enumerator) {
-    [layer removeFromSuperlayer];
-  }
-
   float padding = 4;
   // Shape layer mask - visible index
   _maskVisibleIndexLayer = [CAShapeLayer layer];
@@ -595,27 +628,19 @@
 
   selectorCircleLayer = [CAShapeLayer layer];
   selectorCircleLayer.path = selectorCirclePath.CGPath;
-  [selectorCircleLayer setStrokeColor:_selectionColor.CGColor];
   selectorCircleLayer.lineWidth = 1;
-  [selectorCircleLayer setFillColor:_selectionColor.CGColor];
   selectorCircleLayer.opacity = 1.0f;
 
   // Small Circle Layer
   CAShapeLayer *centerCircleLayer = [CAShapeLayer layer];
   centerCircleLayer.path = centerCirclePath.CGPath;
-  [centerCircleLayer setStrokeColor:_selectionCenterColor.CGColor];
   centerCircleLayer.lineWidth = 1.0f;
-  [centerCircleLayer setFillColor:_selectionCenterColor.CGColor];
   centerCircleLayer.opacity = 1.0f;
+  self.centerCircleLayer = centerCircleLayer;
 
   [_maskVisibleIndexLayer addSublayer:centerCircleLayer];
   [_maskVisibleIndexLayer addSublayer:selectorCircleLayer];
-
-  // mask layer - invisible index (minute)
-  enumerator = [_maskInvisibleIndexLayer.sublayers reverseObjectEnumerator];
-  for (CALayer *layer in enumerator) {
-    [layer removeFromSuperlayer];
-  }
+  
   // Shape layer mask - visible index
   _maskInvisibleIndexLayer = [CAShapeLayer layer];
   [_maskInvisibleIndexLayer setFillRule:kCAFillRuleEvenOdd];
@@ -651,12 +676,9 @@
   CAShapeLayer *selectorInvisibleIndexCircleLayer = [CAShapeLayer layer];
   selectorInvisibleIndexCircleLayer.path =
       selectorInvisibleIndexCirclePath.CGPath;
-  [selectorInvisibleIndexCircleLayer
-      setStrokeColor:[_selectionColor colorWithAlphaComponent:0.5f].CGColor];
   selectorInvisibleIndexCircleLayer.lineWidth = 0;
-  [selectorInvisibleIndexCircleLayer
-      setFillColor:[_selectionColor colorWithAlphaComponent:0.5f].CGColor];
   selectorInvisibleIndexCircleLayer.opacity = 1.0f;
+  self.selectorInvisibleIndexCircleLayer = selectorInvisibleIndexCircleLayer;
 
   // small circle layer in selector layer
   UIBezierPath *smallSelectorInvisibleIndexCirclePath = [UIBezierPath
@@ -668,19 +690,16 @@
   CAShapeLayer *smallInvisibleIndexCircleLayer = [CAShapeLayer layer];
   smallInvisibleIndexCircleLayer.path =
       smallSelectorInvisibleIndexCirclePath.CGPath;
-  [smallInvisibleIndexCircleLayer setStrokeColor:_selectionColor.CGColor];
   smallInvisibleIndexCircleLayer.lineWidth = 1.0f;
-  [smallInvisibleIndexCircleLayer setFillColor:_selectionColor.CGColor];
   smallInvisibleIndexCircleLayer.opacity = 1.0f;
+  self.smallInvisibleIndexCircleLayer = smallInvisibleIndexCircleLayer;
 
   // Small Circle Layer
   CAShapeLayer *centerInvisibleIndexCircleLayer = [CAShapeLayer layer];
   centerInvisibleIndexCircleLayer.path = centerInvisibleIndexCirclePath.CGPath;
-  [centerInvisibleIndexCircleLayer
-      setStrokeColor:_selectionCenterColor.CGColor];
   centerInvisibleIndexCircleLayer.lineWidth = 1.0f;
-  [centerInvisibleIndexCircleLayer setFillColor:_selectionCenterColor.CGColor];
   centerInvisibleIndexCircleLayer.opacity = 0.5f;
+  self.centerInvisibleIndexCircleLayer = centerInvisibleIndexCircleLayer;
 
   [_maskInvisibleIndexLayer addSublayer:selectorInvisibleIndexCircleLayer];
   [_maskInvisibleIndexLayer addSublayer:centerInvisibleIndexCircleLayer];
@@ -869,7 +888,7 @@
   }
 
   _clockMinute.center = _clockHour.center;
-  _backgroundColock.frame = _clockHour.frame;
+  _backgroundClock.frame = _clockHour.frame;
   _clockHandView.center = _clockHour.center;
 
   if (_pickerClockMode == MDCalendarTimeMode12H) {
@@ -1078,29 +1097,25 @@
   [self updateHeaderView];
 }
 
-#pragma mark Delagate & Actions
+#pragma mark Delegate & Actions
 
 -(void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle {
     _okTitle =  okTitle;
     _cancelTitle = cancelTitle;
     
-    [_buttonOk setTitle:_okTitle forState:normal];
-    [_buttonCancel setTitle:_cancelTitle forState:normal];
+    [_buttonOk setTitle:_okTitle forState:UIControlStateNormal];
+    [_buttonCancel setTitle:_cancelTitle forState:UIControlStateNormal];
 }
 
 - (void)changeTimeModeAM {
   currentTimeModeStr = @"AM";
   _backgroundTimeMode.frame = _labelTimeModeAM.frame;
-  [_labelTimeModeAM setTextColor:_titleSelectedColor];
-  [_labelTimeModePM setTextColor:_titleColor];
 
   [self updateHeaderView];
 }
 - (void)changeTimeModePM {
   currentTimeModeStr = @"PM";
   _backgroundTimeMode.frame = _labelTimeModePM.frame;
-  [_labelTimeModeAM setTextColor:_titleColor];
-  [_labelTimeModePM setTextColor:_titleSelectedColor];
 
   [self updateHeaderView];
 }
@@ -1247,14 +1262,6 @@
   }
 }
 
-- (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)btnClick:(id)sender {
-  self.hidden = YES;
-}
-
 - (void)didSelect {
   if (_delegate &&
       [_delegate respondsToSelector:@selector(timePickerDialog:
@@ -1276,10 +1283,10 @@
       }
     }
   }
-  self.hidden = YES;
+  [self removeFromSuperview];
 }
 
-- (void)didCancell {
-  self.hidden = YES;
+- (void)didCancel {
+    [self removeFromSuperview];
 }
 @end

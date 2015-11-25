@@ -29,8 +29,6 @@
 @property(weak, nonatomic) IBOutlet UITextField *txtTimerStart;
 @property(weak, nonatomic) IBOutlet UIButton *btnStartTime;
 @property(nonatomic) NSDateFormatter *dateFormatter;
-
-@property(nonatomic) MDTimePickerDialog *timerPicker;
 @end
 
 @implementation TimePickerDialogViewController

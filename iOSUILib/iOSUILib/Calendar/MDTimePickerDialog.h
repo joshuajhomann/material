@@ -27,10 +27,16 @@
 
 @class MDTimePickerDialog;
 
-typedef NS_OPTIONS(NSInteger, MDCalendarTimeMode) {
+typedef NS_ENUM(NSInteger, MDCalendarTimeMode) {
   MDCalendarTimeMode12H,
   MDCalendarTimeMode24H
 };
+
+typedef NS_ENUM(NSInteger, MDTimePickerTheme) {
+    MDTimePickerThemeLight = 1,
+    MDTimePickerThemeDark,
+};
+
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol MDTimePickerDialogDelegate <NSObject>
@@ -41,8 +47,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@class MDButton;
-@interface MDTimePickerDialog : UIButton <UIGestureRecognizerDelegate>
+@interface MDTimePickerDialog : UIControl
+
+/// note: these colors are set by the theme
+@property(nonatomic, strong) UIColor *titleColor;
+@property(nonatomic, strong) UIColor *titleSelectedColor;
+@property(nonatomic, strong) UIColor *headerTextColor;
+@property(nonatomic, strong) UIColor *headerBackgroundColor;
+@property(nonatomic, strong) UIColor *selectionColor;
+@property(nonatomic, strong) UIColor *selectionCenterColor;
+@property(nonatomic, strong) UIColor *backgroundPopupColor;
+@property(nonatomic, strong) UIColor *backgroundClockColor;
+
+@property(nonatomic, assign) MDTimePickerTheme theme;
 
 @property(nonatomic, weak) id<MDTimePickerDialogDelegate> delegate;
 
