@@ -55,7 +55,7 @@
       
     MDDatePickerDialog *datePicker = [[MDDatePickerDialog alloc] init];
     _datePicker = datePicker;
-    _datePicker.date = date;
+    _datePicker.selectedDate = date;
     _datePicker.delegate = self;
   }
   [_datePicker show];
