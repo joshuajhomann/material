@@ -98,5 +98,6 @@ IB_DESIGNABLE
 @property(nonatomic) NSArray *suggestionsDictionary;
 
 @property(nonatomic, weak) id<MDTextFieldDelegate> delegate;
+@property (nonatomic, nullable, readwrite, strong) UIView *inputAccessoryView;
 
 @end
