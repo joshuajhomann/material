@@ -27,6 +27,9 @@
 @property (weak, nonatomic) IBOutlet MDButton *RaisedButton;
 @property (weak, nonatomic) IBOutlet MDButton *FlatButton;
 @property (weak, nonatomic) IBOutlet MDButton *FloatingActionButton;
+@property (weak, nonatomic) IBOutlet MDButton *buttonRotationTwoImages;
+@property (weak, nonatomic) IBOutlet MDButton *buttonRotationOneImage;
+
 - (IBAction)touchUpInside:(id)sender;
 
 

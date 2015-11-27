@@ -24,24 +24,24 @@
 
 @implementation MDMathHelper
 
-+ (float)distanceBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2 {
++ (CGFloat)distanceBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2 {
   float dx = p1.x - p2.x;
   float dy = p1.y - p2.y;
   return sqrtf(dx * dx + dy * dy);
 }
 
-+ (NSArray *)findIntersectionsBetweenCircleCenter:(CGPoint)c1
-                                           radius:(float)r1
++ (NSArray <NSValue*>*)findIntersectionsBetweenCircleCenter:(CGPoint)c1
+                                           radius:(CGFloat)r1
                                   andCircleCenter:(CGPoint)c2
-                                           radius:(float)r2 {
+                                           radius:(CGFloat)r2 {
 
-  float d = [MDMathHelper distanceBetweenPoint:c1 andPoint:c2];
-  if ((d > r1 + r2) || (d <= fabsf(r1 - r2)))
+  CGFloat d = [MDMathHelper distanceBetweenPoint:c1 andPoint:c2];
+  if ((d > r1 + r2) || (d <= fabs(r1 - r2)))
     return nil;
-  float a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
-  float h = sqrtf(r1 * r1 - a * a);
-  float cx = c1.x + a * (c2.x - c1.x) / d;
-  float cy = c1.y + a * (c2.y - c1.y) / d;
+  CGFloat a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+  CGFloat h = sqrtf(r1 * r1 - a * a);
+  CGFloat cx = c1.x + a * (c2.x - c1.x) / d;
+  CGFloat cy = c1.y + a * (c2.y - c1.y) / d;
   CGPoint i1 = CGPointZero;
   CGPoint i2 = CGPointZero;
   i1.x = cx + h * (c2.y - c1.y) / d;
@@ -52,12 +52,12 @@
   return @[ [NSValue valueWithCGPoint:i1], [NSValue valueWithCGPoint:i2] ];
 }
 
-+ (NSArray *)findTangentsWithCircle:(CGPoint)c
-                             radius:(float)r
++ (NSArray <NSValue*>*)findTangentsWithCircle:(CGPoint)c
+                             radius:(CGFloat)r
                           fromPoint:(CGPoint)p {
-  float dx = c.x - p.x;
-  float dy = c.y - p.y;
-  float dSquared = dx * dx + dy * dy;
+  CGFloat dx = c.x - p.x;
+  CGFloat dy = c.y - p.y;
+  CGFloat dSquared = dx * dx + dy * dy;
 
   if (dSquared <= r * r) {
     return nil;

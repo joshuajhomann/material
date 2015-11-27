@@ -26,7 +26,7 @@
 #define kMDSnackbarDurationShort 2
 
 @class MDSnackbar;
-
+NS_ASSUME_NONNULL_BEGIN
 @protocol MDSnackbarDelegate <NSObject>
 
 @optional
@@ -45,6 +45,7 @@ IB_DESIGNABLE
 @property(nonatomic) UIColor *textColor;
 @property(nonatomic) UIColor *actionTitleColor;
 @property(nonatomic) double duration;
+@property(nonatomic) double bottomPadding;
 @property(nonatomic) BOOL swipeable;
 @property(nonatomic) BOOL multiline;
 @property(nonatomic, readonly) BOOL isShowing;
@@ -61,3 +62,4 @@ IB_DESIGNABLE
 - (void)removeDelegate:(id<MDSnackbarDelegate>)delegate;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -22,7 +22,7 @@
 
 #import "ButtonViewController.h"
 
-@interface ButtonViewController ()
+@interface ButtonViewController () <MDButtonDelegate>
 
 @end
 
@@ -32,6 +32,8 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   self.title = @"MDButton";
+    self.buttonRotationOneImage.mdButtonDelegate = self;
+    self.buttonRotationTwoImages.mdButtonDelegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,5 +53,20 @@ preparation before navigation
 */
 
 - (IBAction)touchUpInside:(id)sender {
+}
+
+-(void)rotationStarted:(id)sender {
+    if (self.buttonRotationOneImage == sender){
+        NSLog(@"buttonRotationOneImage rotationStarted %s", self.buttonRotationOneImage.isRotated?"rotated":"normal");
+    } else if (self.buttonRotationTwoImages == sender){
+        NSLog(@"buttonRotationTwoImages rotationStarted %s", self.buttonRotationTwoImages.isRotated?"rotated":"normal");
+    }
+}
+-(void)rotationCompleted:(id)sender{
+    if (self.buttonRotationOneImage == sender){
+        NSLog(@"buttonRotationOneImage rotationCompleted %s", self.buttonRotationOneImage.isRotated?"rotated":"normal");
+    } else if (self.buttonRotationTwoImages == sender){
+        NSLog(@"buttonRotationTwoImages rotationCompleted %s", self.buttonRotationTwoImages.isRotated?"rotated":"normal");
+    }
 }
 @end

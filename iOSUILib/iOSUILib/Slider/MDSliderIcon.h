@@ -26,5 +26,5 @@
 
 @property(nonatomic, readonly) BOOL hasContent;
 
-- (void)setImage:(UIImage *)image;
+- (void)setImage:(nullable UIImage *)image;
 @end

@@ -36,7 +36,7 @@
 #define kCalendarTimerModeHeight 60
 #define kCalendarActionBarHeight 50
 #define kCalendarClockHeight                                                   \
-  (MIN(popupHolder.mdWidth, popupHolder.mdHeight) * 4.5 / 6.0)
+  (MAX(popupHolder.mdWidth, popupHolder.mdHeight)/2 * 4.5 / 6.0)
 
 #define kMainCircleRadius 15
 #define kSmallCircleRadius 2
@@ -76,6 +76,8 @@
 
 @property(nonatomic) UIFont *buttonFont;
 
+@property(nonatomic) NSString *okTitle;
+@property (nonatomic) NSString *cancelTitle;
 @end
 
 @implementation MDTimePickerDialog {
@@ -247,7 +249,7 @@
                                popupHolder.mdHeight - kCalendarActionBarHeight,
                                2 * kCalendarActionBarHeight * 3.0 / 4.0,
                                kCalendarActionBarHeight * 3.0 / 4.0)
-               type:Flat
+               type:MDButtonTypeFlat
         rippleColor:nil];
   [buttonOk setTitle:@"OK" forState:normal];
   [buttonOk setTitleColor:[UIColor blueColor] forState:normal];
@@ -264,17 +266,20 @@
                                popupHolder.mdHeight - kCalendarActionBarHeight,
                                2 * kCalendarActionBarHeight * 3.0 / 4.0,
                                kCalendarActionBarHeight * 3.0 / 4.0)
-               type:Flat
+               type:MDButtonTypeFlat
         rippleColor:nil];
   [buttonCancel setTitle:@"CANCEL" forState:normal];
   [buttonCancel setTitleColor:[UIColor blueColor] forState:normal];
   [buttonCancel addTarget:self
                    action:@selector(didCancell)
          forControlEvents:UIControlEventTouchUpInside];
+    
   [buttonCancel.titleLabel setFont:_buttonFont];
   [popupHolder addSubview:buttonCancel];
   self.buttonCancel = buttonCancel;
 
+  [self setTitleOk:@"OK" andTitleCancel:@"CANCEL"];
+    
   [self.buttonCancel setTitleColor:_titleColor forState:UIControlStateNormal];
   [self.buttonOk setTitleColor:_titleColor forState:UIControlStateNormal];
 
@@ -1074,6 +1079,14 @@
 }
 
 #pragma mark Delagate & Actions
+
+-(void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle {
+    _okTitle =  okTitle;
+    _cancelTitle = cancelTitle;
+    
+    [_buttonOk setTitle:_okTitle forState:normal];
+    [_buttonCancel setTitle:_cancelTitle forState:normal];
+}
 
 - (void)changeTimeModeAM {
   currentTimeModeStr = @"AM";

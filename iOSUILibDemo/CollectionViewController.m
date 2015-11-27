@@ -83,7 +83,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  NSLog(@"dis select item at %i:%i", indexPath.section, indexPath.row);
+  NSLog(@"dis select item at %li:%li", (long)indexPath.section, (long)indexPath.row);
 }
 
 @end

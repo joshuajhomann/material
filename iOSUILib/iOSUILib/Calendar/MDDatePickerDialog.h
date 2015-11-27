@@ -26,16 +26,16 @@
 
 @protocol MDDatePickerDialogDelegate <NSObject>
 
-- (void)datePickerDialogDidSelectDate:(NSDate *)date;
+- (void)datePickerDialogDidSelectDate:(nonnull NSDate *)date;
 
 @end
 
 @class MDButton;
 @interface MDDatePickerDialog : UIButton
 
-@property(nonatomic) id<MDDatePickerDialogDelegate> delegate;
+@property(weak, nonatomic) id<MDDatePickerDialogDelegate> delegate;
 
 - (void)show;
-
+- (void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle;
 @end
 #endif

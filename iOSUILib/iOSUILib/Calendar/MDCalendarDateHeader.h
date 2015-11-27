@@ -32,6 +32,7 @@
 
 typedef NS_OPTIONS(NSInteger, MDCalendarTheme);
 
+NS_ASSUME_NONNULL_BEGIN
 @interface MDCalendarDateHeader : UIView
 
 typedef NS_OPTIONS(NSInteger, MDCalendarMonthSymbolsFormat) {
@@ -52,11 +53,12 @@ typedef NS_OPTIONS(NSInteger, MDCalendarMonthSymbolsFormat) {
 @property(nonatomic) UIColor* headerBackgroundColor;
 
 @property(nonatomic) MDCalendarMonthSymbolsFormat monthFormat;
-@property(nonatomic) NSDate* date;
+@property(nullable, nonatomic) NSDate* date;
 @property(nonatomic) NSDateFormatter* dateFormatter;
 @property(weak, nonatomic) id<MDCalendarDateHeaderDelegate> delegate;
 
 - (void)showYearSelector;
 - (void)showCalendar;
 @end
+NS_ASSUME_NONNULL_END
 #endif

@@ -25,10 +25,10 @@
 @interface MDBubbleLabel : UIView
 
 @property(nonatomic) NSUInteger precision;
-@property(nonatomic) float maxValue;
+@property(nonatomic) CGFloat maxValue;
 
-- (void)setValue:(float)value;
-- (void)setTextColor:(UIColor *)textColor;
-- (void)setFont:(UIFont *)font;
-- (void)setMaxValue:(float)value;
+- (void)setValue:(CGFloat)value;
+- (void)setTextColor:(nonnull UIColor *)textColor;
+- (void)setFont:(nonnull UIFont *)font;
+- (void)setMaxValue:(CGFloat)value;
 @end

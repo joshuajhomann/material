@@ -23,6 +23,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface MDRippleLayer : CALayer
 
 /*!
@@ -49,19 +50,19 @@
  * @brief Scale ratio of the ripple effect, if it's value = 1, the ripple effect
  * will cover entire view's bounds
  */
-@property(nonatomic) float rippleScaleRatio;
+@property(nonatomic) CGFloat rippleScaleRatio;
 
 /*!
  * @brief Speed of the ripple effect, points per second
  */
-@property(nonatomic) float effectSpeed;
+@property(nonatomic) CGFloat effectSpeed;
 
 /*!
  * @brief Base color for effects. By default, ripple effect has the same color
  * as the effectColor with 50% alpha component, background color will have 30%
  * alpha component
  */
-@property(nonatomic) UIColor *effectColor;
+@property(null_unspecified, nonatomic) UIColor *effectColor;
 
 - (instancetype)initWithSuperLayer:(CALayer *)superLayer;
 - (instancetype)initWithSuperView:(UIView *)superView;
@@ -73,8 +74,8 @@
  * @param backgroundAlpha opacity value for background effect color
  */
 - (void)setEffectColor:(UIColor *)color
-       withRippleAlpha:(float)rippleAlpha
-       backgroundAlpha:(float)backgroundAlpha;
+       withRippleAlpha:(CGFloat)rippleAlpha
+       backgroundAlpha:(CGFloat)backgroundAlpha;
 
 - (void)startEffectsAtLocation:(CGPoint)touchLocation;
 - (void)stopEffects;
@@ -85,3 +86,4 @@
 @optional
 - (void)mdLayer:(MDRippleLayer *)layer didFinishEffect:(CFTimeInterval)duration;
 @end
+NS_ASSUME_NONNULL_END

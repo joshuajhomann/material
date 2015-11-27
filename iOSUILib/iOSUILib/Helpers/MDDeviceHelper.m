@@ -24,14 +24,17 @@
 
 @implementation MDDeviceHelper
 
-+ (id)getMainView {
++ (UIView *)getMainView {
   if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     if (!window)
       window = [[UIApplication sharedApplication].windows objectAtIndex:0];
     return [window subviews].lastObject;
   } else {
-    return [[UIApplication sharedApplication] keyWindow];
+      UIWindow *window =[[UIApplication sharedApplication] keyWindow];
+      if (window == nil)
+          window = [[[UIApplication sharedApplication] delegate] window];//#14
+      return window;
   }
 }
 @end

@@ -21,7 +21,6 @@
 // THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-
 IB_DESIGNABLE
 @interface MDSwitch : UIControl
 

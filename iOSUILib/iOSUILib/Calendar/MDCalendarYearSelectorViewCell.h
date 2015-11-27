@@ -28,7 +28,7 @@
 
 @interface MDCalendarYearSelectorViewCell : MDTableViewCell
 @property(nonatomic) BOOL currentYear;
-@property(nonatomic) NSDictionary* titleColors;
-@property(nonatomic) NSDictionary* backgroundColors;
+@property(null_unspecified, nonatomic) NSDictionary <NSNumber*, UIColor*>* titleColors;
+@property(null_unspecified, nonatomic) NSDictionary <NSNumber*, UIColor*>* backgroundColors;
 @end
 #endif

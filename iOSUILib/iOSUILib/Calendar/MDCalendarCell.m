@@ -154,7 +154,7 @@
   return self.date.mdWeekday == 1 || self.date.mdWeekday == 7;
 }
 
-- (UIColor *)colorForCurrentStateInDictionary:(NSDictionary *)dictionary {
+- (UIColor *)colorForCurrentStateInDictionary:(NSDictionary <NSNumber*, UIColor*>*)dictionary {
   if (self.isSelected) {
     return dictionary[@(MDCalendarCellStateSelected)];
   }
