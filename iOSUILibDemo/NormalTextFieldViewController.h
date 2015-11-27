@@ -24,11 +24,8 @@
 #import "iOSUILib/MDTextField.h"
 
 @interface NormalTextFieldViewController : UIViewController
-@property(weak, nonatomic) IBOutlet MDTextField *autoCompleteTextField;
 @property(weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property(weak, nonatomic) IBOutlet UIView *containerView;
-@property(weak, nonatomic) IBOutlet MDTextField *normalTextField;
-@property(weak, nonatomic) IBOutlet MDTextField *characterCounterTextField;
-@property(weak, nonatomic) IBOutlet MDTextField *labeledTextField;
+@property (strong, nonatomic) IBOutletCollection(MDTextField) NSArray *textFields;
 
 @end

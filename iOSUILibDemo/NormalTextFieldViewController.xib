@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NormalTextFieldViewController">
             <connections>
-                <outlet property="autoCompleteTextField" destination="Old-Ta-Oxm" id="2qI-bQ-ErL"/>
-                <outlet property="characterCounterTextField" destination="tes-8V-XJt" id="n6m-JE-HDZ"/>
                 <outlet property="containerView" destination="we6-e2-9ls" id="mLo-cL-ds0"/>
-                <outlet property="labeledTextField" destination="egA-XI-goW" id="gQZ-oX-Cl0"/>
-                <outlet property="normalTextField" destination="sTN-oB-HnX" id="jgW-Oy-b6J"/>
                 <outlet property="scrollView" destination="RuD-ob-qIH" id="SZq-cZ-scf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="textFields" destination="sTN-oB-HnX" id="FWN-Eq-eep"/>
+                <outletCollection property="textFields" destination="tes-8V-XJt" id="EGl-FH-1gY"/>
+                <outletCollection property="textFields" destination="egA-XI-goW" id="FUb-e6-rxl"/>
+                <outletCollection property="textFields" destination="Old-Ta-Oxm" id="3Gj-AK-cJB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -44,7 +44,7 @@
                                         </mask>
                                     </variation>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tes-8V-XJt" customClass="MDTextField">
+                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tes-8V-XJt" customClass="MDTextField">
                                     <rect key="frame" x="8" y="0.0" width="0.0" height="0.0"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="3Ur-SD-bHM"/>
@@ -62,7 +62,7 @@
                                         </mask>
                                     </variation>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egA-XI-goW" customClass="MDTextField">
+                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egA-XI-goW" customClass="MDTextField">
                                     <rect key="frame" x="8" y="0.0" width="0.0" height="0.0"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="yLg-Il-ihn"/>
@@ -86,7 +86,7 @@
                                         </mask>
                                     </variation>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Old-Ta-Oxm" customClass="MDTextField">
+                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Old-Ta-Oxm" customClass="MDTextField">
                                     <rect key="frame" x="8" y="8" width="0.0" height="0.0"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="ppu-yq-Z3G"/>

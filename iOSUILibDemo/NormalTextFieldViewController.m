@@ -29,17 +29,17 @@
 
 @implementation NormalTextFieldViewController {
   MDTextField *activeField;
+  NSArray *inputAccessoryViews;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
-  _autoCompleteTextField.delegate = self;
-  _normalTextField.delegate = self;
-  _labeledTextField.delegate = self;
-  _characterCounterTextField.delegate = self;
 
-  [_autoCompleteTextField
+  for (MDTextField *textField in _textFields) {
+    textField.delegate = self;
+  }
+
+  [[_textFields objectAtIndex:3]
       setSuggestionsDictionary:[MockData allCountriesArray]];
 
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -56,6 +56,14 @@
                                         attribute:NSLayoutAttributeTrailing
                                        multiplier:1
                                          constant:0]];
+
+  [self createInputAccessoryView];
+  for (UITextField *field in _textFields) {
+    [field addTarget:self
+                  action:@selector(setActiveTextField:)
+        forControlEvents:UIControlEventEditingDidBegin];
+    [field setInputAccessoryView:[inputAccessoryViews objectAtIndex:field.tag]];
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -122,6 +130,10 @@
   _scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+- (BOOL)textFieldShouldBeginEditing:(MDTextField *)textField {
+  return YES;
+}
+
 - (void)textFieldDidBeginEditing:(MDTextField *)textField {
   activeField = textField;
 }
@@ -131,7 +143,8 @@
 }
 
 - (void)textFieldDidChange:(MDTextField *)textField {
-  if (textField == _characterCounterTextField) {
+  // if textfield is characterCounterTextField
+  if (textField.tag == 1) {
     if (textField.text.length > textField.maxCharacterCount) {
       textField.errorMessage = @"Message is too long";
       textField.hasError = YES;
@@ -139,6 +152,65 @@
       textField.hasError = NO;
     }
   }
+}
+
+- (void)createInputAccessoryView {
+  inputAccessoryViews = [[NSArray alloc]
+      initWithObjects:[[UIToolbar alloc] init], [[UIToolbar alloc] init],
+                      [[UIToolbar alloc] init], [[UIToolbar alloc] init], nil];
+
+  for (UIToolbar *inputAccView in inputAccessoryViews) {
+    UIBarButtonItem *prevButton = [[UIBarButtonItem alloc]
+        initWithBarButtonSystemItem:101
+                             target:nil
+                             action:@selector(gotoPrevTextfield)];
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc]
+        initWithBarButtonSystemItem:102
+                             target:nil
+                             action:@selector(gotoNextTextfield)];
+    UIBarButtonItem *doneButton =
+        [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                         style:UIBarButtonItemStylePlain
+                                        target:nil
+                                        action:@selector(dismissKeyboard)];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc]
+        initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                             target:nil
+                             action:nil];
+    UIBarButtonItem *placeholder =
+        [[UIBarButtonItem alloc] initWithTitle:@""
+                                         style:UIBarButtonItemStylePlain
+                                        target:nil
+                                        action:nil];
+
+    [inputAccView sizeToFit];
+    [inputAccView
+        setItems:[NSArray arrayWithObjects:prevButton, placeholder, nextButton,
+                                           placeholder, flexSpace, placeholder,
+                                           doneButton, nil]
+        animated:YES];
+
+    // disable the previous button in the first accessory view
+    ((UIBarButtonItem *)[((UIToolbar *)[inputAccessoryViews objectAtIndex:0])
+                             .items objectAtIndex:0])
+        .enabled = NO;
+    // disable the next button in the last accessory view
+    ((UIBarButtonItem *)[((UIToolbar *)[inputAccessoryViews objectAtIndex:3])
+                             .items objectAtIndex:2])
+        .enabled = NO;
+  }
+}
+
+- (void)gotoPrevTextfield {
+  [[_textFields objectAtIndex:(activeField.tag - 1)] becomeFirstResponder];
+}
+
+- (void)gotoNextTextfield {
+  [[_textFields objectAtIndex:(activeField.tag + 1)] becomeFirstResponder];
+}
+
+- (void)doneTyping {
+  [activeField resignFirstResponder];
 }
 
 @end
