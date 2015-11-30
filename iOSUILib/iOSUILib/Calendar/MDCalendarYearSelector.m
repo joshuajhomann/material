@@ -29,7 +29,6 @@
 @interface MDCalendarYearSelector () <UITableViewDelegate,
 UITableViewDataSource>
 @property(nonatomic) NSMutableArray* dataArray;
-@property(copy, nonatomic) NSDate* minimumDate;
 @property(copy, nonatomic) NSDate* maximumDate;
 @end
 
@@ -44,11 +43,7 @@ UITableViewDataSource>
         _minimumDate = minDate;
         _maximumDate = maxDate;
         
-        self.dataArray = [NSMutableArray new];
-        for (int year = (int)[minDate mdYear]; year < (int)[maxDate mdYear];
-             year++) {
-            [self.dataArray addObject:[NSString stringWithFormat:@"%i", year]];
-        }
+        [self setupDataArray];
         
         self.tableView =
         [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)
@@ -68,6 +63,14 @@ UITableViewDataSource>
     
     [self relayout];
     return self;
+}
+
+- (void) setupDataArray;
+{
+  self.dataArray = [NSMutableArray new];
+  for (int year = (int)[self.minimumDate mdYear]; year < (int)[self.maximumDate mdYear]; year++) {
+    [self.dataArray addObject:[NSString stringWithFormat:@"%i", year]];
+  }
 }
 
 - (void)layoutSubviews {
@@ -140,6 +143,13 @@ UITableViewDataSource>
                         inSection:newIndexPath.section]
      atScrollPosition:UITableViewScrollPositionMiddle
      animated:NO];
+}
+
+- (void) setMinimumDate:(NSDate *)minimumDate;
+{
+    _minimumDate = minimumDate;
+    [self setupDataArray];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate
