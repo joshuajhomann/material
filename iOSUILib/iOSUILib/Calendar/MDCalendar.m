@@ -427,8 +427,9 @@
 
 - (void) setMinimumDate:(NSDate *)minimumDate;
 {
-    _minimumDate = minimumDate;
-    self.yearSelector.minimumDate = minimumDate;
+    NSDate *date = [[NSCalendarHelper mdSharedCalendar] startOfDayForDate:minimumDate];
+    _minimumDate = date;
+    self.yearSelector.minimumDate = date;
     [self.collectionView reloadData];
 }
 
