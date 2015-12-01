@@ -430,6 +430,8 @@
 
 #pragma mark Private methods
 - (void)initContent {
+  self.horizontalInset = 8;
+
   segmentedControl = [[MDSegmentedControl alloc] initWithTabBar:self];
   [segmentedControl setTintColor:[UIColor clearColor]];
 
