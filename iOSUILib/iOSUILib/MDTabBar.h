@@ -31,12 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MDTabBarDelegate <NSObject>
 - (void)tabBar:(MDTabBar *)tabBar
     didChangeSelectedIndex:(NSUInteger)selectedIndex;
-
 @end
-IB_DESIGNABLE
-@interface MDTabBar : UIControl
 
+IB_DESIGNABLE
+@interface MDTabBar : UIView
+
+/// selected text color
 @property(null_unspecified, nonatomic) IBInspectable UIColor *textColor;
+/// normal (not selected) text color
+@property(null_unspecified, nonatomic) IBInspectable UIColor *normalTextColor;
 @property(null_unspecified, nonatomic) IBInspectable UIColor *backgroundColor;
 @property(null_unspecified, nonatomic) IBInspectable UIColor *indicatorColor;
 @property(null_unspecified, nonatomic) IBInspectable UIColor *rippleColor;
