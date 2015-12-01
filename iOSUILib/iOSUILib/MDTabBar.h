@@ -44,7 +44,11 @@ IB_DESIGNABLE
 @property(null_unspecified, nonatomic) IBInspectable UIColor *indicatorColor;
 @property(null_unspecified, nonatomic) IBInspectable UIColor *rippleColor;
 
+/// selected font
 @property(nullable, nonatomic) UIFont *textFont;
+/// normal (not selected) font
+@property(nullable, nonatomic) UIFont *normalTextFont;
+
 @property(nonatomic) NSUInteger selectedIndex;
 @property(nonatomic, weak) id<MDTabBarDelegate> delegate;
 @property(nonatomic, readonly) NSInteger numberOfItems;

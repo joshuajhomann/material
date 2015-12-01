@@ -193,9 +193,13 @@
   if (normalTextColor == nil) {
     normalTextColor = [textColor colorWithAlphaComponent:disabledTextAlpha];
   }
-  
+    
+  UIFont *normalTextFont = tabBar.normalTextFont;
+  if (normalTextFont == nil) {
+    normalTextFont = textFont;
+  }
   NSDictionary *attributes = @{ NSForegroundColorAttributeName : normalTextColor,
-                                NSFontAttributeName : textFont
+                                NSFontAttributeName : normalTextFont
                                 };
   [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
   NSDictionary *selectedAttributes = @{ NSForegroundColorAttributeName : textColor,
@@ -590,6 +594,11 @@
 - (void)setTextFont:(UIFont *)textFont {
   _textFont = textFont;
   [self updateItemAppearance];
+}
+
+- (void)setNormalTextFont:(UIFont *)normalTextFont {
+    _normalTextFont = normalTextFont;
+    [self updateItemAppearance];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
