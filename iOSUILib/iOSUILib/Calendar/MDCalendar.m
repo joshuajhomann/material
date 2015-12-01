@@ -47,7 +47,6 @@
 @property(weak, nonatomic) UICollectionView *collectionView;
 @property(weak, nonatomic) UICollectionViewFlowLayout *collectionViewFlowLayout;
 
-@property(copy, nonatomic) NSDate *minimumDate;
 @property(copy, nonatomic) NSDate *maximumDate;
 
 @property(nonatomic) MDCalendarCellStyle cellStyle;
@@ -143,12 +142,12 @@
  
   _cellStyle = MDCalendarCellStyleCircle;
 
-  _minimumDate = [NSDateHelper mdDateWithYear:1970 month:1 day:1];
+  self.minimumDate = [NSDateHelper mdDateWithYear:1970 month:1 day:1];
   _maximumDate = [NSDateHelper mdDateWithYear:2037 month:12 day:31];
 
   MDCalendarYearSelector *yearSelector =
       [[MDCalendarYearSelector alloc] initWithFrame:self.collectionView.frame
-                                    withMiniminDate:_minimumDate
+                                    withMiniminDate:self.minimumDate
                                      andMaximumDate:_maximumDate];
   _yearSelector = yearSelector;
   _yearSelector.delegate = self;
@@ -283,7 +282,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:
     (UICollectionView *)collectionView {
-  return [_maximumDate mdMonthsFrom:_minimumDate] + 1;
+  return [_maximumDate mdMonthsFrom:self.minimumDate] + 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -312,7 +311,7 @@
     // titleLabel.mdWidth = self.mdWidth;
     _dateHeader.dateFormatter.dateFormat = @"MMMM yyyy";
     titleLabel.text = [_dateHeader.dateFormatter
-        stringFromDate:[_minimumDate mdDateByAddingMonths:indexPath.section]];
+        stringFromDate:[self.minimumDate mdDateByAddingMonths:indexPath.section]];
 
     return cell;
   } else if (indexPath.item >= 7 && indexPath.item <= 13) {
@@ -343,7 +342,7 @@
     cell.titleColors = self.titleColors;
     cell.backgroundColors = self.backgroundColors;
     cell.cellStyle = self.cellStyle;
-    cell.month = [_minimumDate mdDateByAddingMonths:indexPath.section];
+    cell.month = [self.minimumDate mdDateByAddingMonths:indexPath.section];
     cell.currentDate = self.currentDate;
     cell.titleLabel.font = _titleFont;
     cell.date = [self dateForIndexPath:indexPath];
@@ -378,10 +377,17 @@
                        animated:NO
                  scrollPosition:UICollectionViewScrollPositionNone];
     }
+    NSDate *date = [self dateForIndexPath:indexPath];
     [cell showAnimation];
-    _selectedDate = [self dateForIndexPath:indexPath];
+    _selectedDate = date;
     [self didSelectDate:_selectedDate];
   }
+}
+
+- (BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath;
+{
+    NSDate *date = [self dateForIndexPath:indexPath];
+    return [self shouldSelectDate:date];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
@@ -402,7 +408,7 @@
                              scrollView.contentOffset.y / scrollView.mdHeight);
 
   NSDate *currentMonth =
-      [_minimumDate mdDateByAddingMonths:round(scrollOffset)];
+      [self.minimumDate mdDateByAddingMonths:round(scrollOffset)];
   if (![_currentMonth mdIsEqualToDateForMonth:currentMonth]) {
     _currentMonth = [currentMonth copy];
     //[self currentMonthDidChange];
@@ -417,6 +423,14 @@
     [[NSCalendarHelper mdSharedCalendar] setFirstWeekday:firstWeekday];
     [self reloadData];
   }
+}
+
+- (void) setMinimumDate:(NSDate *)minimumDate;
+{
+    NSDate *date = [[NSCalendarHelper mdSharedCalendar] startOfDayForDate:minimumDate];
+    _minimumDate = date;
+    self.yearSelector.minimumDate = date;
+    [self.collectionView reloadData];
 }
 
 - (void)setSelectedDate:(NSDate *)selectedDate {
@@ -476,14 +490,14 @@
 #pragma mark - Private
 
 - (void)scrollToDate:(NSDate *)date {
-  NSInteger scrollOffset = [date mdMonthsFrom:_minimumDate];
+  NSInteger scrollOffset = [date mdMonthsFrom:self.minimumDate];
   _collectionView.bounds =
       CGRectMake(0, scrollOffset * _collectionView.mdHeight,
                  _collectionView.mdWidth, _collectionView.mdHeight);
 }
 
 - (NSDate *)dateForIndexPath:(NSIndexPath *)indexPath {
-  NSDate *currentMonth = [_minimumDate mdDateByAddingMonths:indexPath.section];
+  NSDate *currentMonth = [self.minimumDate mdDateByAddingMonths:indexPath.section];
   NSDate *firstDayOfMonth = [NSDateHelper mdDateWithYear:currentMonth.mdYear
                                                    month:currentMonth.mdMonth
                                                      day:1];
@@ -499,7 +513,7 @@
 }
 
 - (NSIndexPath *)indexPathForDate:(NSDate *)date {
-  NSInteger section = [date mdMonthsFrom:_minimumDate];
+  NSInteger section = [date mdMonthsFrom:self.minimumDate];
   NSDate *firstDayOfMonth =
       [NSDateHelper mdDateWithYear:date.mdYear month:date.mdMonth day:1];
   NSInteger numberOfPlaceholdersForPrev =
@@ -513,20 +527,16 @@
 }
 
 - (BOOL)shouldSelectDate:(NSDate *)date {
-  return YES;
+  BOOL result = (date.timeIntervalSince1970 >= self.minimumDate.timeIntervalSince1970);
+  return result;
 }
 
 - (void)didSelectDate:(NSDate *)date {
-  if (_dateHeader) {
-    [_dateHeader setDate:date];
-  }
+  if ([self shouldSelectDate:date]) {
+    if (_dateHeader) {
+      [_dateHeader setDate:date];
+    }
 
-  [self didSelected];
-}
-
-- (void)didSelected {
-  if (_delegate &&
-      [_delegate respondsToSelector:@selector(calendar:didSelectDate:)]) {
     [_delegate calendar:self didSelectDate:_selectedDate];
   }
 }
