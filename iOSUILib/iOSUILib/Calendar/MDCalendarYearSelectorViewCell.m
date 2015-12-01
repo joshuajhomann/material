@@ -72,7 +72,10 @@
     _backgroundCurentYearLayer.hidden = NO;
     [self.textLabel setTextColor:_titleColors[@(MDCalendarCellStateSelected)]];
   } else {
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
     _backgroundCurentYearLayer.hidden = YES;
+    [CATransaction commit];
     [self.textLabel setTextColor:_titleColors[@(MDCalendarCellStateNormal)]];
   }
 }
