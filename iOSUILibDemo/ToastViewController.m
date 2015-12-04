@@ -58,6 +58,8 @@ preparation before navigation
       initWithText:[NSString
                        stringWithFormat:@"Toast test message %i.", count++]
           duration:kMDToastDurationShort];
+  toast.backgroundColor = [UIColor colorWithRed:0 green:.2f blue:.5f alpha:.8f];
+  toast.textFont = [UIFont systemFontOfSize:14];
   [toast show];
 }
 

@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nullable, nonatomic) NSString *text;
 @property(nullable, nonatomic) UIColor *textColor;
+@property(nullable, nonatomic) UIFont *textFont;
 @property(nonatomic) NSTimeInterval duration;
 @property(nonatomic, readonly) BOOL isShowing;
 

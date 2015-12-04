@@ -62,7 +62,8 @@ MDToastManager *managerInstance;
   return self;
 }
 
-- (instancetype)initWithText:(NSString *)text duration:(NSTimeInterval)duration {
+- (instancetype)initWithText:(NSString *)text
+                    duration:(NSTimeInterval)duration {
   if (self = [super init]) {
     [self createContent];
     self.text = text;
@@ -76,7 +77,7 @@ MDToastManager *managerInstance;
   _duration = kMDToastDurationShort;
 
   textLabel = [[UILabel alloc] init];
-  //  textLabel.font = [UIFontHelper robotoFontOfSize:14];
+  textLabel.font = [UIFontHelper robotoFontOfSize:14];
   textLabel.numberOfLines = 0;
 
   self.backgroundColor = [UIColorHelper colorWithRGBA:@"#323232EE"];
@@ -267,6 +268,10 @@ MDToastManager *managerInstance;
 - (void)setTextColor:(UIColor *)textColor {
   _textColor = textColor;
   textLabel.textColor = textColor;
+}
+
+- (void)setTextFont:(UIFont *)textFont {
+  textLabel.font = textFont;
 }
 
 @end
