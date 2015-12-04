@@ -20,22 +20,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "MasterViewController.h"
 #import "ButtonViewController.h"
-#import "ProgressViewController.h"
-#import "TextFieldViewController.h"
-#import "TableViewController.h"
-#import "SwitchViewController.h"
-#import "DatePickerViewController.h"
-#import "DatePickerDialogController.h"
 #import "CollectionViewController.h"
-#import "TabBarViewController.h"
-#import "TimePickerDialogViewController.h"
-#import "TabBarViewControllerViewController.h"
-#import "SnackBarViewController.h"
-#import "ToastViewController.h"
-#import "SliderViewController.h"
+#import "DatePickerDialogController.h"
+#import "DatePickerViewController.h"
 #import "FloatingButtonTableViewController.h"
+#import "MasterViewController.h"
+#import "ProgressViewController.h"
+#import "SliderViewController.h"
+#import "SnackBarViewController.h"
+#import "SwitchViewController.h"
+#import "TabBarViewController.h"
+#import "TabBarViewControllerViewController.h"
+#import "TableViewController.h"
+#import "TextFieldViewController.h"
+#import "TimePickerDialogViewController.h"
+#import "ToastViewController.h"
+#import "iOSUILib/Calendar/NSCalendarHelper.h"
 
 @interface MasterViewController ()
 
@@ -50,12 +51,12 @@ static NSArray *controlsName;
 + (NSArray *)controlsName {
   if (!controlsName)
     controlsName = [NSArray
-        arrayWithObjects:@"Button", @"ButtonFloating", @"TableView Cell", @"Progress Bar",
-                         @"Text Field", @"Switch", @"Date Picker",
-                         @"Date Picker Dialog", @"Collection View Cell",
-                         @"Tab Bar", @"Time Picker Dialog",
-                         @"Tab Bar View Controller", @"Snackbar", @"Toast",
-                         @"Slider", nil];
+        arrayWithObjects:@"Button", @"ButtonFloating", @"TableView Cell",
+                         @"Progress Bar", @"Text Field", @"Switch",
+                         @"Date Picker", @"Date Picker Dialog",
+                         @"Collection View Cell", @"Tab Bar",
+                         @"Time Picker Dialog", @"Tab Bar View Controller",
+                         @"Snackbar", @"Toast", @"Slider", nil];
 
   return controlsName;
 }
@@ -71,6 +72,7 @@ static NSArray *controlsName;
     [self insertRow:control];
   }
   [self.navigationController.navigationBar setTranslucent:NO];
+  [[NSCalendarHelper mdSharedCalendar] setFirstWeekday:2];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,7 +114,7 @@ static NSArray *controlsName;
   if ([row isEqualToString:@"Button"]) {
     controller = [[ButtonViewController alloc] init];
   } else if ([row isEqualToString:@"ButtonFloating"]) {
-      controller = [[FloatingButtonTableViewController alloc] init];
+    controller = [[FloatingButtonTableViewController alloc] init];
   } else if ([row isEqualToString:@"TableView Cell"]) {
     controller = [[TableViewController alloc] init];
   } else if ([row isEqualToString:@"Progress Bar"]) {

@@ -330,7 +330,7 @@
     }
     titleLabel.font = self.titleFont;
     // titleLabel.text = [NSString stringWithFormat:@"W%li", indexPath.item];
-    titleLabel.text = [_weekdays objectAtIndex:(indexPath.item - 7)];
+    titleLabel.text = [_weekdays objectAtIndex:(indexPath.item - 7 + _firstWeekday - 1)%7];
 
     return cell;
   } else {
