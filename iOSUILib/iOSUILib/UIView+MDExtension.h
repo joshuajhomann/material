@@ -22,6 +22,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_OPTIONS(NSInteger, MDGravity) {
+  MDGravityNone = 0,
+  MDGravityTop = 1 << 0,
+  MDGravityBottom = 1 << 1,
+  MDGravityLeft = 1 << 2,
+  MDGravityRight = 1 << 3,
+  MDGravityCenterHorizontal = 1 << 4,
+  MDGravityCenterVertical = 1 << 5,
+};
+
 @interface UIView (MDExtension)
 
 @property(nonatomic) CGFloat mdWidth;

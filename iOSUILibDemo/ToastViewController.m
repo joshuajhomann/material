@@ -29,12 +29,17 @@
 
 @implementation ToastViewController {
   int count;
+  MDToast *toast;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   self.title = @"MDToast";
+  toast = [[MDToast alloc] initWithText:@"" duration:kMDToastDurationShort];
+  toast.backgroundColor = [UIColor colorWithRed:0 green:.2f blue:.5f alpha:.8f];
+  toast.textFont = [UIFont systemFontOfSize:14];
+  [toast setGravity:MDGravityCenterVertical | MDGravityCenterHorizontal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,21 +59,17 @@ preparation before navigation
 */
 
 - (IBAction)singleLineToastTouchedUpInSide:(id)sender {
-  MDToast *toast = [[MDToast alloc]
-      initWithText:[NSString
-                       stringWithFormat:@"Toast test message %i.", count++]
-          duration:kMDToastDurationShort];
-  toast.backgroundColor = [UIColor colorWithRed:0 green:.2f blue:.5f alpha:.8f];
-  toast.textFont = [UIFont systemFontOfSize:14];
+  [toast
+      setText:[NSString stringWithFormat:@"Toast test message %i.", count++]];
   [toast show];
 }
 
 - (IBAction)longToastTouchedUpInSide:(id)sender {
-  MDToast *toast = [[MDToast alloc]
+  MDToast *t = [[MDToast alloc]
       initWithText:[NSString stringWithFormat:@"Attention! This is a very, "
-                                              @"very long test message.  %i",
+                                              @"very long test message. %i",
                                               count++]
           duration:kMDToastDurationShort];
-  [toast show];
+  [t show];
 }
 @end

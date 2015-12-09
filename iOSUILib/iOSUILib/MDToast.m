@@ -48,6 +48,11 @@
 
 MDToastManager *managerInstance;
 
+@interface MDToast ()
+@property(nonatomic) int xOffset;
+@property(nonatomic) int yOffset;
+@end
+
 @implementation MDToast {
   UIView *rootView;
   UILabel *textLabel;
@@ -72,7 +77,10 @@ MDToastManager *managerInstance;
   return self;
 }
 
+#pragma mark private methods
+
 - (void)createContent {
+  self.userInteractionEnabled = NO;
   delegates = [[NSMutableSet alloc] init];
   _duration = kMDToastDurationShort;
 
@@ -92,6 +100,8 @@ MDToastManager *managerInstance;
                                       forAxis:UILayoutConstraintAxisHorizontal];
 
   self.layer.cornerRadius = kMDCornerRadius;
+  _gravity = MDGravityBottom | MDGravityCenterHorizontal;
+  _xOffset = _yOffset = kMDLargePadding;
 }
 
 - (void)arrangeContent {
@@ -135,40 +145,109 @@ MDToastManager *managerInstance;
   rootView = [MDDeviceHelper getMainView];
 
   [rootView addSubview:self];
+  [rootView addConstraints:[self constraintsFromGravity]];
+}
+
+- (NSArray *)constraintsFromGravity {
   NSDictionary *dict = @{ @"view" : self };
   NSDictionary *metrics = @{
-    @"normalPadding" : @kMDNormalPadding,
-    @"largePadding" : @kMDLargePadding
+    @"xOffset" : @(_xOffset),
+    @"yOffset" : @(_yOffset)
   };
 
-  NSLayoutConstraint *centerConstraint =
-      [NSLayoutConstraint constraintWithItem:self
-                                   attribute:NSLayoutAttributeCenterX
-                                   relatedBy:NSLayoutRelationEqual
-                                      toItem:rootView
-                                   attribute:NSLayoutAttributeCenterX
-                                  multiplier:1.0
-                                    constant:0.0];
-  [rootView addConstraint:centerConstraint];
+  NSMutableArray *constraints = [[NSMutableArray alloc] init];
+  NSString *constraintsString = @"";
 
-  NSArray *hConstraints =
-      [NSLayoutConstraint constraintsWithVisualFormat:
-                              @"H:|-(>=largePadding)-[view]-(>=largePadding)-|"
-                                              options:0
-                                              metrics:metrics
-                                                views:dict];
-  [rootView addConstraints:hConstraints];
+  // add constraints for left align
+  // push toast to the left of superview if no other horizontal rule is defined
+  if ((_gravity & MDGravityLeft) == MDGravityLeft ||
+      ((_gravity & MDGravityRight) != MDGravityRight &&
+       (_gravity & MDGravityCenterHorizontal) != MDGravityCenterHorizontal)) {
+    constraintsString = @"H:|-(xOffset)-[view]";
+  } else {
+    constraintsString = @"H:|-(>=xOffset)-[view]";
+  }
 
-  NSLayoutConstraint *bottomConstraint =
-      [NSLayoutConstraint constraintWithItem:self
-                                   attribute:NSLayoutAttributeBottom
-                                   relatedBy:NSLayoutRelationEqual
-                                      toItem:rootView
-                                   attribute:NSLayoutAttributeBottom
-                                  multiplier:1.0
-                                    constant:-kMDLargePadding];
+  if (constraintsString.length > 0)
+    [constraints
+        addObjectsFromArray:[NSLayoutConstraint
+                                constraintsWithVisualFormat:constraintsString
+                                                    options:0
+                                                    metrics:metrics
+                                                      views:dict]];
 
-  [rootView addConstraint:bottomConstraint];
+  constraintsString = @"";
+
+  if ((_gravity & MDGravityRight) == MDGravityRight) {
+    constraintsString = @"H:[view]-(xOffset)-|";
+  } else {
+    constraintsString = @"H:[view]-(>=xOffset)-|";
+  }
+
+  if (constraintsString.length > 0)
+    [constraints
+        addObjectsFromArray:[NSLayoutConstraint
+                                constraintsWithVisualFormat:constraintsString
+                                                    options:0
+                                                    metrics:metrics
+                                                      views:dict]];
+
+  if ((_gravity & MDGravityCenterHorizontal) == MDGravityCenterHorizontal) {
+    [constraints addObject:[NSLayoutConstraint
+                               constraintWithItem:self
+                                        attribute:NSLayoutAttributeCenterX
+                                        relatedBy:NSLayoutRelationEqual
+                                           toItem:rootView
+                                        attribute:NSLayoutAttributeCenterX
+                                       multiplier:1.0
+                                         constant:0.0]];
+  }
+
+  constraintsString = @"";
+
+  // add constraints for top align
+  // push toast to the top of superview if no other vertical rule is defined
+  if ((_gravity & MDGravityTop) == MDGravityTop ||
+      ((_gravity & MDGravityBottom) != MDGravityBottom &&
+       (_gravity & MDGravityCenterVertical) != MDGravityCenterVertical)) {
+    constraintsString = @"V:|-(yOffset)-[view]";
+  } else {
+    constraintsString = @"V:|-(>=yOffset)-[view]";
+  }
+
+  [constraints
+      addObjectsFromArray:[NSLayoutConstraint
+                              constraintsWithVisualFormat:constraintsString
+                                                  options:0
+                                                  metrics:metrics
+                                                    views:dict]];
+
+  constraintsString = @"";
+  if ((_gravity & MDGravityBottom) == MDGravityBottom) {
+    constraintsString = @"V:[view]-(yOffset)-|";
+  } else {
+    constraintsString = @"V:[view]-(>=yOffset)-|";
+  }
+
+  [constraints
+      addObjectsFromArray:[NSLayoutConstraint
+                              constraintsWithVisualFormat:constraintsString
+                                                  options:0
+                                                  metrics:metrics
+                                                    views:dict]];
+
+  if ((_gravity & MDGravityCenterVertical) == MDGravityCenterVertical) {
+    [constraints addObject:[NSLayoutConstraint
+                               constraintWithItem:self
+                                        attribute:NSLayoutAttributeCenterY
+                                        relatedBy:NSLayoutRelationEqual
+                                           toItem:rootView
+                                        attribute:NSLayoutAttributeCenterY
+                                       multiplier:1.0
+                                         constant:0.0]];
+  }
+
+  return constraints;
 }
 
 - (void)doShow {
@@ -272,6 +351,18 @@ MDToastManager *managerInstance;
 
 - (void)setTextFont:(UIFont *)textFont {
   textLabel.font = textFont;
+}
+
+- (void)setGravity:(MDGravity)gravity {
+  [self setGravity:gravity xOffset:kMDLargePadding yOffset:kMDLargePadding];
+}
+
+- (void)setGravity:(MDGravity)gravity
+           xOffset:(int)xOffset
+           yOffset:(int)yOffset {
+  _gravity = gravity;
+  _xOffset = xOffset;
+  _yOffset = yOffset;
 }
 
 @end
