@@ -49,6 +49,9 @@ IB_DESIGNABLE
 /// normal (not selected) font
 @property(nullable, nonatomic) UIFont *normalTextFont;
 
+/// inset from the side (default: 8)
+@property(nonatomic, assign) CGFloat horizontalInset;
+
 @property(nonatomic) NSUInteger selectedIndex;
 @property(nonatomic, weak) id<MDTabBarDelegate> delegate;
 @property(nonatomic, readonly) NSInteger numberOfItems;
