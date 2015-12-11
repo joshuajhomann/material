@@ -229,6 +229,22 @@
   }
 }
 
+- (void)stopEffectsImmediately {
+  _userIsHolding = false;
+  _effectIsRunning = false;
+  if (_enableRipple) {
+    [_rippleLayer removeAllAnimations];
+    [_backgroundLayer removeAllAnimations];
+    _rippleLayer.opacity = 0;
+    _backgroundLayer.opacity = 0;
+  }
+  if (_enableElevation) {
+    [_superLayer removeAnimationForKey:kMDShadowAnimationKey];
+    _superLayer.shadowRadius = _restingElevation / 4;
+    _superLayer.shadowOffset = CGSizeMake(0, _restingElevation / 4 + 0.5);
+  }
+}
+
 #pragma mark Private Methods
 - (CGPoint)nearestInnerPoint:(CGPoint)point {
   CGFloat centerX = CGRectGetMidX(self.bounds);
@@ -250,13 +266,13 @@
   if (enable) {
     CGFloat elevation =
         resting ? _restingElevation : (_restingElevation + kMDElevationOffset);
-
     _superLayer.shadowOpacity = 0.5;
     _superLayer.shadowRadius = elevation / 4;
     _superLayer.shadowColor = [[UIColor blackColor] CGColor];
     _superLayer.shadowOffset = CGSizeMake(0, _restingElevation / 4 + 0.5);
   } else {
     _superLayer.shadowRadius = 0;
+    _superLayer.shadowColor = [[UIColor clearColor] CGColor];
     _superLayer.shadowOffset = CGSizeMake(0, 0);
   }
 }
@@ -278,9 +294,8 @@
 
     [_rippleLayer removeAllAnimations];
     [_backgroundLayer removeAllAnimations];
-
-    [self removeAllAnimations];
-    [self addAnimation:opacityAnim forKey:@"opacityAnim"];
+    [_rippleLayer addAnimation:opacityAnim forKey:@"opacityAnim"];
+    [_backgroundLayer addAnimation:opacityAnim forKey:@"opacityAnim"];
   }
 
   if (_enableElevation) {
@@ -314,8 +329,7 @@
   CGFloat time = (_rippleLayer.bounds.size.width) / _effectSpeed;
   [_rippleLayer removeAllAnimations];
   [_backgroundLayer removeAllAnimations];
-  [self removeAllAnimations];
-  [_superLayer removeAllAnimations];
+  [_superLayer removeAnimationForKey:kMDShadowAnimationKey];
 
   CABasicAnimation *scaleAnim =
       [CABasicAnimation animationWithKeyPath:@"transform.scale"];

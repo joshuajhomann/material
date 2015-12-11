@@ -75,7 +75,7 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
-  [mdLayer stopEffects];
+  [mdLayer stopEffectsImmediately];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

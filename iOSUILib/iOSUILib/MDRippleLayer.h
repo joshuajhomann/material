@@ -78,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
        backgroundAlpha:(CGFloat)backgroundAlpha;
 
 - (void)startEffectsAtLocation:(CGPoint)touchLocation;
+- (void)stopEffectsImmediately;
 - (void)stopEffects;
 
 @end
