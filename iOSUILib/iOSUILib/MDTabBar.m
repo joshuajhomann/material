@@ -32,22 +32,25 @@
 #define kMDContentHorizontalPaddingIPhone 12
 #define kMDTabBarHorizontalInset 8
 
-#define DISABLED_TEXT_ALPHA .6
+#pragma mark - MDTabBar
 
 @interface MDTabBar ()
-
 - (void)updateSelectedIndex:(NSInteger)selectedIndex;
 @end
+
+#pragma mark - MDSegmentedControl
 
 @interface MDSegmentedControl : UISegmentedControl
 
 @property(nonatomic) UIColor *rippleColor;
 @property(nonatomic) UIColor *indicatorColor;
 @property(nonatomic) NSMutableArray <UIView*>*tabs;
+
 - (CGRect)getSelectedSegmentFrame;
 - (void)setTextFont:(UIFont *)textFont withColor:(UIColor *)textColor;
 
 @end
+
 
 @implementation MDSegmentedControl {
   UIView *indicatorView;
@@ -185,15 +188,24 @@
 
 - (void)setTextFont:(UIFont *)textFont withColor:(UIColor *)textColor {
   font = textFont;
-  [self setTitleTextAttributes:@{
-    NSForegroundColorAttributeName :
-        [textColor colorWithAlphaComponent:DISABLED_TEXT_ALPHA],
-    NSFontAttributeName : textFont
-  } forState:UIControlStateNormal];
-  [self setTitleTextAttributes:@{
-    NSForegroundColorAttributeName : textColor,
-    NSFontAttributeName : textFont
-  } forState:UIControlStateSelected];
+  CGFloat disabledTextAlpha = 0.6;
+  UIColor *normalTextColor = tabBar.normalTextColor;
+  if (normalTextColor == nil) {
+    normalTextColor = [textColor colorWithAlphaComponent:disabledTextAlpha];
+  }
+    
+  UIFont *normalTextFont = tabBar.normalTextFont;
+  if (normalTextFont == nil) {
+    normalTextFont = textFont;
+  }
+  NSDictionary *attributes = @{ NSForegroundColorAttributeName : normalTextColor,
+                                NSFontAttributeName : normalTextFont
+                                };
+  [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
+  NSDictionary *selectedAttributes = @{ NSForegroundColorAttributeName : textColor,
+                                        NSFontAttributeName : textFont
+                                        };
+  [self setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
 }
 
 - (void)moveIndicatorToFrame:(CGRect)frame withAnimated:(BOOL)animated {
@@ -384,7 +396,8 @@
 
 @end
 
-#pragma mark MDTabBar
+#pragma mark - MDTabBar
+
 @implementation MDTabBar {
   MDSegmentedControl *segmentedControl;
   UIScrollView *scrollView;
@@ -562,6 +575,12 @@
   [self updateItemAppearance];
 }
 
+- (void)setNormalTextColor:(UIColor *)normalTextColor;
+{
+    _normalTextColor = normalTextColor;
+    [self updateItemAppearance];
+}
+
 - (void)setIndicatorColor:(UIColor *)indicatorColor {
   _indicatorColor = indicatorColor;
   [segmentedControl setIndicatorColor:_indicatorColor];
@@ -575,6 +594,11 @@
 - (void)setTextFont:(UIFont *)textFont {
   _textFont = textFont;
   [self updateItemAppearance];
+}
+
+- (void)setNormalTextFont:(UIFont *)normalTextFont {
+    _normalTextFont = normalTextFont;
+    [self updateItemAppearance];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
