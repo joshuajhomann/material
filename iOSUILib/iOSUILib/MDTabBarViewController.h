@@ -28,7 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MDTabBarViewControllerDelegate <NSObject>
 
-- (UIViewController *)tabBarViewController:(MDTabBarViewController *)viewController
+- (UIViewController *)tabBarViewController:
+                          (MDTabBarViewController *)viewController
                      viewControllerAtIndex:(NSUInteger)index;
 
 @optional
@@ -40,9 +41,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, readonly) MDTabBar *tabBar;
 @property(nonatomic, weak) id<MDTabBarViewControllerDelegate> delegate;
+@property(nonatomic) NSUInteger selectedIndex;
 
 - (instancetype)initWithDelegate:(id<MDTabBarViewControllerDelegate>)delegate;
-- (void)setItems:(NSArray <id>*)items;
+- (void)setItems:(NSArray<id> *)items;
 
 @end
 NS_ASSUME_NONNULL_END

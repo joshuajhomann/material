@@ -46,7 +46,6 @@
 @property(nonatomic) NSMutableArray<UIView *> *tabs;
 - (CGRect)getSelectedSegmentFrame;
 - (void)setTextFont:(UIFont *)textFont withColor:(UIColor *)textColor;
-
 @end
 
 @implementation MDSegmentedControl {
@@ -190,19 +189,22 @@
   if (normalTextColor == nil) {
     normalTextColor = [textColor colorWithAlphaComponent:disabledTextAlpha];
   }
-    
+
   UIFont *normalTextFont = tabBar.normalTextFont;
   if (normalTextFont == nil) {
     normalTextFont = textFont;
   }
-  NSDictionary *attributes = @{ NSForegroundColorAttributeName : normalTextColor,
-                                NSFontAttributeName : normalTextFont
-                                };
+  NSDictionary *attributes = @{
+    NSForegroundColorAttributeName : normalTextColor,
+    NSFontAttributeName : normalTextFont
+  };
   [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
-  NSDictionary *selectedAttributes = @{ NSForegroundColorAttributeName : textColor,
-                                        NSFontAttributeName : textFont
-                                        };
-  [self setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
+  NSDictionary *selectedAttributes = @{
+    NSForegroundColorAttributeName : textColor,
+    NSFontAttributeName : textFont
+  };
+  [self setTitleTextAttributes:selectedAttributes
+                      forState:UIControlStateSelected];
 }
 
 - (void)moveIndicatorToFrame:(CGRect)frame withAnimated:(BOOL)animated {
@@ -502,10 +504,10 @@
   CGFloat horizontalInset = self.horizontalInset;
   CGFloat contentOffset = frame.origin.x + horizontalInset -
                           (self.frame.size.width - frame.size.width) / 2;
-  if (contentOffset > scrollView.contentSize.width + horizontalInset -
-                          self.frame.size.width) {
-    contentOffset = scrollView.contentSize.width + horizontalInset -
-                    self.frame.size.width;
+  if (contentOffset >
+      scrollView.contentSize.width + horizontalInset - self.frame.size.width) {
+    contentOffset =
+        scrollView.contentSize.width + horizontalInset - self.frame.size.width;
   } else if (contentOffset < -horizontalInset) {
     contentOffset = -horizontalInset;
   }
@@ -577,8 +579,8 @@
 
 - (void)setNormalTextColor:(UIColor *)normalTextColor;
 {
-    _normalTextColor = normalTextColor;
-    [self updateItemAppearance];
+  _normalTextColor = normalTextColor;
+  [self updateItemAppearance];
 }
 
 - (void)setIndicatorColor:(UIColor *)indicatorColor {
@@ -597,8 +599,8 @@
 }
 
 - (void)setNormalTextFont:(UIFont *)normalTextFont {
-    _normalTextFont = normalTextFont;
-    [self updateItemAppearance];
+  _normalTextFont = normalTextFont;
+  [self updateItemAppearance];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
@@ -611,7 +613,7 @@
   }
 }
 
-- (void) setHorizontalInset:(CGFloat)horizontalInset;
+- (void)setHorizontalInset:(CGFloat)horizontalInset;
 {
   _horizontalInset = horizontalInset;
   [self setNeedsLayout];

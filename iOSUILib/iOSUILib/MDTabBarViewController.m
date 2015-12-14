@@ -192,31 +192,18 @@
   return nil;
 }
 
-#pragma mark - PageViewController Delegate
-- (void)pageViewController:(UIPageViewController *)pageViewController
-        didFinishAnimating:(BOOL)finished
-   previousViewControllers:(NSArray *)previousViewControllers
-       transitionCompleted:(BOOL)completed {
-  if (!completed)
-    return;
-
-  id currentView = [pageViewController.viewControllers objectAtIndex:0];
-
-  NSNumber *key = (NSNumber *)[viewControllers allKeysForObject:currentView][0];
-  _tabBar.selectedIndex = [key integerValue];
-  lastIndex = _tabBar.selectedIndex;
-
-  // call delegate
-  if ([self.delegate
-          respondsToSelector:@selector(tabBarViewController:didMoveToIndex:)]) {
-    [self.delegate tabBarViewController:self
-                         didMoveToIndex:_tabBar.selectedIndex];
-  }
+#pragma mark Setters
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+  _tabBar.selectedIndex = selectedIndex;
+  [self moveToPage:selectedIndex];
 }
 
-#pragma mark - MDTabBar Delegate
-- (void)tabBar:(MDTabBar *)tabBar
-    didChangeSelectedIndex:(NSUInteger)selectedIndex {
+#pragma mark Getter
+- (NSUInteger)selectedIndex {
+  return _tabBar.selectedIndex;
+}
+
+- (void)moveToPage:(NSUInteger)selectedIndex {
   UIViewController *viewController =
       [viewControllers objectForKey:[NSNumber numberWithInteger:selectedIndex]];
 
@@ -251,6 +238,34 @@
                                              didMoveToIndex:selectedIndex];
                 }
               }];
+}
+
+#pragma mark - PageViewController Delegate
+- (void)pageViewController:(UIPageViewController *)pageViewController
+        didFinishAnimating:(BOOL)finished
+   previousViewControllers:(NSArray *)previousViewControllers
+       transitionCompleted:(BOOL)completed {
+  if (!completed)
+    return;
+
+  id currentView = [pageViewController.viewControllers objectAtIndex:0];
+
+  NSNumber *key = (NSNumber *)[viewControllers allKeysForObject:currentView][0];
+  _tabBar.selectedIndex = [key integerValue];
+  lastIndex = _tabBar.selectedIndex;
+
+  // call delegate
+  if ([self.delegate
+          respondsToSelector:@selector(tabBarViewController:didMoveToIndex:)]) {
+    [self.delegate tabBarViewController:self
+                         didMoveToIndex:_tabBar.selectedIndex];
+  }
+}
+
+#pragma mark - MDTabBar Delegate
+- (void)tabBar:(MDTabBar *)tabBar
+    didChangeSelectedIndex:(NSUInteger)selectedIndex {
+  [self moveToPage:selectedIndex];
 }
 
 #pragma mark - ScrollView Delegate
