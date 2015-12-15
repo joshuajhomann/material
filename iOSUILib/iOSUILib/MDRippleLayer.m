@@ -33,7 +33,8 @@
 #define kMDElevationOffset 6
 #define kMDClearEffectDuration 0.3f;
 
-@interface MDRippleLayer () <MDTouchGestureRecognizerDelegate>
+@interface MDRippleLayer () <MDTouchGestureRecognizerDelegate,
+                             UIGestureRecognizerDelegate>
 
 @property CALayer *superLayer;
 @property CAShapeLayer *rippleLayer;
@@ -65,6 +66,7 @@
     MDTouchGestureRecognizer *recognizer =
         [[MDTouchGestureRecognizer alloc] init];
     recognizer.touchDelegate = self;
+    recognizer.delegate = self;
     [superView addGestureRecognizer:recognizer];
     [self initContents];
   }
@@ -137,6 +139,8 @@
   }
 }
 
+#pragma mark MDTouchGestureRecognizerDelegate methods
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   CGPoint point = [touches.allObjects[0] locationInView:superView];
   [self startEffectsAtLocation:point];
@@ -151,6 +155,14 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [self stopEffects];
+}
+
+#pragma mark UIGestureRecognizerDelegate methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+    shouldRecognizeSimultaneouslyWithGestureRecognizer:
+        (UIGestureRecognizer *)otherGestureRecognizer {
+  return YES;
 }
 
 #pragma mark Setters
