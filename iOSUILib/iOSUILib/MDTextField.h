@@ -23,10 +23,10 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, MDTextFieldViewState) {
-    MDTextFieldViewStateNormal,
-    MDTextFieldViewStateHighlighted,
-    MDTextFieldViewStateError,
-    MDTextFieldViewStateDisabled
+  MDTextFieldViewStateNormal,
+  MDTextFieldViewStateHighlighted,
+  MDTextFieldViewStateError,
+  MDTextFieldViewStateDisabled
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -104,9 +104,9 @@ IB_DESIGNABLE
 @property(nonnull, nonatomic) UIFont *labelsFont;
 @property(nonnull, nonatomic) UIFont *inputTextFont;
 @property(nonnull, nonatomic) NSLayoutConstraint *textViewHeightConstraint;
-@property(nullable, nonatomic) NSArray <NSString*> *suggestionsDictionary;
+@property(nullable, nonatomic) NSArray<NSString *> *suggestionsDictionary;
 
 @property(nonatomic, weak) id<MDTextFieldDelegate> delegate;
-@property (nonatomic, nullable, readwrite, strong) UIView *inputAccessoryView;
+@property(nonatomic, nullable, readwrite, strong) UIView *inputAccessoryView;
 
 @end
