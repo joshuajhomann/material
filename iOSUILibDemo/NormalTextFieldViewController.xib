@@ -55,6 +55,7 @@
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="string" keyPath="label" value="TextField with character counter "/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="dividerAnimation" value="NO"/>
                                     </userDefinedRuntimeAttributes>
                                     <variation key="default">
                                         <mask key="constraints">

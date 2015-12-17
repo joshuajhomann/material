@@ -30,6 +30,7 @@
 @implementation NormalTextFieldViewController {
   MDTextField *activeField;
   NSArray *inputAccessoryViews;
+  CGFloat inputAccessoryViewHeight;
 }
 
 - (void)viewDidLoad {
@@ -59,9 +60,6 @@
 
   [self createInputAccessoryView];
   for (UITextField *field in _textFields) {
-    [field addTarget:self
-                  action:@selector(setActiveTextField:)
-        forControlEvents:UIControlEventEditingDidBegin];
     [field setInputAccessoryView:[inputAccessoryViews objectAtIndex:field.tag]];
   }
 }
@@ -107,18 +105,19 @@
   NSDictionary *info = [aNotification userInfo];
   CGSize kbSize =
       [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-  UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+  CGFloat kbHeight = kbSize.height + inputAccessoryViewHeight;
+  UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbHeight, 0.0);
   _scrollView.contentInset = contentInsets;
   _scrollView.scrollIndicatorInsets = contentInsets;
 
   // If active text field is hidden by keyboard, scroll it so it's visible
   // Your application might not need or want this behavior.
   CGRect aRect = self.view.frame;
-  aRect.size.height -= kbSize.height;
+  aRect.size.height -= kbHeight;
   CGPoint p = CGPointMake(0, activeField.frame.origin.y +
                                  activeField.frame.size.height);
   if (!CGRectContainsPoint(aRect, p)) {
-    CGPoint scrollPoint = CGPointMake(0.0, p.y - kbSize.height);
+    CGPoint scrollPoint = CGPointMake(0.0, p.y - aRect.size.height);
     [_scrollView setContentOffset:scrollPoint animated:YES];
   }
 }
@@ -184,6 +183,7 @@
                                         action:nil];
 
     [inputAccView sizeToFit];
+    inputAccessoryViewHeight = inputAccView.frame.size.height;
     [inputAccView
         setItems:[NSArray arrayWithObjects:prevButton, placeholder, nextButton,
                                            placeholder, flexSpace, placeholder,
