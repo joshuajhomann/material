@@ -106,6 +106,11 @@
 
 - (void)textViewDidChangeWithNotification:(NSNotification *)notification {
   if (notification.object == self && !settingText) {
+    if (self.text.length >= 1) {
+      placeholderLabel.hidden = YES;
+    } else {
+      placeholderLabel.hidden = NO;
+    }
     [self calculateTextViewHeight];
   }
 }
@@ -125,7 +130,6 @@
 - (CGFloat)intrinsicContentHeight {
   if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
     CGRect frame = self.bounds;
-
     UIEdgeInsets textContainerInsets = self.textContainerInset;
     UIEdgeInsets contentInsets = self.contentInset;
 
