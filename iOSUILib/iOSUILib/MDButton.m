@@ -184,11 +184,11 @@
                                  self.btImage.transform = CGAffineTransformMakeRotation(M_PI/4);
                              } completion:^(BOOL finished) {
                                  _rotated = true;
-                                 if (_mdButtonDelegate) {
+                                 if ([_mdButtonDelegate respondsToSelector:@selector(rotationCompleted:)]) {
                                      [_mdButtonDelegate rotationCompleted:self];
                                  }
                              }];
-            if (_mdButtonDelegate) {
+            if ([_mdButtonDelegate respondsToSelector:@selector(rotationStarted:)]) {
                 [_mdButtonDelegate rotationStarted:self];
             }
         } else {
@@ -199,11 +199,11 @@
                                  self.btImage.transform = CGAffineTransformMakeRotation(0);
                              } completion:^(BOOL finished) {
                                  _rotated = false;
-                                 if (_mdButtonDelegate) {
+                                 if ([_mdButtonDelegate respondsToSelector:@selector(rotationCompleted:)]) {
                                      [_mdButtonDelegate rotationCompleted:self];
                                  }
                              }];
-            if (_mdButtonDelegate) {
+            if ([_mdButtonDelegate respondsToSelector:@selector(rotationStarted:)]) {
                 [_mdButtonDelegate rotationStarted:self];
             }
         }
@@ -234,12 +234,12 @@
                                      self.btImage.transform = CGAffineTransformMakeRotation(0);
                                  }completion:^(BOOL finished) {
                                      _rotated = true;
-                                     if (_mdButtonDelegate) {
+                                     if ([_mdButtonDelegate respondsToSelector:@selector(rotationCompleted:)]) {
                                          [_mdButtonDelegate rotationCompleted:self];
                                      }
                                  }];
                              }];
-            if (_mdButtonDelegate) {
+            if ([_mdButtonDelegate respondsToSelector:@selector(rotationStarted:)]) {
                 [_mdButtonDelegate rotationStarted:self];
             }
         } else {
@@ -269,12 +269,12 @@
                                      self.btImage.transform = CGAffineTransformMakeRotation(0);
                                  }completion:^(BOOL finished) {
                                      _rotated = false;
-                                     if (_mdButtonDelegate) {
+                                     if ([_mdButtonDelegate respondsToSelector:@selector(rotationCompleted:)]) {
                                          [_mdButtonDelegate rotationCompleted:self];
                                      }
                                  }];
                              }];
-            if (_mdButtonDelegate) {
+            if ([_mdButtonDelegate respondsToSelector:@selector(rotationStarted:)]) {
                 [_mdButtonDelegate rotationStarted:self];
             }
         }
