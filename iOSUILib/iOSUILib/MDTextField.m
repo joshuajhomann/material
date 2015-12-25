@@ -754,6 +754,14 @@
   [self calculateLabelFrame];
 }
 
+- (void)setLabelsFont:(UIFont *)labelsFont {
+  _labelsFont = labelsFont;
+  _labelView.font = _labelsFont;
+  _errorView.font = _labelsFont;
+  _characterCountView.font = _labelsFont;
+  [self calculateLabelFrame];
+}
+
 #pragma mark getters
 - (NSString *)text {
   if (_singleLine) {
