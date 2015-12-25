@@ -747,6 +747,13 @@
   [_dividerHolder setUseAnimation:_dividerAnimation];
 }
 
+- (void)setInputTextFont:(UIFont *)inputTextFont {
+  _inputTextFont = inputTextFont;
+  [_textField setFont:_inputTextFont];
+  [_textView setFont:_inputTextFont];
+  [self calculateLabelFrame];
+}
+
 #pragma mark getters
 - (NSString *)text {
   if (_singleLine) {
