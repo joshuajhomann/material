@@ -109,4 +109,6 @@ IB_DESIGNABLE
 @property(nonatomic, weak) id<MDTextFieldDelegate> delegate;
 @property(nonatomic, nullable, readwrite, strong) UIView *inputAccessoryView;
 
+- (float)requiredHeightWithNumberOfTextLines:(NSUInteger)numberOfLines;
+
 @end

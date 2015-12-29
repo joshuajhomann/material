@@ -20,11 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "MDTextField.h"
+#import "AutoResizeTextView.h"
 #import "AutoResizeTextView.h"
 #import "MDConstants.h"
 #import "MDSuggestPopupView.h"
-#import "AutoResizeTextView.h"
+#import "MDTextField.h"
 #import "UIColorHelper.h"
 #import "UIFontHelper.h"
 
@@ -330,6 +330,7 @@
 @property UILabel *errorView;
 @property UILabel *characterCountView;
 @property DividerView *dividerHolder;
+@property UIView *placeHolder;
 @end
 
 @implementation MDTextField {
@@ -337,6 +338,7 @@
   NSMutableDictionary *viewsDictionary;
   NSArray *constraintsArray;
   BOOL exceedsCharacterLimits;
+  BOOL sizeLimited;
 }
 @dynamic enabled;
 @synthesize text = _text;
@@ -439,51 +441,49 @@
   [_textView setHolder:self];
 
   [_textField addTarget:self
-                 action:@selector(updateText:)
+                 action:@selector(textChanged:)
        forControlEvents:UIControlEventEditingChanged];
 
-  _labelView.translatesAutoresizingMaskIntoConstraints = NO;
+  _placeHolder = [[UIView alloc] init];
+  if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1)
+    [_placeHolder setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
+
   _labelPlaceHolder.translatesAutoresizingMaskIntoConstraints = NO;
   _textField.translatesAutoresizingMaskIntoConstraints = NO;
   _textView.translatesAutoresizingMaskIntoConstraints = NO;
   _dividerHolder.translatesAutoresizingMaskIntoConstraints = NO;
   _errorView.translatesAutoresizingMaskIntoConstraints = NO;
   _characterCountView.translatesAutoresizingMaskIntoConstraints = NO;
-  self.translatesAutoresizingMaskIntoConstraints = NO;
+  _placeHolder.translatesAutoresizingMaskIntoConstraints = NO;
 
-  [self addSubview:_labelPlaceHolder];
-  [self addSubview:_dividerHolder];
-  [self addSubview:_textField];
-  [self addSubview:_textView];
+  [_placeHolder addSubview:_labelPlaceHolder];
+  [_placeHolder addSubview:_dividerHolder];
+  [_placeHolder addSubview:_textField];
+  [_placeHolder addSubview:_textView];
   [_dividerHolder setEnabled:YES];
-  [self addSubview:_errorView];
-  [self addSubview:_characterCountView];
-  [self.layer addSublayer:_labelView.layer];
+  [_placeHolder addSubview:_errorView];
+  [_placeHolder addSubview:_characterCountView];
+  [_placeHolder addSubview:_labelView];
+  [self addSubview:_placeHolder];
 
   viewsDictionary = [@{
     @"labelView" : self.labelView,
     @"labelHolder" : self.labelPlaceHolder,
     @"errorView" : self.errorView,
     @"characterCountView" : self.characterCountView,
-    @"dividerHolder" : _dividerHolder,
+    @"dividerHolder" : self.dividerHolder,
     @"inputView" : [self getInputView],
     @"textField" : self.textField,
     @"textView" : self.textView,
+    @"placeHolder" : self.placeHolder,
   } mutableCopy];
 
-  NSArray *textFieldHeightConstraint = [NSLayoutConstraint
-      constraintsWithVisualFormat:
-          [NSString stringWithFormat:@"V:[textField(%i)]",
-                                     (int)ceil(_inputTextFont.lineHeight)]
-                          options:0
-                          metrics:nil
-                            views:viewsDictionary];
-
-  [_textField addConstraints:textFieldHeightConstraint];
   _textViewHeightConstraint = [[NSLayoutConstraint
-      constraintsWithVisualFormat:
-          [NSString stringWithFormat:@"V:[textView(%i)]",
-                                     (int)ceil(_inputTextFont.lineHeight)]
+      constraintsWithVisualFormat:[NSString
+                                      stringWithFormat:@"V:[textView(%i)]",
+                                                       (int)ceil(
+                                                           _inputTextFont
+                                                               .lineHeight)]
                           options:0
                           metrics:nil
                             views:viewsDictionary] objectAtIndex:0];
@@ -491,39 +491,59 @@
   [_textView addConstraint:_textViewHeightConstraint];
 
   NSArray *constraint_V = [NSLayoutConstraint
-      constraintsWithVisualFormat:
-          [NSString stringWithFormat:@"V:[labelHolder(%i)]",
-                                     (int)ceil(_labelView.font.lineHeight)]
+      constraintsWithVisualFormat:[NSString
+                                      stringWithFormat:@"V:[labelHolder(%i)]",
+                                                       (int)ceil(
+                                                           _labelView.font
+                                                               .lineHeight)]
                           options:0
                           metrics:nil
                             views:viewsDictionary];
   [_labelPlaceHolder addConstraints:constraint_V];
 
   constraint_V = [NSLayoutConstraint
-      constraintsWithVisualFormat:
-          [NSString stringWithFormat:@"V:[dividerHolder(%i)]", kMDDividerHeight]
+      constraintsWithVisualFormat:[NSString
+                                      stringWithFormat:@"V:[dividerHolder(%i)]",
+                                                       kMDDividerHeight]
                           options:0
                           metrics:nil
                             views:viewsDictionary];
   [_dividerHolder addConstraints:constraint_V];
+
+  constraint_V = [NSLayoutConstraint
+      constraintsWithVisualFormat:@"V:|-0-[placeHolder]-0@250-|"
+                          options:0
+                          metrics:nil
+                            views:viewsDictionary];
+  [super addConstraints:constraint_V];
 
   NSArray *constraint_H =
       [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[labelHolder]-0-|"
                                               options:0
                                               metrics:nil
                                                 views:viewsDictionary];
-  [super addConstraints:constraint_H];
+  [_placeHolder addConstraints:constraint_H];
 
   constraint_H = [NSLayoutConstraint
       constraintsWithVisualFormat:@"H:|-0-[dividerHolder]-0-|"
                           options:0
                           metrics:nil
                             views:viewsDictionary];
+  [_placeHolder addConstraints:constraint_H];
+
+  constraint_H =
+      [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[placeHolder]-0-|"
+                                              options:0
+                                              metrics:nil
+                                                views:viewsDictionary];
   [super addConstraints:constraint_H];
 
   [self relayout];
   suggestView = [[MDSuggestPopupView alloc] initWithTextField:self];
   self.maxCharacterCount = 0;
+  self.minVisibleLines = 1;
+  if (!_singleLine && sizeLimited)
+    [self updateMaxTextViewSize];
 }
 
 - (UIView *)getInputView {
@@ -534,7 +554,7 @@
   }
 }
 
-- (void)updateText:(id)sender {
+- (void)textChanged:(id)sender {
   if ([sender isKindOfClass:[CustomTextField class]]) {
     self.text = _textField.text;
   }
@@ -547,11 +567,6 @@
 }
 - (BOOL)becomeFirstResponder {
   return [[self getInputView] becomeFirstResponder];
-  //    if (_singleLine) {
-  //      return [_textField becomeFirstResponder];
-  //    } else {
-  //      return [_textView becomeFirstResponder];
-  //    }
 }
 - (BOOL)canResignFirstResponder {
   return [[self getInputView] canResignFirstResponder];
@@ -583,14 +598,15 @@
 }
 
 - (void)setFloatingLabel:(BOOL)floatingLabel {
-  _floatingLabel = floatingLabel;
-  if (floatingLabel) {
-    [self setPlaceholder:nil];
-
-  } else {
-    [self setPlaceholder:_hint];
+  if (_floatingLabel != floatingLabel) {
+    _floatingLabel = floatingLabel;
+    if (floatingLabel && !_fullWidth) { // fix hint not show on fullwidth mode
+      [self setPlaceholder:nil];
+    } else {
+      [self setPlaceholder:_hint];
+    }
+    [self calculateLabelFrame];
   }
-  [self calculateLabelFrame];
 }
 
 - (void)setHint:(NSString *)hint {
@@ -657,11 +673,14 @@
 }
 
 - (void)setSingleLine:(BOOL)singleLine {
-  _singleLine = singleLine;
-  _textView.hidden = singleLine;
-  _textField.hidden = !singleLine;
-
-  [self relayout];
+  if (_singleLine != singleLine) {
+    _singleLine = singleLine;
+    _textView.hidden = singleLine;
+    _textField.hidden = !singleLine;
+    [self relayout];
+    if (!_singleLine && sizeLimited)
+      [self updateMaxTextViewSize];
+  }
 }
 
 - (void)setFullWidth:(BOOL)fullWidth {
@@ -702,14 +721,15 @@
 
 - (void)setText:(NSString *)text {
   _text = text;
-  //  _textField.text = text;
-  //  _textView.text = text;
 
-  if (![_text isEqualToString:_textField.text]) {
-    _textField.text = text;
-  }
-  if (![_text isEqualToString:_textView.text]) {
-    _textView.text = text;
+  if (_singleLine) {
+    if (![_text isEqualToString:_textField.text]) {
+      _textField.text = text;
+    }
+  } else {
+    if (![_text isEqualToString:_textView.text]) {
+      _textView.text = text;
+    }
   }
 
   [self updateTextLength:text.length];
@@ -747,6 +767,15 @@
   [_dividerHolder setUseAnimation:_dividerAnimation];
 }
 
+- (void)setFrame:(CGRect)frame {
+  [super setFrame:frame];
+  if (!CGSizeEqualToSize(frame.size, CGSizeZero)) {
+    sizeLimited = YES;
+    if (!_singleLine)
+      [self updateMaxTextViewSize];
+  }
+}
+
 - (void)setInputTextFont:(UIFont *)inputTextFont {
   _inputTextFont = inputTextFont;
   [_textField setFont:_inputTextFont];
@@ -760,6 +789,7 @@
   _errorView.font = _labelsFont;
   _characterCountView.font = _labelsFont;
   [self calculateLabelFrame];
+  //  [self relayout];
 }
 
 #pragma mark getters
@@ -774,7 +804,7 @@
 #pragma mark Private methods
 - (void)relayout {
   if (constraintsArray)
-    [self removeConstraints:constraintsArray];
+    [_placeHolder removeConstraints:constraintsArray];
 
   [viewsDictionary setObject:[self getInputView] forKey:@"inputView"];
 
@@ -933,8 +963,10 @@
 
   constraintsArray = constraintsMutableArray;
 
-  [self addConstraints:constraintsArray];
+  [_placeHolder addConstraints:constraintsArray];
   [self calculateLabelFrame];
+  if (!_singleLine && sizeLimited)
+    [self updateMaxTextViewSize];
 }
 
 - (void)updateState {
@@ -962,32 +994,36 @@
 
 - (void)layoutSubviews {
   [super layoutSubviews];
+  [_placeHolder layoutSubviews];
   [self calculateLabelFrame];
 }
 
 - (void)calculateLabelFrame {
+  if (_labelView.hidden)
+    return;
   if (!_floatingLabel || [self getTextLength] > 0 ||
       [self getInputView].isFirstResponder) {
     CGRect frame = _labelPlaceHolder.frame;
-    [_labelView
-        setFrame:CGRectMake(frame.origin.x, frame.origin.y,
-                            self.bounds.size.width, _labelsFont.lineHeight)];
+    [_labelView setFrame:CGRectMake(frame.origin.x, frame.origin.y,
+                                    _placeHolder.frame.size.width,
+                                    _labelsFont.lineHeight)];
     [_labelView setFont:_labelsFont];
   } else {
     CGRect frame = [self getInputView].frame;
-    [_labelView
-        setFrame:CGRectMake(frame.origin.x, frame.origin.y,
-                            self.bounds.size.width, _inputTextFont.lineHeight)];
+    [_labelView setFrame:CGRectMake(frame.origin.x, frame.origin.y,
+                                    _placeHolder.frame.size.width,
+                                    _inputTextFont.lineHeight)];
     [_labelView setFont:_inputTextFont];
   }
 }
 
 - (void)updateTextLength:(NSUInteger)textLength {
   if (self.enabled) {
-    [_characterCountView
-        setText:[NSString stringWithFormat:@"%lu / %li",
-                                           (unsigned long)textLength,
-                                           (long)_maxCharacterCount]];
+    if (!_characterCountView.hidden)
+      [_characterCountView
+          setText:[NSString stringWithFormat:@"%lu / %li",
+                                             (unsigned long)textLength,
+                                             (long)_maxCharacterCount]];
     if (_maxCharacterCount > 0 && textLength > _maxCharacterCount) {
       exceedsCharacterLimits = YES;
       [self setViewState:MDTextFieldViewStateError];
@@ -1007,42 +1043,43 @@
 }
 
 - (void)setViewState:(MDTextFieldViewState)state {
-  if (_viewState != state)
+  if (_viewState != state) {
     _viewState = state;
 
-  switch (state) {
-  case MDTextFieldViewStateNormal:
-    if (!_fullWidth) {
-      [_dividerHolder setState:MDTextFieldViewStateNormal];
-    }
-    [_labelView setTextColor:_normalColor];
-    [self updateTextColor:_textColor];
-    break;
-  case MDTextFieldViewStateHighlighted:
-    if (!_fullWidth) {
-      [_dividerHolder setState:MDTextFieldViewStateHighlighted];
-    }
-    if (_highlightLabel) {
-      [_labelView setTextColor:_highlightColor];
-    }
-    [self updateTextColor:_textColor];
-    break;
-  case MDTextFieldViewStateError:
-    if (!_fullWidth) {
-      [_dividerHolder setState:MDTextFieldViewStateError];
-    }
-    if (_highlightLabel) {
-      [_labelView setTextColor:_errorColor];
-    }
-    [self updateTextColor:_textColor];
-    break;
-  case MDTextFieldViewStateDisabled:
-    [_dividerHolder setState:MDTextFieldViewStateDisabled];
-    [self updateTextColor:_disabledColor];
-    break;
+    switch (state) {
+    case MDTextFieldViewStateNormal:
+      if (!_fullWidth) {
+        [_dividerHolder setState:MDTextFieldViewStateNormal];
+      }
+      [_labelView setTextColor:_normalColor];
+      [self updateTextColor:_textColor];
+      break;
+    case MDTextFieldViewStateHighlighted:
+      if (!_fullWidth) {
+        [_dividerHolder setState:MDTextFieldViewStateHighlighted];
+      }
+      if (_highlightLabel) {
+        [_labelView setTextColor:_highlightColor];
+      }
+      [self updateTextColor:_textColor];
+      break;
+    case MDTextFieldViewStateError:
+      if (!_fullWidth) {
+        [_dividerHolder setState:MDTextFieldViewStateError];
+      }
+      if (_highlightLabel) {
+        [_labelView setTextColor:_errorColor];
+      }
+      [self updateTextColor:_textColor];
+      break;
+    case MDTextFieldViewStateDisabled:
+      [_dividerHolder setState:MDTextFieldViewStateDisabled];
+      [self updateTextColor:_disabledColor];
+      break;
 
-  default:
-    break;
+    default:
+      break;
+    }
   }
 }
 
@@ -1129,18 +1166,42 @@
   return [self convertRect:[self getInputView].frame toView:nil];
 }
 
+- (void)updateMaxTextViewSize {
+  _textView.maxHeight =
+      self.frame.size.height - [self requiredHeightWithNumberOfTextLines:0];
+}
+
+- (float)requiredHeightWithNumberOfTextLines:(NSUInteger)numberOfLines {
+  float requiredHeight = 0;
+  if (!_fullWidth) {
+    requiredHeight += numberOfLines * _inputTextFont.lineHeight +
+                      kMDNormalPadding * 2 + kMDLargePadding + kMDDividerHeight;
+    if (_label.length > 0)
+      requiredHeight += kMDNormalPadding + _labelsFont.lineHeight;
+    if (_maxCharacterCount > 0 || _errorMessage.length > 0)
+      requiredHeight += kMDNormalPadding + _labelsFont.lineHeight;
+  } else {
+    requiredHeight += numberOfLines * _inputTextFont.lineHeight +
+                      kMDExtraLargePadding * 2 + kMDDividerHeight;
+    if (!_singleLine)
+      requiredHeight += _labelsFont.lineHeight + kMDNormalPadding;
+  }
+
+  return requiredHeight;
+}
+
 #pragma mark CAAnimationDelegate implement
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
   if ([[anim valueForKey:@"id"] isEqualToString:kMDLabelMoveUpAnimationKey]) {
     [_labelView setFont:_labelsFont];
-    _labelView.layer.frame = _labelPlaceHolder.frame;
+    _labelView.frame = _labelPlaceHolder.frame;
   } else if ([[anim valueForKey:@"id"]
                  isEqualToString:kMDLabelMoveDownAnimationKey]) {
     [_labelView setFont:_inputTextFont];
     CGRect frame = [self getInputView].frame;
-    _labelView.layer.frame =
-        CGRectMake(frame.origin.x, frame.origin.y, self.bounds.size.width,
-                   _inputTextFont.lineHeight);
+    _labelView.frame =
+        CGRectMake(frame.origin.x, frame.origin.y,
+                   _placeHolder.bounds.size.width, _inputTextFont.lineHeight);
   }
 
   [_labelView.layer removeAllAnimations];
@@ -1201,8 +1262,6 @@
   if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
     shouldReturn = [_delegate textFieldShouldReturn:self];
   }
-  //  if (shouldReturn)
-  //    [textField resignFirstResponder];
   return shouldReturn;
 }
 
@@ -1251,7 +1310,10 @@
 
 #pragma mark BaseTextInput methods
 - (NSUInteger)getTextLength {
-  return _textField.text.length;
+  if (_singleLine)
+    return _textField.text.length;
+  else
+    return _textView.text.length;
 }
 
 @end

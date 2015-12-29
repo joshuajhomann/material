@@ -21,13 +21,16 @@
 // THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+
 @class MDTextField;
 NS_ASSUME_NONNULL_BEGIN
 @interface AutoResizeTextView : UITextView
 @property(nullable, nonatomic, copy) NSString *placeholder;
 @property(nonatomic) NSInteger minVisibleLines;
 @property(nonatomic) NSInteger maxVisibleLines;
+@property(nonatomic) float maxHeight;
 @property(nullable, nonatomic) UIColor *placeholderColor;
 @property(nonatomic, weak) MDTextField *holder;
+
 @end
 NS_ASSUME_NONNULL_END
