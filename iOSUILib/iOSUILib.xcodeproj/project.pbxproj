@@ -77,6 +77,7 @@
 		88F22A4E1B37BA71004B6435 /* MDBubbleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F22A4D1B37BA71004B6435 /* MDBubbleLabel.m */; };
 		88F578C71A80B5E6008A14BB /* MDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F578C61A80B5E6008A14BB /* MDTableViewCell.m */; };
 		9251905C1AC90B8300D4FC0A /* UIView+MDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251905B1AC90B8300D4FC0A /* UIView+MDExtension.m */; };
+		FAE4CD191C2B5310004083D6 /* MDButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE4CD181C2B5310004083D6 /* MDButtonTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,6 +218,7 @@
 		88F578C61A80B5E6008A14BB /* MDTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTableViewCell.m; sourceTree = "<group>"; };
 		9251905A1AC90B8300D4FC0A /* UIView+MDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDExtension.h"; sourceTree = "<group>"; };
 		9251905B1AC90B8300D4FC0A /* UIView+MDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDExtension.m"; sourceTree = "<group>"; };
+		FAE4CD181C2B5310004083D6 /* MDButtonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDButtonTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				882891371A7F218B00944560 /* Supporting Files */,
+				FAE4CD181C2B5310004083D6 /* MDButtonTests.m */,
 			);
 			path = iOSUILibTests;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE4CD191C2B5310004083D6 /* MDButtonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
