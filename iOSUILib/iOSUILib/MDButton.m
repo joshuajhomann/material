@@ -158,12 +158,31 @@
     
     if (_btImage == nil) {
         _btImage = [[UIImageView alloc] initWithImage:_imageNormal];
-        _btImage.frame = self.bounds;
-        _btImage.contentMode = UIViewContentModeCenter;
+
+        if (_imageSize) {
+            [self adjustImageSize];
+        } else {
+            _btImage.contentMode = UIViewContentModeCenter;
+            _btImage.frame = self.bounds;
+        }
+
         _btImage.clipsToBounds = NO;
         
         [self addSubview:_btImage];
     }
+}
+
+-(void)setImageSize:(CGFloat)imageSize {
+    _imageSize = imageSize;
+    [self adjustImageSize];
+}
+
+- (void)adjustImageSize {
+    CGFloat centerX = self.bounds.size.width / 2;
+    CGFloat centerY = self.bounds.size.height / 2;
+    CGRect buttonBounds = CGRectMake(centerX - _imageSize / 2, centerY - _imageSize / 2, _imageSize, _imageSize);
+    _btImage.contentMode = UIViewContentModeScaleAspectFit;
+    _btImage.frame = buttonBounds;
 }
 
 -(void)setRotated:(BOOL)rotated{

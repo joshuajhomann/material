@@ -47,6 +47,7 @@ IB_DESIGNABLE
 @property(nonatomic, getter=isEnabled) IBInspectable BOOL enabled;
 @property(nonatomic) IBInspectable UIImage * imageNormal;
 @property(nonatomic) IBInspectable UIImage * imageRotated;
+@property(nonatomic) IBInspectable CGFloat imageSize;
 
 @property(nonatomic) MDButtonType mdButtonType;
 @property(nonatomic, getter=isRotated) BOOL rotated;;
