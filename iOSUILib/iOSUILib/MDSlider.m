@@ -303,7 +303,7 @@
   constraintsArray = constraintsMutableArray;
 }
 
-- (void)updateIntensity {
+- (void)updateIntensity:(BOOL)animated {
   float intentsity;
   if (_value == _minimumValue)
     intentsity = 0;
@@ -313,10 +313,14 @@
   intensityWidthConstraint.constant = intentsity * trackView.bounds.size.width;
   thumbCenterXConstraint.constant = intensityWidthConstraint.constant;
 
-  [UIView animateWithDuration:kMDAnimationDuration
-                   animations:^{
-                     [self layoutIfNeeded];
-                   }];
+  if (animated && _step > 0) {
+    [UIView animateWithDuration:kMDAnimationDuration
+                     animations:^{
+                       [self layoutIfNeeded];
+                     }];
+  } else {
+    [self layoutIfNeeded];
+  }
 }
 
 - (void)updateColors {
@@ -378,7 +382,7 @@
 
 - (void)setRawValue:(CGFloat)value {
   rawValue = value;
-  [self updateIntensity];
+  [self updateIntensity:YES];
 }
 
 #pragma mark setters
@@ -403,7 +407,7 @@
   if (_value < _minimumValue) {
     self.value = _minimumValue;
   } else {
-    [self updateIntensity];
+    [self updateIntensity:YES];
     [thumbView changeThumbShape:YES withValue:rawValue];
   }
 
@@ -423,7 +427,7 @@
   if (_value > _maximumValue) {
     self.value = _maximumValue;
   } else {
-    [self updateIntensity];
+    [self updateIntensity:YES];
   }
 
   tickMarksView.maximumValue = _maximumValue;
@@ -454,7 +458,7 @@
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 
     [self setRawValue:_value];
-    [self updateIntensity];
+    [self updateIntensity:YES];
     [thumbView.bubble setValue:value];
     [thumbView changeThumbShape:YES withValue:rawValue];
   }
@@ -490,21 +494,24 @@
     super.enabled = enabled;
     if (enabled) {
       trackView.backgroundColor = _trackOffColor;
-      [thumbView lostFocused:^(BOOL finished) {
+      [thumbView enabled:^(BOOL finished) {
         if (finished) {
           [self updateTrackOverlayLayer];
-          intensityView.hidden = NO;
-          tickMarksView.hidden = NO;
         }
       }];
+      [UIView animateWithDuration:kMDAnimationDuration
+                       animations:^{
+                         intensityView.alpha = 1;
+                         tickMarksView.alpha = 1;
+                       }];
     } else {
-      tickMarksView.hidden = YES;
-      intensityView.hidden = YES;
+      [UIView animateWithDuration:kMDAnimationDuration
+                       animations:^{
+                         intensityView.alpha = 0;
+                         tickMarksView.alpha = 0;
+                       }];
       trackView.backgroundColor = _disabledColor;
-      [thumbView disabled:^(BOOL finished) {
-        if (finished) {
-        }
-      }];
+      [thumbView disabled:nil];
       [self updateTrackOverlayLayer];
     }
 
@@ -560,7 +567,7 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
   if (object == trackView && [keyPath isEqualToString:@"bounds"]) {
-    [self updateIntensity];
+    [self updateIntensity:NO];
     [self updateTrackOverlayLayer];
   }
 }
