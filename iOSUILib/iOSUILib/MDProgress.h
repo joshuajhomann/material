@@ -22,17 +22,16 @@
 
 #import <UIKit/UIKit.h>
 
-
 typedef NS_ENUM(NSInteger, MDProgressStyle) {
-    MDProgressStyleCircular,
-    MDProgressStyleLinear
+  MDProgressStyleCircular,
+  MDProgressStyleLinear
 };
 
 typedef NS_ENUM(NSInteger, MDProgressType) {
-    MDProgressTypeIndeterminate,
-    MDProgressTypeDeterminate,
-    //  MDProgressTypeBuffer,
-    //  MDProgressTypeQueryIndeterminateAndDeterminate
+  MDProgressTypeIndeterminate,
+  MDProgressTypeDeterminate,
+  //  MDProgressTypeBuffer,
+  //  MDProgressTypeQueryIndeterminateAndDeterminate
 };
 
 IB_DESIGNABLE
@@ -46,6 +45,7 @@ IB_DESIGNABLE
 @property(nonatomic) IBInspectable NSInteger type;
 @property(nonatomic) IBInspectable NSInteger style;
 @property(nonatomic) IBInspectable CGFloat trackWidth;
+@property(nonatomic) IBInspectable CGFloat circularSize;
 
 @property(nonatomic) IBInspectable CGFloat progress;
 @property(nonatomic) IBInspectable BOOL enableTrackColor;

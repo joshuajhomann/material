@@ -20,10 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "MDProgressLayer.h"
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
-#import "MDProgressLayer.h"
 
 @interface MDCircularProgressLayer : MDProgressLayer
-
+@property(nonatomic) float cirleDiameter;
 @end

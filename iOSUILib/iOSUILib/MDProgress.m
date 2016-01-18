@@ -20,10 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "MDProgress.h"
 #import "MDCircularProgressLayer.h"
-#import "MDLinearProgressLayer.h"
 #import "MDConstants.h"
+#import "MDLinearProgressLayer.h"
+#import "MDProgress.h"
 #import "UIColorHelper.h"
 
 @implementation MDProgress {
@@ -177,6 +177,13 @@
 - (void)setProgress:(CGFloat)progress {
   _progress = progress;
   drawingLayer.progress = progress;
+}
+
+- (void)setCircularSize:(CGFloat)circularSize {
+  _circularSize = circularSize;
+  if ([drawingLayer isKindOfClass:[MDCircularProgressLayer class]]) {
+    ((MDCircularProgressLayer *)drawingLayer).cirleDiameter = circularSize;
+  }
 }
 
 @end

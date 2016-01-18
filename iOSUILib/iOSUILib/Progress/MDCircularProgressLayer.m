@@ -34,6 +34,7 @@
 @interface MDCircularProgressLayer ()
 @property(nonatomic) CAShapeLayer *progressLayer;
 @property(nonatomic) CAShapeLayer *trackLayer;
+
 @end
 
 @implementation MDCircularProgressLayer
@@ -54,29 +55,13 @@ CAMediaTimingFunction *timmingFunction;
 }
 
 - (void)initContents {
-  CGPoint centerInParent = CGRectCenter(self.superLayer.bounds);
-
-  self.frame = CGRectMake(centerInParent.x - kMDCirleDiameter / 2,
-                          centerInParent.y - kMDCirleDiameter / 2,
-                          kMDCirleDiameter, kMDCirleDiameter);
-
-  CGPoint center = CGRectCenter(self.bounds);
-  CGFloat radius =
-      MIN(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2) -
-      _progressLayer.lineWidth / 2;
-  CGFloat startAngle = (CGFloat)(0);
-  CGFloat endAngle = (CGFloat)((kMDArcsCount * 2 + 1.5f) * M_PI);
-  UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center
-                                                      radius:radius
-                                                  startAngle:startAngle
-                                                    endAngle:endAngle
-                                                   clockwise:YES];
+  _cirleDiameter = kMDCirleDiameter;
+  [self updateFrame];
 
   _progressLayer = [CAShapeLayer layer];
   _progressLayer.strokeColor = self.progressColor.CGColor;
   _progressLayer.fillColor = nil;
   _progressLayer.lineWidth = self.trackWidth;
-  _progressLayer.path = path.CGPath;
   _progressLayer.strokeStart = 0.f;
   _progressLayer.strokeEnd = 0.5f;
 
@@ -84,7 +69,6 @@ CAMediaTimingFunction *timmingFunction;
   _trackLayer.strokeColor = self.trackColor.CGColor;
   _trackLayer.fillColor = nil;
   _trackLayer.lineWidth = self.trackWidth;
-  _trackLayer.path = path.CGPath;
   _trackLayer.strokeStart = 0.f;
   _trackLayer.strokeEnd = 1.f;
 
@@ -93,6 +77,7 @@ CAMediaTimingFunction *timmingFunction;
 
   [self addSublayer:_trackLayer];
   [self addSublayer:_progressLayer];
+  [self updateContents];
 
   if (!self.drawTrack) {
     _trackLayer.opacity = 0;
@@ -144,6 +129,41 @@ CAMediaTimingFunction *timmingFunction;
       CATransform3DMakeRotation(self.progress * 3 * M_PI_2, 0, 0, 1);
 }
 
+- (void)setCirleDiameter:(float)cirleDiameter {
+  _cirleDiameter = cirleDiameter;
+  [self updateFrame];
+  [self updateContents];
+}
+
+#pragma mark ProgressLayer's methods 
+- (void)superLayerDidResize {
+  [self updateFrame];
+}
+
+#pragma mark private methods
+- (void)updateFrame {
+  CGPoint center = CGRectCenter(self.superLayer.bounds);
+  self.frame =
+      CGRectMake(center.x - _cirleDiameter / 2, center.y - _cirleDiameter / 2,
+                 _cirleDiameter, _cirleDiameter);
+}
+
+- (void)updateContents {
+  CGPoint center = CGRectCenter(self.bounds);
+  CGFloat radius =
+      MIN(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2) -
+      _progressLayer.lineWidth / 2;
+  CGFloat startAngle = (CGFloat)(0);
+  CGFloat endAngle = (CGFloat)((kMDArcsCount * 2 + 1.5f) * M_PI);
+  UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center
+                                                      radius:radius
+                                                  startAngle:startAngle
+                                                    endAngle:endAngle
+                                                   clockwise:YES];
+  _progressLayer.path = path.CGPath;
+  _trackLayer.path = path.CGPath;
+}
+
 - (void)startAnimating {
   if (self.isAnimating || self.determinate)
     return;
@@ -170,13 +190,6 @@ CAMediaTimingFunction *timmingFunction;
   [self removeAllAnimations];
   [_progressLayer removeAllAnimations];
   self.isAnimating = false;
-}
-
-- (void)superLayerDidResize {
-  CGPoint center = CGRectCenter(self.superLayer.bounds);
-  self.frame = CGRectMake(center.x - kMDCirleDiameter / 2,
-                          center.y - kMDCirleDiameter / 2, kMDCirleDiameter,
-                          kMDCirleDiameter);
 }
 
 + (CAAnimationGroup *)indeterminateAnimation {
