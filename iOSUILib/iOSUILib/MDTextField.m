@@ -515,7 +515,7 @@
                           options:0
                           metrics:nil
                             views:viewsDictionary];
-  [super addConstraints:constraint_V];
+  [self addConstraints:constraint_V];
 
   NSArray *constraint_H =
       [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[labelHolder]-0-|"
@@ -595,6 +595,14 @@
   }
 
   [_labelView setText:label];
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+  CGPoint locationInView = [_placeHolder convertPoint:point fromView:self];
+  if (CGRectContainsPoint(_placeHolder.bounds, locationInView))
+    return YES;
+  else
+    return NO;
 }
 
 - (void)setFloatingLabel:(BOOL)floatingLabel {
