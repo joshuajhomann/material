@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "NSDate+MDExtension.h"
 #import "NSCalendarHelper.h"
+#import "NSDate+MDExtension.h"
 
 @implementation NSDate (MDExtension)
 
@@ -112,19 +112,43 @@
 
 - (NSInteger)mdYearsFrom:(NSDate *)date {
   NSCalendar *calendar = [NSCalendarHelper mdSharedCalendar];
-  NSDateComponents *components = [calendar components:NSCalendarUnitYear
-                                             fromDate:date
-                                               toDate:self
-                                              options:0];
+  NSDateComponents *dateComponents = [calendar
+      components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
+        fromDate:date];
+  [dateComponents setDay:1];
+  [dateComponents setMonth:1];
+
+  NSDateComponents *myComponents = [calendar
+      components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
+        fromDate:self];
+  [myComponents setDay:1];
+  [myComponents setMonth:1];
+
+  NSDateComponents *components =
+      [calendar components:NSCalendarUnitYear
+                  fromDate:[calendar dateFromComponents:dateComponents]
+                    toDate:[calendar dateFromComponents:myComponents]
+                   options:0];
   return components.year;
 }
 
 - (NSInteger)mdMonthsFrom:(NSDate *)date {
   NSCalendar *calendar = [NSCalendarHelper mdSharedCalendar];
-  NSDateComponents *components = [calendar components:NSCalendarUnitMonth
-                                             fromDate:date
-                                               toDate:self
-                                              options:0];
+  NSDateComponents *dateComponents = [calendar
+      components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
+        fromDate:date];
+  [dateComponents setDay:1];
+    
+  NSDateComponents *myComponents = [calendar
+      components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
+        fromDate:self];
+  [myComponents setDay:1];
+    
+  NSDateComponents *components =
+      [calendar components:NSCalendarUnitMonth
+                  fromDate:[calendar dateFromComponents:dateComponents]
+                    toDate:[calendar dateFromComponents:myComponents]
+                   options:0];
   return components.month;
 }
 
