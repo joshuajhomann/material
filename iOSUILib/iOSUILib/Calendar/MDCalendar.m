@@ -21,18 +21,20 @@
 // THE SOFTWARE.
 
 #import "MDCalendar.h"
-#import "MDCalendarHeader.h"
-#import "UIView+MDExtension.h"
-#import "NSDate+MDExtension.h"
-#import "NSCalendarHelper.h"
 #import "MDCalendarCell.h"
+#import "MDCalendarHeader.h"
 #import "MDCalendarYearSelector.h"
+#import "NSCalendarHelper.h"
+#import "NSDate+MDExtension.h"
+#import "NSDateHelper.h"
 #import "UIColorHelper.h"
 #import "UIFontHelper.h"
-#import "NSDateHelper.h"
+#import "UIView+MDExtension.h"
 
 @interface MDCalendar (DataSourceAndDelegate)
+
 - (void)didSelectDate:(NSDate *)date;
+
 @end
 
 @interface MDCalendar () <UICollectionViewDataSource, UICollectionViewDelegate,
@@ -56,10 +58,13 @@
 @property(strong, nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 @property(strong, nonatomic) UIFont *titleMonthFont UI_APPEARANCE_SELECTOR;
 
+@property(nonatomic, assign) BOOL hadRemoveObserver;
 @property(nonatomic) BOOL isDoingLayoutSubview;
+
 - (void)initThemeColors;
 
 - (NSDate *)dateForIndexPath:(NSIndexPath *)indexPath;
+
 - (NSIndexPath *)indexPathForDate:(NSDate *)date;
 
 - (void)scrollToDate:(NSDate *)date;
@@ -139,7 +144,6 @@
   _currentDate = [NSDate date];
   _currentMonth = [_currentDate copy];
 
- 
   _cellStyle = MDCalendarCellStyleCircle;
 
   self.minimumDate = [NSDateHelper mdDateWithYear:1970 month:1 day:1];
@@ -152,9 +156,9 @@
   _yearSelector = yearSelector;
   _yearSelector.delegate = self;
   _yearSelector.hidden = YES;
-    
-  [self setSelectedDate:_currentDate]; //default selected date is current: #15
-    
+
+  [self setSelectedDate:_currentDate]; // default selected date is current: #15
+
   [self.yearSelector relayout];
   [self addSubview:_yearSelector];
 }
@@ -273,8 +277,8 @@
     if (!_isDoingLayoutSubview) {
       [self scrollToDate:_currentMonth];
     }
-
     [_collectionView removeObserver:self forKeyPath:@"contentSize"];
+    _hadRemoveObserver = true;
   }
 }
 
@@ -287,7 +291,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-  //  NSLog(@"collectionView numberOfItemsInSection %li", section);
+  // NSLog(@"collectionView numberOfItemsInSection %li", section);
   return 56; // 42 + (rand() % 3) * 7;
 }
 
@@ -311,7 +315,8 @@
     // titleLabel.mdWidth = self.mdWidth;
     _dateHeader.dateFormatter.dateFormat = @"MMMM yyyy";
     titleLabel.text = [_dateHeader.dateFormatter
-        stringFromDate:[self.minimumDate mdDateByAddingMonths:indexPath.section]];
+        stringFromDate:[self.minimumDate
+                           mdDateByAddingMonths:indexPath.section]];
 
     return cell;
   } else if (indexPath.item >= 7 && indexPath.item <= 13) {
@@ -330,7 +335,8 @@
     }
     titleLabel.font = self.titleFont;
     // titleLabel.text = [NSString stringWithFormat:@"W%li", indexPath.item];
-    titleLabel.text = [_weekdays objectAtIndex:(indexPath.item - 7 + _firstWeekday - 1)%7];
+    titleLabel.text =
+        [_weekdays objectAtIndex:(indexPath.item - 7 + _firstWeekday - 1) % 7];
 
     return cell;
   } else {
@@ -384,10 +390,11 @@
   }
 }
 
-- (BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath;
+- (BOOL)collectionView:(UICollectionView *)collectionView
+    shouldSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath;
 {
-    NSDate *date = [self dateForIndexPath:indexPath];
-    return [self shouldSelectDate:date];
+  NSDate *date = [self dateForIndexPath:indexPath];
+  return [self shouldSelectDate:date];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
@@ -425,12 +432,13 @@
   }
 }
 
-- (void) setMinimumDate:(NSDate *)minimumDate;
+- (void)setMinimumDate:(NSDate *)minimumDate;
 {
-    NSDate *date = [[NSCalendarHelper mdSharedCalendar] startOfDayForDate:minimumDate];
-    _minimumDate = date;
-    self.yearSelector.minimumDate = date;
-    [self.collectionView reloadData];
+  NSDate *date =
+      [[NSCalendarHelper mdSharedCalendar] startOfDayForDate:minimumDate];
+  _minimumDate = date;
+  self.yearSelector.minimumDate = date;
+  [self.collectionView reloadData];
 }
 
 - (void)setSelectedDate:(NSDate *)selectedDate {
@@ -486,7 +494,6 @@
       [_collectionView indexPathsForSelectedItems].lastObject;
   [self reloadData:selectedPath];
 }
-
 #pragma mark - Private
 
 - (void)scrollToDate:(NSDate *)date {
@@ -497,7 +504,8 @@
 }
 
 - (NSDate *)dateForIndexPath:(NSIndexPath *)indexPath {
-  NSDate *currentMonth = [self.minimumDate mdDateByAddingMonths:indexPath.section];
+  NSDate *currentMonth =
+      [self.minimumDate mdDateByAddingMonths:indexPath.section];
   NSDate *firstDayOfMonth = [NSDateHelper mdDateWithYear:currentMonth.mdYear
                                                    month:currentMonth.mdMonth
                                                      day:1];
@@ -527,7 +535,8 @@
 }
 
 - (BOOL)shouldSelectDate:(NSDate *)date {
-  BOOL result = (date.timeIntervalSince1970 >= self.minimumDate.timeIntervalSince1970);
+  BOOL result =
+      (date.timeIntervalSince1970 >= self.minimumDate.timeIntervalSince1970);
   return result;
 }
 
@@ -549,6 +558,7 @@
 }
 
 #pragma MDCalendarDateHeaderDelegate
+
 - (void)didSelectCalendar {
   self.collectionView.hidden = NO;
   self.yearSelector.hidden = YES;
@@ -562,6 +572,7 @@
 }
 
 #pragma MDCalendarYearSelectorDelegate
+
 - (void)calendarYearDidSelected:(NSInteger)year {
   if (!_selectedDate)
     _selectedDate = _currentDate;
@@ -578,6 +589,12 @@
   [self didSelectCalendar];
   if (_dateHeader) {
     [_dateHeader showCalendar];
+  }
+}
+
+- (void)dealloc {
+  if (!_hadRemoveObserver) {
+    [_collectionView removeObserver:self forKeyPath:@"contentSize" context:nil];
   }
 }
 
