@@ -51,6 +51,7 @@
 }
 
 #pragma mark setters
+
 - (void)setTintColor:(UIColor *)tintColor {
   [super setTintColor:tintColor];
 
@@ -104,6 +105,7 @@
 }
 
 #pragma mark private methods
+
 - (void)layoutSubviews {
   [super layoutSubviews];
   [placeholderLabel
@@ -220,6 +222,7 @@
       [self scrollToCaret];
     } else {
       self.scrollEnabled = NO;
+
       _holder.textViewHeightConstraint.constant = visibleHeight;
     }
   }
@@ -231,4 +234,7 @@
   [self setContentOffset:bottomOffset animated:NO];
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end
