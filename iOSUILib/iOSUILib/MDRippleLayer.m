@@ -129,13 +129,15 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
   if (anim == [self animationForKey:@"opacityAnim"]) {
     self.opacity = 0;
-  } else if (_userIsHolding) {
-    _effectIsRunning = false;
-    if (self.delegate) {
-      [self.delegate mdLayer:self didFinishEffect:anim.duration];
+  } else if (flag) {
+    if (_userIsHolding) {
+      _effectIsRunning = false;
+      if (self.delegate) {
+        [self.delegate mdLayer:self didFinishEffect:anim.duration];
+      }
+    } else {
+      [self clearEffects];
     }
-  } else {
-    [self clearEffects];
   }
 }
 
