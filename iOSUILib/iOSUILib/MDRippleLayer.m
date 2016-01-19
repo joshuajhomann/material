@@ -127,15 +127,15 @@
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-  if (flag) {
-    if (_userIsHolding) {
-      _effectIsRunning = false;
-      if (self.delegate) {
-        [self.delegate mdLayer:self didFinishEffect:anim.duration];
-      }
-    } else {
-      [self clearEffects];
+  if (anim == [self animationForKey:@"opacityAnim"]) {
+    self.opacity = 0;
+  } else if (_userIsHolding) {
+    _effectIsRunning = false;
+    if (self.delegate) {
+      [self.delegate mdLayer:self didFinishEffect:anim.duration];
     }
+  } else {
+    [self clearEffects];
   }
 }
 
@@ -294,6 +294,10 @@
   _rippleLayer.speed = 1;
 
   if (_enableRipple) {
+    [_rippleLayer removeAllAnimations];
+    [_backgroundLayer removeAllAnimations];
+    [self removeAllAnimations];
+
     CABasicAnimation *opacityAnim =
         [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnim.fromValue = @(1.0f);
@@ -303,11 +307,9 @@
         [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     opacityAnim.removedOnCompletion = false;
     opacityAnim.fillMode = kCAFillModeForwards;
+    opacityAnim.delegate = self;
 
-    [_rippleLayer removeAllAnimations];
-    [_backgroundLayer removeAllAnimations];
-    [_rippleLayer addAnimation:opacityAnim forKey:@"opacityAnim"];
-    [_backgroundLayer addAnimation:opacityAnim forKey:@"opacityAnim"];
+    [self addAnimation:opacityAnim forKey:@"opacityAnim"];
   }
 
   if (_enableElevation) {
@@ -338,6 +340,8 @@
 }
 
 - (void)startRippleEffect:(CGPoint)touchLocation {
+  [self removeAllAnimations];
+  self.opacity = 1;
   CGFloat time = (_rippleLayer.bounds.size.width) / _effectSpeed;
   [_rippleLayer removeAllAnimations];
   [_backgroundLayer removeAllAnimations];
