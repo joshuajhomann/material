@@ -1004,6 +1004,7 @@
   [super layoutSubviews];
   [_placeHolder layoutSubviews];
   [self calculateLabelFrame];
+  [self updateMaxTextViewSize];
 }
 
 - (void)calculateLabelFrame {
