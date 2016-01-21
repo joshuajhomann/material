@@ -20,14 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "MDBubbleLabel.h"
+#import "MDConstants.h"
 #import "MDSlider.h"
 #import "MDSliderIcon.h"
-#import "UIColorHelper.h"
-#import "MDConstants.h"
-#import "MDSliderTickMarksView.h"
-#import "UIViewHelper.h"
-#import "MDBubbleLabel.h"
 #import "MDSliderThumbView.h"
+#import "MDSliderTickMarksView.h"
+#import "UIColorHelper.h"
+#import "UIViewHelper.h"
 
 #define kMDTrackPadding 16
 #define kMDTrackPaddingWithLabel 24
@@ -44,6 +44,7 @@
   CAShapeLayer *trackOverlayLayer;
   MDSliderIcon *leftIcon;
   MDSliderIcon *rightIcon;
+  UIView *placeHolder;
 
   NSDictionary *viewsDictionary;
   NSDictionary *metricsDictionary;
@@ -88,6 +89,7 @@
   tickMarksView = [[MDSliderTickMarksView alloc] init];
   leftIcon = [[MDSliderIcon alloc] init];
   rightIcon = [[MDSliderIcon alloc] init];
+  placeHolder = [[UIView alloc] init];
 
   UIBezierPath *path = [self createTrackLayerPath];
   trackOverlayLayer = [CAShapeLayer layer];
@@ -95,12 +97,13 @@
   trackOverlayLayer.fillRule = kCAFillRuleEvenOdd;
   trackView.layer.mask = trackOverlayLayer;
 
-  [self addSubview:trackView];
-  [self addSubview:leftIcon];
-  [self addSubview:rightIcon];
+  [placeHolder addSubview:trackView];
+  [placeHolder addSubview:leftIcon];
+  [placeHolder addSubview:rightIcon];
   [trackView addSubview:intensityView];
   [trackView addSubview:tickMarksView];
-  [self addSubview:thumbView];
+  [placeHolder addSubview:thumbView];
+  [self addSubview:placeHolder];
 
   [self createInitialContraints];
 
@@ -121,38 +124,40 @@
   [trackView addObserver:self forKeyPath:@"bounds" options:0 context:nil];
 }
 - (void)createInitialContraints {
-  self.translatesAutoresizingMaskIntoConstraints = NO;
   trackView.translatesAutoresizingMaskIntoConstraints = NO;
   intensityView.translatesAutoresizingMaskIntoConstraints = NO;
   tickMarksView.translatesAutoresizingMaskIntoConstraints = NO;
   thumbView.translatesAutoresizingMaskIntoConstraints = NO;
   leftIcon.translatesAutoresizingMaskIntoConstraints = NO;
   rightIcon.translatesAutoresizingMaskIntoConstraints = NO;
+  placeHolder.translatesAutoresizingMaskIntoConstraints = NO;
   viewsDictionary = NSDictionaryOfVariableBindings(
-      trackView, intensityView, tickMarksView, thumbView, leftIcon, rightIcon);
+      trackView, intensityView, tickMarksView, thumbView, leftIcon, rightIcon,
+      placeHolder);
 
   metricsDictionary = @{
     @"trackPadding" : @kMDTrackPadding,
     @"labeledPadding" : @kMDTrackPaddingWithLabel,
     @"trackWidth" : @kMDTrackWidth
   };
+
   [UIViewHelper
       addConstraintsWithVisualFormat:
           @"V:|-(>=trackPadding)-[trackView(trackWidth)]-(>=trackPadding)-|"
                              options:0
                              metrics:metricsDictionary
                                views:viewsDictionary
-                              toView:self];
+                              toView:placeHolder];
   [UIViewHelper addConstraintsWithVisualFormat:@"V:|-(>=0)-[leftIcon]-(>=0)-|"
                                        options:0
                                        metrics:nil
                                          views:viewsDictionary
-                                        toView:self];
+                                        toView:placeHolder];
   [UIViewHelper addConstraintsWithVisualFormat:@"V:|-(>=0)-[rightIcon]-(>=0)-|"
                                        options:0
                                        metrics:nil
                                          views:viewsDictionary
-                                        toView:self];
+                                        toView:placeHolder];
 
   [UIViewHelper addConstraintWithItem:leftIcon
                             attribute:NSLayoutAttributeCenterY
@@ -161,7 +166,7 @@
                             attribute:NSLayoutAttributeCenterY
                            multiplier:1
                              constant:0
-                               toView:self];
+                               toView:placeHolder];
 
   [UIViewHelper addConstraintWithItem:rightIcon
                             attribute:NSLayoutAttributeCenterY
@@ -170,7 +175,7 @@
                             attribute:NSLayoutAttributeCenterY
                            multiplier:1
                              constant:0
-                               toView:self];
+                               toView:placeHolder];
 
   //   align intensityView with trackView
   [UIViewHelper addConstraintWithItem:intensityView
@@ -214,30 +219,30 @@
                                        options:0
                                        metrics:nil
                                          views:viewsDictionary
-                                        toView:self];
+                                        toView:trackView];
   [UIViewHelper addConstraintsWithVisualFormat:@"H:|-0-[tickMarksView]-0-|"
                                        options:0
                                        metrics:nil
                                          views:viewsDictionary
-                                        toView:self];
+                                        toView:trackView];
 
   // thumbview's constraints
   [UIViewHelper addConstraintWithItem:thumbView
                             attribute:NSLayoutAttributeTop
                             relatedBy:NSLayoutRelationEqual
-                               toItem:self
+                               toItem:placeHolder
                             attribute:NSLayoutAttributeTop
                            multiplier:1
                              constant:0
-                               toView:self];
-  [UIViewHelper addConstraintWithItem:thumbView.node
+                               toView:placeHolder];
+  [UIViewHelper addConstraintWithItem:trackView
                             attribute:NSLayoutAttributeCenterY
                             relatedBy:NSLayoutRelationEqual
-                               toItem:trackView
+                               toItem:thumbView.node
                             attribute:NSLayoutAttributeCenterY
                            multiplier:1
                              constant:0
-                               toView:self];
+                               toView:placeHolder];
   thumbCenterXConstraint =
       [UIViewHelper addConstraintWithItem:thumbView
                                 attribute:NSLayoutAttributeCenterX
@@ -246,7 +251,19 @@
                                 attribute:NSLayoutAttributeLeft
                                multiplier:1
                                  constant:0
-                                   toView:self];
+                                   toView:placeHolder];
+
+  [UIViewHelper addConstraintsWithVisualFormat:@"V:|-0-[placeHolder]-0@250-|"
+                                       options:0
+                                       metrics:nil
+                                         views:viewsDictionary
+                                        toView:self];
+  [UIViewHelper addConstraintsWithVisualFormat:@"H:|-(0)-[placeHolder]-(0)-|"
+                                       options:0
+                                       metrics:nil
+                                         views:viewsDictionary
+                                        toView:self];
+  [self layoutIfNeeded];
 }
 
 - (void)layoutContent {
@@ -264,7 +281,7 @@
                                                        options:0
                                                        metrics:metricsDictionary
                                                          views:viewsDictionary
-                                                        toView:self]];
+                                                        toView:placeHolder]];
   } else {
     leftIcon.hidden = YES;
     [constraintsMutableArray
@@ -274,7 +291,7 @@
                                        options:0
                                        metrics:metricsDictionary
                                          views:viewsDictionary
-                                        toView:self]];
+                                        toView:placeHolder]];
   }
 
   if (rightIcon.hasContent) {
@@ -286,7 +303,7 @@
                                                  options:0
                                                  metrics:metricsDictionary
                                                    views:viewsDictionary
-                                                  toView:self]];
+                                                  toView:placeHolder]];
 
   } else {
     rightIcon.hidden = YES;
@@ -297,7 +314,7 @@
                                        options:0
                                        metrics:metricsDictionary
                                          views:viewsDictionary
-                                        toView:self]];
+                                        toView:placeHolder]];
   }
 
   constraintsArray = constraintsMutableArray;
@@ -523,6 +540,7 @@
   _precision = precision;
   thumbView.bubble.precision = precision;
 }
+
 #pragma mark touch events
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   CGPoint point = [touches.allObjects[0] locationInView:trackView];
@@ -541,6 +559,14 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [thumbView lostFocused:nil];
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+  CGPoint locationInView = [placeHolder convertPoint:point fromView:self];
+  if (CGRectContainsPoint(placeHolder.bounds, locationInView))
+    return YES;
+  else
+    return NO;
 }
 
 - (void)calculateValueFromTouchPoint:(CGPoint)touchedPoint {

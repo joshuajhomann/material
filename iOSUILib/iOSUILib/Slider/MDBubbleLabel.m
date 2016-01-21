@@ -21,11 +21,11 @@
 // THE SOFTWARE.
 
 #import "MDBubbleLabel.h"
-#import "UIViewHelper.h"
-#import "UIFontHelper.h"
-#import "UIColorHelper.h"
 #import "MDConstants.h"
 #import "MDMathHelper.h"
+#import "UIColorHelper.h"
+#import "UIFontHelper.h"
+#import "UIViewHelper.h"
 #import <math.h>
 
 #define kMDTextSize 12
@@ -62,6 +62,7 @@
   [self updateMark];
   [self addObserver:self forKeyPath:@"bounds" options:0 context:nil];
 }
+
 - (void)setupConstraints {
   self.translatesAutoresizingMaskIntoConstraints = NO;
   label.translatesAutoresizingMaskIntoConstraints = NO;
@@ -132,7 +133,6 @@
 
   labelWithConstraint.constant =
       [maxValue sizeWithAttributes:attributes].width + 1;
-  [self layoutIfNeeded];
 }
 
 #pragma mark public methods
