@@ -20,9 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "MDSlider.h"
 #import "MDSliderThumbView.h"
 #import "UIViewHelper.h"
-#import "MDSlider.h"
 
 #define kMDThumbBorderWidth 2
 
@@ -152,6 +152,26 @@
     [self hideBubble];
     [self showNode];
   }
+}
+
+- (void)enabled:(void (^)(BOOL finished))completion {
+  _state = MDSliderThumbStateNormal;
+  [UIView animateWithDuration:kMDAnimationDuration
+                   animations:^{
+                     nodeWidthConstraint.constant = kMDThumbRadius * 2;
+                     [self layoutIfNeeded];
+                   }
+                   completion:completion];
+
+  CABasicAnimation *animation =
+      [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+  animation.timingFunction =
+      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+  animation.fromValue = [NSNumber numberWithFloat:_node.layer.cornerRadius];
+  animation.toValue = [NSNumber numberWithInt:kMDThumbRadius];
+  animation.duration = kMDAnimationDuration;
+  _node.layer.cornerRadius = kMDThumbRadius;
+  [_node.layer addAnimation:animation forKey:@"cornerRadius"];
 }
 
 - (void)disabled:(void (^)(BOOL finished))completion {

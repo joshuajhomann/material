@@ -20,18 +20,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
 #import "MDBubbleLabel.h"
 #import "MDSlider.h"
+#import <UIKit/UIKit.h>
 
 #define kMDThumbRadius 8
 #define kMDThumbDisabledRadius 6
 #define kMDThumbForcusedRadius 12
 
 typedef NS_ENUM(NSInteger, MDSliderThumbState) {
-    MDSliderThumbStateNormal,
-    MDSliderThumbStateFocused,
-    MDSliderThumbStateDisabled
+  MDSliderThumbStateNormal,
+  MDSliderThumbStateFocused,
+  MDSliderThumbStateDisabled
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -46,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithMDSlider:(MDSlider *)MDSlider;
 - (void)focused:(nullable void (^)(BOOL finished))completion;
 - (void)lostFocused:(nullable void (^)(BOOL finished))completion;
+- (void)enabled:(nullable void (^)(BOOL finished))completion;
 - (void)disabled:(nullable void (^)(BOOL finished))completion;
 - (void)changeThumbShape:(BOOL)animated withValue:(CGFloat)rawValue;
 @end
