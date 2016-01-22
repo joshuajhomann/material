@@ -1176,8 +1176,10 @@
 }
 
 - (void)updateMaxTextViewSize {
-  _textView.maxHeight =
-      self.frame.size.height - [self requiredHeightWithNumberOfTextLines:0];
+  if (_restrictInBounds) {
+    _textView.maxHeight =
+        self.frame.size.height - [self requiredHeightWithNumberOfTextLines:0];
+  }
 }
 
 - (float)requiredHeightWithNumberOfTextLines:(NSUInteger)numberOfLines {
