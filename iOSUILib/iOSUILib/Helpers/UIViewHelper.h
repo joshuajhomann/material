@@ -34,12 +34,22 @@ NS_ASSUME_NONNULL_BEGIN
                                    multiplier:(CGFloat)multiplier
                                      constant:(CGFloat)c
                                        toView:(UIView *)view;
++ (NSLayoutConstraint *)addConstraintWithItem:(id)view1
+                                    attribute:(NSLayoutAttribute)attr1
+                                    relatedBy:(NSLayoutRelation)relation
+                                       toItem:(nullable id)view2
+                                    attribute:(NSLayoutAttribute)attr2
+                                   multiplier:(CGFloat)multiplier
+                                     constant:(CGFloat)c
+                                     priority:(UILayoutPriority)priority
+                                       toView:(UIView *)view;
 
-+ (NSArray <NSLayoutConstraint*>*)addConstraintsWithVisualFormat:(NSString *)format
-                                    options:(NSLayoutFormatOptions)opts
-                                    metrics:(nullable NSDictionary <NSString *,id>*)metrics
-                                      views:(NSDictionary <NSString *,id>*)views
-                                     toView:(UIView *)view;
++ (NSArray<NSLayoutConstraint *> *)
+addConstraintsWithVisualFormat:(NSString *)format
+                       options:(NSLayoutFormatOptions)opts
+                       metrics:(nullable NSDictionary<NSString *, id> *)metrics
+                         views:(NSDictionary<NSString *, id> *)views
+                        toView:(UIView *)view;
 
 @end
 
