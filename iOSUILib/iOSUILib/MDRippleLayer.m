@@ -255,7 +255,11 @@
   if (_enableElevation) {
     [_superLayer removeAnimationForKey:kMDShadowAnimationKey];
     _superLayer.shadowRadius = _restingElevation / 4;
+#if !TARGET_INTERFACE_BUILDER
     _superLayer.shadowOffset = CGSizeMake(0, _restingElevation / 4 + 0.5);
+#else
+    _superLayer.shadowOffset = CGSizeMake(0, -(_restingElevation / 4 + 0.5));
+#endif
   }
 }
 
@@ -283,7 +287,11 @@
     _superLayer.shadowOpacity = 0.5;
     _superLayer.shadowRadius = elevation / 4;
     _superLayer.shadowColor = [[UIColor blackColor] CGColor];
+#if !TARGET_INTERFACE_BUILDER
     _superLayer.shadowOffset = CGSizeMake(0, _restingElevation / 4 + 0.5);
+#else
+    _superLayer.shadowOffset = CGSizeMake(0, -(_restingElevation / 4 + 0.5));
+#endif
   } else {
     _superLayer.shadowRadius = 0;
     _superLayer.shadowColor = [[UIColor clearColor] CGColor];
