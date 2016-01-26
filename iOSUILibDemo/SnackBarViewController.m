@@ -22,7 +22,7 @@
 
 #import "iOSUILib/MDSnackbar.h"
 #import "SnackBarViewController.h"
-#import "iOSUILib/UIColorHelper.h"
+#import "UIColorHelper.h"
 
 @interface SnackBarViewController ()
 
