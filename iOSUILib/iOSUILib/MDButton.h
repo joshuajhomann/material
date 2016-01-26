@@ -25,38 +25,38 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, MDButtonType){
-    MDButtonTypeRaised,
-    MDButtonTypeFlat,
-    MDButtonTypeFloatingAction,
-    MDButtonTypeFloatingActionRotation
+typedef NS_ENUM(NSInteger, MDButtonType) {
+  MDButtonTypeRaised,
+  MDButtonTypeFlat,
+  MDButtonTypeFloatingAction,
+  MDButtonTypeFloatingActionRotation
 };
 NS_ASSUME_NONNULL_BEGIN
-IB_DESIGNABLE
 @protocol MDButtonDelegate <NSObject>
 
 @optional
--(void)rotationStarted:(id)sender;
--(void)rotationCompleted:(id)sender;
+- (void)rotationStarted:(id)sender;
+- (void)rotationCompleted:(id)sender;
 @end
 
-
+IB_DESIGNABLE
 @interface MDButton : UIButton
 @property(null_unspecified, nonatomic) IBInspectable UIColor *rippleColor;
 @property(nonatomic) IBInspectable NSInteger type;
 @property(nonatomic, getter=isEnabled) IBInspectable BOOL enabled;
-@property(nonatomic) IBInspectable UIImage * imageNormal;
-@property(nonatomic) IBInspectable UIImage * imageRotated;
+@property(nonatomic) IBInspectable UIImage *imageNormal;
+@property(nonatomic) IBInspectable UIImage *imageRotated;
 @property(nonatomic) IBInspectable CGFloat imageSize;
 
 @property(nonatomic) MDButtonType mdButtonType;
-@property(nonatomic, getter=isRotated) BOOL rotated;;
+@property(nonatomic, getter=isRotated) BOOL rotated;
+;
 
 @property(nonatomic, weak) id<MDButtonDelegate> mdButtonDelegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
-               type:(MDButtonType)buttonType
-        rippleColor:(nullable UIColor *)rippleColor;
+                         type:(MDButtonType)buttonType
+                  rippleColor:(nullable UIColor *)rippleColor;
 
 @end
 NS_ASSUME_NONNULL_END
