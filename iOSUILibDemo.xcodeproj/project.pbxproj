@@ -73,8 +73,6 @@
 		889FB5D11C55DBA6006D110B /* MDSuggestPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FB5A41C55DBA6006D110B /* MDSuggestPopupView.m */; };
 		889FB5D21C55DBA6006D110B /* MDSuggestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FB5A61C55DBA6006D110B /* MDSuggestTableView.m */; };
 		889FB5D31C55DBA6006D110B /* UIView+MDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FB5A91C55DBA6006D110B /* UIView+MDExtension.m */; };
-		88A3C14E1C2AA19B007B8272 /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A3C14C1C2AA19B007B8272 /* DebugViewController.m */; };
-		88A3C14F1C2AA19B007B8272 /* DebugViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A3C14D1C2AA19B007B8272 /* DebugViewController.xib */; };
 		88B698031B25A46600BF3B19 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B698011B25A46600BF3B19 /* SliderViewController.m */; };
 		88B698041B25A46600BF3B19 /* SliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B698021B25A46600BF3B19 /* SliderViewController.xib */; };
 		88D8DE641A7A16E700D083A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8DE631A7A16E700D083A1 /* main.m */; };
@@ -231,9 +229,6 @@
 		889FB5A61C55DBA6006D110B /* MDSuggestTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSuggestTableView.m; sourceTree = "<group>"; };
 		889FB5A81C55DBA6006D110B /* UIView+MDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDExtension.h"; sourceTree = "<group>"; };
 		889FB5A91C55DBA6006D110B /* UIView+MDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDExtension.m"; sourceTree = "<group>"; };
-		88A3C14B1C2AA19B007B8272 /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
-		88A3C14C1C2AA19B007B8272 /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
-		88A3C14D1C2AA19B007B8272 /* DebugViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugViewController.xib; sourceTree = "<group>"; };
 		88B698001B25A46600BF3B19 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
 		88B698011B25A46600BF3B19 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
 		88B698021B25A46600BF3B19 /* SliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderViewController.xib; sourceTree = "<group>"; };
@@ -549,9 +544,6 @@
 				886D81BB1B1D644E0009217E /* ToastViewController.h */,
 				886D81BC1B1D644E0009217E /* ToastViewController.m */,
 				886D81BD1B1D644E0009217E /* ToastViewController.xib */,
-				88A3C14B1C2AA19B007B8272 /* DebugViewController.h */,
-				88A3C14C1C2AA19B007B8272 /* DebugViewController.m */,
-				88A3C14D1C2AA19B007B8272 /* DebugViewController.xib */,
 			);
 			path = iOSUILibDemo;
 			sourceTree = "<group>";
@@ -660,7 +652,6 @@
 				8885FE981AA5B5D700AD4F04 /* Roboto-Bold.ttf in Resources */,
 				920F125D1ACCFD9700599E01 /* DatePickerDialogController.xib in Resources */,
 				884BEB761B16B5A8008B60B0 /* SnackBarViewController.xib in Resources */,
-				88A3C14F1C2AA19B007B8272 /* DebugViewController.xib in Resources */,
 				8807F0F91B09C6A4001C0D0B /* TabContentViewController.xib in Resources */,
 				8885FE9A1AA5B5D700AD4F04 /* Roboto-Italic.ttf in Resources */,
 				8885FE951AA5B5D700AD4F04 /* LICENSE.txt in Resources */,
@@ -722,7 +713,6 @@
 				928026C31AD37C9500DFF739 /* CollectionViewController.m in Sources */,
 				889FB5BA1C55DBA6006D110B /* UIColorHelper.m in Sources */,
 				889FB5C91C55DBA6006D110B /* MDTouchGestureRecognizer.m in Sources */,
-				88A3C14E1C2AA19B007B8272 /* DebugViewController.m in Sources */,
 				889FB5B01C55DBA6006D110B /* MDCalendarYearSelector.m in Sources */,
 				925190721AC90BD600D4FC0A /* TableViewController.m in Sources */,
 				88D8DE6A1A7A16E700D083A1 /* MasterViewController.m in Sources */,
