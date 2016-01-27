@@ -23,7 +23,7 @@
 #import "TableViewController.h"
 #import "MockData.h"
 #import "iOSUILib/MDTableViewCell.h"
-#import "iOSUILib/UIFontHelper.h"
+#import "UIFontHelper.h"
 
 @interface TableViewController () <UITableViewDataSource, UITableViewDelegate>
 
