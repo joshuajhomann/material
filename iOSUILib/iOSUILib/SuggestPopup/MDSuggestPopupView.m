@@ -19,11 +19,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+#import "MDDeviceHelper.h"
 #import "MDSuggestPopupView.h"
 #import "MDSuggestTableView.h"
-#import "MDTextField.h"
 #import "MDTableViewCell.h"
-#import "MDDeviceHelper.h"
+#import "MDTextField.h"
 
 @implementation MDSuggestPopupView {
   MDSuggestTableView *tableView;
@@ -69,23 +69,25 @@ NSString *AutoCompleteRowIdentifier = @"AutoCompleteRowIdentifier";
 
 - (void)addSelfToMainWindow {
   UIView *rootView = [MDDeviceHelper getMainView];
-  self.translatesAutoresizingMaskIntoConstraints = false;
-  [self setFrame:rootView.bounds];
-  [rootView addSubview:self];
-  NSDictionary *viewsDictionary = @{ @"view" : self };
+  if (rootView != nil) {
+    self.translatesAutoresizingMaskIntoConstraints = false;
+    [self setFrame:rootView.bounds];
+    [rootView addSubview:self];
+    NSDictionary *viewsDictionary = @{ @"view" : self };
 
-  NSArray *hConstraints =
-      [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|"
-                                              options:0
-                                              metrics:nil
-                                                views:viewsDictionary];
-  NSArray *vConstraints =
-      [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|"
-                                              options:0
-                                              metrics:nil
-                                                views:viewsDictionary];
-  [rootView addConstraints:hConstraints];
-  [rootView addConstraints:vConstraints];
+    NSArray *hConstraints =
+        [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|"
+                                                options:0
+                                                metrics:nil
+                                                  views:viewsDictionary];
+    NSArray *vConstraints =
+        [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|"
+                                                options:0
+                                                metrics:nil
+                                                  views:viewsDictionary];
+    [rootView addConstraints:hConstraints];
+    [rootView addConstraints:vConstraints];
+  }
 }
 
 - (UIView *)getSuperView:(UIView *)view {
