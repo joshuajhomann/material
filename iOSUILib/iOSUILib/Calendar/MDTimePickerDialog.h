@@ -27,12 +27,16 @@
 
 @class MDTimePickerDialog;
 
-typedef NS_ENUM(NSInteger, MDClockMode) { MDClockMode12H, MDClockMode24H };
+typedef NS_ENUM(NSInteger, MDCalendarTimeMode) {
+  MDCalendarTimeMode12H,
+  MDCalendarTimeMode24H
+};
 
 typedef NS_ENUM(NSInteger, MDTimePickerTheme) {
-  MDTimePickerThemeLight = 1,
-  MDTimePickerThemeDark,
+    MDTimePickerThemeLight = 1,
+    MDTimePickerThemeDark,
 };
+
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol MDTimePickerDialogDelegate <NSObject>
@@ -54,21 +58,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIColor *selectionCenterColor;
 @property(nonatomic, strong) UIColor *backgroundPopupColor;
 @property(nonatomic, strong) UIColor *backgroundClockColor;
-@property(nonatomic) MDClockMode clockMode;
 
 @property(nonatomic, assign) MDTimePickerTheme theme;
 
 @property(nonatomic, weak) id<MDTimePickerDialogDelegate> delegate;
 
-- (instancetype)initWithHour:(NSInteger)hour minute:(NSInteger)minute;
-- (instancetype)initWithClockMode:(MDClockMode)clockMode;
-
-- (instancetype)initWithHour:(NSInteger)hour
-                      minute:(NSInteger)minute
-                   clockMode:(MDClockMode)clockMode;
+- (instancetype)initWithHour:(NSInteger)hour andWithMinute:(NSInteger)minute;
 - (void)show;
-- (void)setTitleOk:(nonnull NSString *)okTitle
-    andTitleCancel:(nonnull NSString *)cancelTitle;
+- (void)setTitleOk: (nonnull NSString *) okTitle andTitleCancel: (nonnull NSString *) cancelTitle;
 @end
 NS_ASSUME_NONNULL_END
 #endif
