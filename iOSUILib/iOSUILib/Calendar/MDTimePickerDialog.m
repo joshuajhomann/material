@@ -41,6 +41,7 @@
 #define kMainCircleRadius 15
 #define kSmallCircleRadius 2
 #define kHourItemSize 30
+#define kClockPadding 5
 
 @interface MDTimePickerDialog ()
 
@@ -73,18 +74,16 @@
 
 @property(nonatomic) NSString *okTitle;
 @property(nonatomic) NSString *cancelTitle;
+
+@property(nonatomic) NSInteger currentHour;
+@property(nonatomic) NSInteger currentMinute;
 @end
 
 @implementation MDTimePickerDialog {
   UIView *popupHolder;
 
-  NSInteger currentHour;
-  NSInteger currentMinute;
-
   NSInteger preHourTag;
   NSInteger preMinuteTag;
-
-  NSString *currentTimeModeStr;
 
   CAShapeLayer *selectorCircleLayer;
   UIBezierPath *selectorCirclePath;
@@ -110,8 +109,8 @@
 - (instancetype)initWithHour:(NSInteger)hour minute:(NSInteger)minute {
   self = [super init];
   if (self) {
-    currentHour = (int)hour % 24;
-    currentMinute = (int)minute % 60;
+    self.currentHour = (int)hour % 24;
+    self.currentMinute = (int)minute % 60;
     [self initialize];
   }
 
@@ -132,8 +131,8 @@
                       minute:(NSInteger)minute
                    clockMode:(MDClockMode)clockMode {
   if (self = [super init]) {
-    currentHour = (int)hour % 24;
-    currentMinute = (int)minute % 60;
+    self.currentHour = (int)hour % 24;
+    self.currentMinute = (int)minute % 60;
     [self initialize];
     self.clockMode = clockMode;
   }
@@ -177,24 +176,13 @@
 
 - (void)initDefaultTime {
   NSDate *currentDate = [NSDate date];
-  currentHour = (int)currentDate.mdHour;
-  currentMinute = (int)currentDate.mdMinute;
+  _currentHour = (int)currentDate.mdHour;
+  _currentMinute = (int)currentDate.mdMinute;
 
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
   [formatter setLocale:[NSLocale currentLocale]];
   [formatter setDateStyle:NSDateFormatterNoStyle];
   [formatter setTimeStyle:NSDateFormatterShortStyle];
-  NSString *dateString = [formatter stringFromDate:currentDate];
-  NSRange amRange = [dateString rangeOfString:[formatter AMSymbol]];
-  NSRange pmRange = [dateString rangeOfString:[formatter PMSymbol]];
-
-  if (amRange.location != NSNotFound) {
-    currentTimeModeStr = @"AM";
-  } else if (pmRange.location != NSNotFound) {
-    currentTimeModeStr = @"PM";
-  } else {
-    currentTimeModeStr = nil;
-  }
 }
 
 - (void)initDefaultValues {
@@ -206,36 +194,22 @@
 }
 
 - (void)setClockMode:(MDClockMode)clockMode {
-  if (clockMode == MDClockMode24H) {
-    if (_clockMode == MDClockMode12H &&
-        [currentTimeModeStr isEqualToString:@"PM"])
-      currentHour += 12;
-    currentHour %= 24;
-    if (currentHour == 0)
-      currentHour = 24;
-  } else {
-    if (_clockMode == MDClockMode24H) {
-      if (currentHour < 12) {
-        currentTimeModeStr = @"AM";
-      } else {
-        currentTimeModeStr = @"PM";
-      }
-    } else {
-      if (currentTimeModeStr == nil) {
-        if (currentHour < 12) {
-          currentTimeModeStr = @"AM";
-        } else {
-          currentTimeModeStr = @"PM";
-        }
-      }
-    }
-    currentHour %= 12;
-    if (currentHour == 0)
-      currentHour = 12;
+  if (_clockMode != clockMode) {
+    _clockMode = clockMode;
+    [self updateContent];
   }
+}
 
-  _clockMode = clockMode;
-  [self updateContent];
+- (void)setCurrentHour:(NSInteger)currentHour {
+  if (_currentHour != currentHour) {
+    _currentHour = currentHour;
+  }
+}
+
+- (void)setCurrentMinute:(NSInteger)currentMinute {
+  if (_currentMinute != currentMinute) {
+    _currentMinute = currentMinute;
+  }
 }
 
 - (void)setTheme:(MDTimePickerTheme)theme {
@@ -329,7 +303,7 @@
   UIView *rootView = [MDDeviceHelper getMainView];
   [self setFrame:rootView.bounds];
 
-  popupHolder = [[UIView alloc] init]; // TODO: use initWithFrame:
+  popupHolder = [[UIView alloc] init];
   popupHolder.layer.shadowOpacity = 0.5;
   popupHolder.layer.shadowRadius = 8;
   popupHolder.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -423,34 +397,6 @@
   [self setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:0.5]];
 }
 
-- (void)updateContent {
-  [self updateClockPanel];
-  [self updateClockHand];
-  [self updateClockModePanel];
-  [self updateHeaderView];
-}
-
-- (void)updateClockModePanel {
-  if (_clockMode == MDClockMode12H) {
-    [popupHolder.layer insertSublayer:_backgroundTimeMode
-                              atIndex:(int)[popupHolder.layer.sublayers count]];
-
-    [popupHolder addSubview:_labelTimeModeAM];
-    [popupHolder addSubview:_labelTimeModePM];
-
-    if ([currentTimeModeStr isEqualToString:@"AM"]) {
-      [self changeTimeModeAM];
-    } else if ([currentTimeModeStr isEqualToString:@"PM"]) {
-      [self changeTimeModePM];
-    }
-
-  } else {
-    [_labelTimeModeAM removeFromSuperview];
-    [_labelTimeModePM removeFromSuperview];
-    [_backgroundTimeMode removeFromSuperlayer];
-  }
-}
-
 - (void)initHeaderView {
   _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, popupHolder.mdWidth,
                                                      kCalendarHeaderHeight)];
@@ -517,18 +463,18 @@
     [bt setTag:110 + 24 + i];
 
     [bt setBackgroundColor:[UIColor clearColor]];
-    [bt.layer setCornerRadius:bt.frame.size.width / 2];
+    [bt.layer setCornerRadius:bt.mdWidth / 2];
 
     [bt.titleLabel setFont:[UIFontHelper robotoFontOfSize:15.0]];
     [bt setTitleColor:_titleColor forState:UIControlStateNormal];
 
     double stepAngle = 2 * M_PI / 12;
     x_point = _clockHour.mdWidth / 2 +
-              sin(stepAngle * i) *
-                  (kCalendarClockHeight / 2 - kHourItemSize * 2.0 / 3.0);
+              sin(stepAngle * i) * (kCalendarClockHeight / 2 -
+                                    kHourItemSize / 2 - kClockPadding);
     y_point = _clockHour.mdHeight / 2 -
-              cos(stepAngle * i) *
-                  (kCalendarClockHeight / 2 - kHourItemSize * 2.0 / 3.0);
+              cos(stepAngle * i) * (kCalendarClockHeight / 2 -
+                                    kHourItemSize / 2 - kClockPadding);
 
     if (i * 5 == 60) {
       [bt setTitle:@"00" forState:UIControlStateNormal];
@@ -557,91 +503,6 @@
   visiblePanel = _clockHour.tag;
 }
 
-- (void)updateClockPanel {
-  double stepAngle = 2 * M_PI / 12;
-  float x_point;
-  float y_point;
-
-  NSArray *viewsToRemove = [_clockHour subviews];
-  for (UIView *v in viewsToRemove) {
-    [v removeFromSuperview];
-  }
-
-  if (_clockMode == MDClockMode12H) {
-    for (int i = 1; i < 13; i++) {
-      UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
-      [bt setFrame:CGRectMake(0, 0, kHourItemSize, kHourItemSize)];
-      [bt setTag:(110 + i)];
-
-      [bt setBackgroundColor:[UIColor clearColor]];
-      [bt.layer setCornerRadius:bt.frame.size.width / 2];
-
-      [bt.titleLabel setFont:[UIFontHelper robotoFontOfSize:15.0]];
-      x_point = _clockHour.mdWidth / 2 +
-                sin(stepAngle * i) *
-                    (kCalendarClockHeight / 2 - kHourItemSize * 2.0 / 3.0);
-      y_point = _clockHour.mdHeight / 2 -
-                cos(stepAngle * i) *
-                    (kCalendarClockHeight / 2 - kHourItemSize * 2.0 / 3.0);
-
-      [bt setTitle:[NSString stringWithFormat:@"%d", i]
-          forState:UIControlStateNormal];
-      [bt setTitleColor:_titleColor forState:UIControlStateNormal];
-      [_clockHour addSubview:bt];
-
-      [bt setCenter:CGPointMake(x_point, y_point)];
-      [bt addTarget:self
-                    action:@selector(timeClicked:)
-          forControlEvents:UIControlEventTouchUpInside];
-      [bt.titleLabel setTextAlignment:NSTextAlignmentCenter];
-      [self bringSubviewToFront:bt];
-    }
-  } else {
-    for (int i = 1; i < 25; i++) {
-      UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
-      [bt setFrame:CGRectMake(0, 0, kHourItemSize, kHourItemSize)];
-      [bt setTag:(110 + i % 24)];
-
-      [bt setBackgroundColor:[UIColor clearColor]];
-      [bt.layer setCornerRadius:bt.frame.size.width / 2];
-
-      if (i < 13) {
-        [bt.titleLabel setFont:[UIFontHelper robotoFontOfSize:15.0]];
-
-        x_point =
-            _clockHour.mdWidth / 2 +
-            sin(stepAngle * i) * (kCalendarClockHeight / 2 - kHourItemSize -
-                                  kHourItemSize * 2.0 / 3.0);
-        y_point =
-            _clockHour.mdHeight / 2 -
-            cos(stepAngle * i) * (kCalendarClockHeight / 2 - kHourItemSize -
-                                  kHourItemSize * 2.0 / 3.0);
-      } else {
-        [bt.titleLabel setFont:[UIFontHelper robotoFontOfSize:11.0]];
-
-        x_point = _clockHour.mdWidth / 2 +
-                  sin(stepAngle * i) *
-                      (kCalendarClockHeight / 2 - kHourItemSize * 2.0 / 3.0);
-        y_point = _clockHour.mdHeight / 2 -
-                  cos(stepAngle * i) *
-                      (kCalendarClockHeight / 2 - kHourItemSize * 2.0 / 3.0);
-      }
-
-      [bt setTitle:[NSString stringWithFormat:@"%d", (i % 24)]
-          forState:UIControlStateNormal];
-      [bt setTitleColor:_titleColor forState:UIControlStateNormal];
-      [_clockHour addSubview:bt];
-
-      [bt setCenter:CGPointMake(x_point, y_point)];
-      [bt addTarget:self
-                    action:@selector(timeClicked:)
-          forControlEvents:UIControlEventTouchUpInside];
-      [bt.titleLabel setTextAlignment:NSTextAlignmentCenter];
-      [self bringSubviewToFront:bt];
-    }
-  }
-}
-
 - (void)initClockHandView {
   _clockHandView = [[UIView alloc]
       initWithFrame:CGRectMake(
@@ -653,7 +514,6 @@
   [_clockHandView setBackgroundColor:[UIColor clearColor]];
   [popupHolder addSubview:_clockHandView];
 
-  float padding = 4;
   // Shape layer mask - visible index
   _maskVisibleIndexLayer = [CAShapeLayer layer];
   [_maskVisibleIndexLayer setFillRule:kCAFillRuleEvenOdd];
@@ -672,13 +532,12 @@
                                   clockwise:NO];
 
   [centerCirclePath moveToPoint:centerCirclePoint];
-  CGPoint line_Point =
-      CGPointMake(centerCirclePoint.x,
-                  centerCirclePoint.y - (kCalendarClockHeight) / 2 +
-                      (kMainCircleRadius * 2 + kSmallCircleRadius) + padding);
+  CGPoint line_Point = CGPointMake(
+      centerCirclePoint.x, centerCirclePoint.y - (kCalendarClockHeight) / 2 +
+                               kMainCircleRadius * 2 + kClockPadding);
   [centerCirclePath addLineToPoint:line_Point];
   selectorCirclePath = [UIBezierPath
-      bezierPathWithArcCenter:CGPointMake(line_Point.x - 1.0f,
+      bezierPathWithArcCenter:CGPointMake(line_Point.x,
                                           line_Point.y - (kMainCircleRadius))
                        radius:kMainCircleRadius
                    startAngle:0
@@ -686,7 +545,7 @@
                     clockwise:NO];
 
   selectorMinCirclePath = [UIBezierPath
-      bezierPathWithArcCenter:CGPointMake(line_Point.x - 1.0f,
+      bezierPathWithArcCenter:CGPointMake(line_Point.x,
                                           line_Point.y + (kMainCircleRadius))
                        radius:kMainCircleRadius
                    startAngle:0
@@ -731,13 +590,13 @@
                                   clockwise:NO];
 
   [centerInvisibleIndexCirclePath moveToPoint:centerInvisibleIndexCirclePoint];
-  line_Point = CGPointMake(
-      centerInvisibleIndexCirclePoint.x,
-      centerInvisibleIndexCirclePoint.y - (kCalendarClockHeight) / 2 +
-          (kMainCircleRadius + kSmallCircleRadius) + padding);
+  line_Point = CGPointMake(centerInvisibleIndexCirclePoint.x,
+                           centerInvisibleIndexCirclePoint.y -
+                               (kCalendarClockHeight) / 2 + kMainCircleRadius +
+                               kClockPadding);
   [centerInvisibleIndexCirclePath addLineToPoint:line_Point];
   UIBezierPath *selectorInvisibleIndexCirclePath = [UIBezierPath
-      bezierPathWithArcCenter:CGPointMake(line_Point.x - 1.0f, line_Point.y)
+      bezierPathWithArcCenter:CGPointMake(line_Point.x, line_Point.y)
                        radius:kMainCircleRadius
                    startAngle:0
                      endAngle:DEGREES_TO_RADIANS(360)
@@ -751,7 +610,7 @@
 
   // small circle layer in selector layer
   UIBezierPath *smallSelectorInvisibleIndexCirclePath = [UIBezierPath
-      bezierPathWithArcCenter:CGPointMake(line_Point.x - 1.0f, line_Point.y)
+      bezierPathWithArcCenter:CGPointMake(line_Point.x, line_Point.y)
                        radius:kSmallCircleRadius * 2
                    startAngle:0
                      endAngle:DEGREES_TO_RADIANS(360)
@@ -776,21 +635,131 @@
 
   [_clockHandView.layer addSublayer:_maskInvisibleIndexLayer];
 
-  _clockHandView.transform =
-      CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(currentHour * 30));
+  _clockHandView.transform = CGAffineTransformMakeRotation(
+      DEGREES_TO_RADIANS((_currentHour % 12) * 30));
   _clockHandView.backgroundColor = [UIColor clearColor];
   _clockHandView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
-- (void)updateHeaderView {
-  if (currentMinute == 60)
-    currentMinute = 0;
+- (void)updateContent {
+  [self updateClockHourPanel];
+  [self updateClockHand];
+  [self updateClockModePanel];
+  [self updateHeaderView];
+}
 
+- (void)updateClockModePanel {
+  if (_clockMode == MDClockMode12H) {
+    [popupHolder.layer insertSublayer:_backgroundTimeMode
+                              atIndex:(int)[popupHolder.layer.sublayers count]];
+
+    [popupHolder addSubview:_labelTimeModeAM];
+    [popupHolder addSubview:_labelTimeModePM];
+
+    if (_currentHour < 12) {
+      [self changeTimeModeAM];
+    } else {
+      [self changeTimeModePM];
+    }
+
+  } else {
+    [_labelTimeModeAM removeFromSuperview];
+    [_labelTimeModePM removeFromSuperview];
+    [_backgroundTimeMode removeFromSuperlayer];
+  }
+}
+
+- (void)updateClockHourPanel {
+  double stepAngle = 2 * M_PI / 12;
+  float x_point;
+  float y_point;
+
+  NSArray *viewsToRemove = [_clockHour subviews];
+  for (UIView *v in viewsToRemove) {
+    [v removeFromSuperview];
+  }
+
+  if (_clockMode == MDClockMode12H) {
+    for (int i = 1; i < 13; i++) {
+      UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
+      [bt setFrame:CGRectMake(0, 0, kHourItemSize, kHourItemSize)];
+      [bt setTag:(110 + i)];
+
+      [bt setBackgroundColor:[UIColor clearColor]];
+      [bt.layer setCornerRadius:bt.mdWidth / 2];
+
+      [bt.titleLabel setFont:[UIFontHelper robotoFontOfSize:15.0]];
+      x_point = _clockHour.mdWidth / 2 +
+                sin(stepAngle * i) * (kCalendarClockHeight / 2 -
+                                      kHourItemSize / 2 - kClockPadding);
+      y_point = _clockHour.mdHeight / 2 -
+                cos(stepAngle * i) * (kCalendarClockHeight / 2 -
+                                      kHourItemSize / 2 - kClockPadding);
+
+      [bt setTitle:[NSString stringWithFormat:@"%d", i]
+          forState:UIControlStateNormal];
+      [bt setTitleColor:_titleColor forState:UIControlStateNormal];
+      [_clockHour addSubview:bt];
+
+      [bt setCenter:CGPointMake(x_point, y_point)];
+      [bt addTarget:self
+                    action:@selector(timeClicked:)
+          forControlEvents:UIControlEventTouchUpInside];
+      [bt.titleLabel setTextAlignment:NSTextAlignmentCenter];
+      [self bringSubviewToFront:bt];
+    }
+  } else {
+    for (int i = 1; i < 25; i++) {
+      UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
+      [bt setFrame:CGRectMake(0, 0, kHourItemSize, kHourItemSize)];
+      [bt setTag:(110 + i % 24)];
+
+      [bt setBackgroundColor:[UIColor clearColor]];
+      [bt.layer setCornerRadius:bt.mdWidth / 2];
+
+      if (i < 13) {
+        [bt.titleLabel setFont:[UIFontHelper robotoFontOfSize:15.0]];
+
+        x_point =
+            _clockHour.mdWidth / 2 +
+            sin(stepAngle * i) * (kCalendarClockHeight / 2 - kHourItemSize -
+                                  kHourItemSize / 2 - kClockPadding);
+        y_point =
+            _clockHour.mdHeight / 2 -
+            cos(stepAngle * i) * (kCalendarClockHeight / 2 - kHourItemSize -
+                                  kHourItemSize / 2 - kClockPadding);
+      } else {
+        [bt.titleLabel setFont:[UIFontHelper robotoFontOfSize:11.0]];
+
+        x_point = _clockHour.mdWidth / 2 +
+                  sin(stepAngle * i) * (kCalendarClockHeight / 2 -
+                                        kHourItemSize / 2 - kClockPadding);
+        y_point = _clockHour.mdHeight / 2 -
+                  cos(stepAngle * i) * (kCalendarClockHeight / 2 -
+                                        kHourItemSize / 2 - kClockPadding);
+      }
+
+      [bt setTitle:[NSString stringWithFormat:@"%d", (i % 24)]
+          forState:UIControlStateNormal];
+      [bt setTitleColor:_titleColor forState:UIControlStateNormal];
+      [_clockHour addSubview:bt];
+
+      [bt setCenter:CGPointMake(x_point, y_point)];
+      [bt addTarget:self
+                    action:@selector(timeClicked:)
+          forControlEvents:UIControlEventTouchUpInside];
+      [bt.titleLabel setTextAlignment:NSTextAlignmentCenter];
+      [self bringSubviewToFront:bt];
+    }
+  }
+}
+
+- (void)updateHeaderView {
   if (_clockMode == MDClockMode12H) {
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]
         initWithString:[NSString stringWithFormat:@":%02d %@",
-                                                  (int)currentMinute,
-                                                  currentTimeModeStr]];
+                                                  (int)_currentMinute,
+                                                  [self timePeriods]]];
 
     [attString addAttribute:NSForegroundColorAttributeName
                       value:[UIColor whiteColor]
@@ -806,11 +775,16 @@
     _headerLabelMinute.attributedText = attString;
   } else {
     _headerLabelMinute.text =
-        [NSString stringWithFormat:@":%02d", (int)currentMinute];
+        [NSString stringWithFormat:@":%02d", (int)_currentMinute];
   }
 
-  _headerLabelHour.text =
-      [NSString stringWithFormat:@"%02d", (int)currentHour % 24];
+  int hour = (int)_currentHour;
+  if (_clockMode == MDClockMode12H) {
+    hour %= 12;
+    if (hour == 0)
+      hour = 12;
+  }
+  _headerLabelHour.text = [NSString stringWithFormat:@"%02d", hour];
 
   if (visiblePanel == _clockHour.tag) {
     [_headerLabelHour
@@ -836,13 +810,13 @@
   }
 
   [((UIButton *)[_clockHour
-      viewWithTag:(currentHour + 110)]) setTitleColor:_titleSelectedColor
-                                             forState:UIControlStateNormal];
+      viewWithTag:(hour + 110)]) setTitleColor:_titleSelectedColor
+                                      forState:UIControlStateNormal];
 
-  preHourTag = currentHour + 110;
-  if (currentMinute % 5 == 0) {
-    int tag = (int)(currentMinute == 0 ? (12 + 110 + 24)
-                                       : currentMinute / 5 + 110 + 24);
+  preHourTag = hour + 110;
+  if (_currentMinute % 5 == 0) {
+    int tag = (int)(_currentMinute == 0 ? (12 + 110 + 24)
+                                        : _currentMinute / 5 + 110 + 24);
     preMinuteTag = tag;
     [((UIButton *)[_clockMinute
         viewWithTag:tag]) setTitleColor:_titleSelectedColor
@@ -853,7 +827,7 @@
 - (void)updateClockHand {
   if (visiblePanel == _clockHour.tag) {
     if ((_clockMode == MDClockMode24H) &&
-        (0 < currentHour & currentHour <= 12)) {
+        (0 < _currentHour & _currentHour <= 12)) {
       selectorCircleLayer.path = selectorMinCirclePath.CGPath;
     } else {
       selectorCircleLayer.path = selectorCirclePath.CGPath;
@@ -861,7 +835,7 @@
     _maskInvisibleIndexLayer.hidden = YES;
     _maskVisibleIndexLayer.hidden = NO;
   } else {
-    if (currentMinute % 5 == 0) {
+    if (_currentMinute % 5 == 0) {
       _maskInvisibleIndexLayer.hidden = YES;
       _maskVisibleIndexLayer.hidden = NO;
     } else {
@@ -989,7 +963,7 @@
                       _clockHour.center.y + _clockHour.mdHeight / 2 + 15);
     }
 
-    if ([currentTimeModeStr isEqualToString:@"AM"]) {
+    if (_currentHour < 12) {
       _backgroundTimeMode.frame = _labelTimeModeAM.frame;
     } else {
       _backgroundTimeMode.frame = _labelTimeModePM.frame;
@@ -1045,48 +1019,27 @@
     CGPoint translation = [recognizer locationInView:currentView];
 
     if (_clockHour.hidden) {
-      float minutesFloat = (atan2f((translation.x - currentView.mdHeight / 2),
-                                   (translation.y - currentView.mdWidth / 2)) *
-                                -(180 / M_PI) +
-                            180) /
-                           6;
-      float roundedUp = lroundf(minutesFloat);
-      if (roundedUp == 60)
-        roundedUp = 00;
-      currentMinute = roundedUp;
-      float angle = ((int)(currentMinute)) * 6;
-      _clockHandView.transform =
-          CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(angle));
-    } else {
-      NSUInteger hours = (atan2f((translation.x - currentView.mdHeight / 2),
-                                 (translation.y - currentView.mdWidth / 2)) *
-                              -(180 / M_PI) +
-                          180) /
-                         30;
-      if (hours == 0)
-        hours = 12;
-      float r = sqrtf(powf(currentView.mdWidth / 2 - translation.x, 2) +
-                      powf(currentView.mdHeight / 2 - translation.y, 2));
-
-      if (_clockMode == MDClockMode24H) {
-        if (r > kCalendarClockHeight / 2 - kHourItemSize) {
-          selectorCircleLayer.path = selectorCirclePath.CGPath;
-          hours += 12;
-          if (hours == 24)
-            hours = 0;
-        } else {
-          selectorCircleLayer.path = selectorMinCirclePath.CGPath;
-        }
+      NSInteger minute = [self minuteFromTouchPoint:translation];
+      if (_currentMinute != minute) {
+        self.currentMinute = minute;
+        float angle = ((int)(_currentMinute)) * 6;
+        _clockHandView.transform =
+            CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(angle));
+        [self updateClockHand];
+        [self updateHeaderView];
       }
-
-      currentHour = (int)hours;
-      float angle = (currentHour % 12) * 30;
-      _clockHandView.transform =
-          CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(angle));
+    } else {
+      NSInteger hour = [self hourFromTouchPoint:translation];
+      if (_currentHour != hour) {
+        self.currentHour = hour;
+        float angle = (_currentHour % 12) * 30;
+        _clockHandView.transform =
+            CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(angle));
+        [self updateClockHand];
+        [self updateHeaderView];
+      }
     }
 
-    [self updateClockHand];
-    [self updateHeaderView];
     if (recognizer.state == UIGestureRecognizerStateEnded) {
       if (_clockMinute.hidden)
         [self showClockMinute];
@@ -1105,46 +1058,25 @@
 
   float angle;
   if (_clockHour.hidden) {
-    float minutesFloat =
-        (atan2f((translation.x - currentView.frame.size.height / 2),
-                (translation.y - currentView.frame.size.width / 2)) *
-             -(180 / M_PI) +
-         180) /
-        6;
-    float roundedUp = lroundf(minutesFloat);
-    if (roundedUp == 60)
-      roundedUp = 00;
-    currentMinute = roundedUp;
-    angle = ((int)(currentMinute)) * 6;
-  } else {
-    NSUInteger hours =
-        (atan2f((translation.x - currentView.frame.size.height / 2),
-                (translation.y - currentView.frame.size.width / 2)) *
-             -(180 / M_PI) +
-         180) /
-        30;
-    if (hours == 0)
-      hours = 12;
-    float r = sqrtf(powf(currentView.mdWidth / 2 - translation.x, 2) +
-                    powf(currentView.mdHeight / 2 - translation.y, 2));
-
-    if (_clockMode == MDClockMode24H) {
-      if (r > kCalendarClockHeight / 2 - kHourItemSize) {
-        selectorCircleLayer.path = selectorCirclePath.CGPath;
-        hours += 12;
-        if (hours == 24)
-          hours = 0;
-      } else {
-        selectorCircleLayer.path = selectorMinCirclePath.CGPath;
-      }
+    float minute = [self minuteFromTouchPoint:translation];
+    if (_currentMinute != minute) {
+      self.currentMinute = minute;
+      angle = ((int)(_currentMinute)) * 6;
+      [self rotateHand:_clockHandView rotationDegree:angle];
+      [self updateClockHand];
+      [self updateHeaderView];
     }
+  } else {
+    NSUInteger hours = [self hourFromTouchPoint:translation];
 
-    currentHour = (int)hours;
-    angle = (currentHour % 12) * 30;
+    if (_currentHour != hours) {
+      self.currentHour = (int)hours;
+      angle = (_currentHour % 12) * 30;
+      [self rotateHand:_clockHandView rotationDegree:angle];
+      [self updateClockHand];
+      [self updateHeaderView];
+    }
   }
-  [self rotateHand:_clockHandView rotationDegree:angle];
-  [self updateClockHand];
-  [self updateHeaderView];
 }
 
 - (void)timeClicked:(id)sender {
@@ -1153,15 +1085,9 @@
   int tag = (int)selectedButton.tag;
   CGFloat degreesToRotate;
   if (!_clockHour.hidden) {
-    currentHour = tag - 110;
-    degreesToRotate = (currentHour % 12) * 30;
-    if (_clockMode == MDClockMode24H) {
-      if (currentHour > 12) {
-        selectorCircleLayer.path = selectorCirclePath.CGPath;
-      } else {
-        selectorCircleLayer.path = selectorMinCirclePath.CGPath;
-      }
-    }
+    self.currentHour = tag - 110;
+    degreesToRotate = (_currentHour % 12) * 30;
+    [self updateClockHand];
 
     if (preHourTag != -1) {
       [((UIButton *)[_clockHour
@@ -1171,8 +1097,8 @@
 
     preHourTag = tag;
   } else {
-    currentMinute = (tag - 110 - 24) * 5;
-    degreesToRotate = (currentMinute / 5) * 30;
+    self.currentMinute = (tag - 110 - 24) * 5;
+    degreesToRotate = (_currentMinute / 5) * 30;
     if (preMinuteTag != -1) {
       [((UIButton *)[_clockMinute
           viewWithTag:preMinuteTag]) setTitleColor:_titleColor
@@ -1187,6 +1113,55 @@
   [self updateHeaderView];
 }
 
+- (NSInteger)minuteFromTouchPoint:(CGPoint)touchPoint {
+  float minutesFloat = (atan2f((touchPoint.x - _clockMinute.mdHeight / 2),
+                               (touchPoint.y - _clockMinute.mdWidth / 2)) *
+                            -(180 / M_PI) +
+                        180) /
+                       6;
+  float roundedUp = lroundf(minutesFloat);
+  if (roundedUp == 60)
+    roundedUp = 00;
+  return roundedUp;
+}
+
+- (NSInteger)hourFromTouchPoint:(CGPoint)touchPoint {
+  NSUInteger hour = (atan2f((touchPoint.x - _clockHour.mdHeight / 2),
+                            (touchPoint.y - _clockHour.mdWidth / 2)) *
+                         -(180 / M_PI) +
+                     180 + 15) /
+                    30;
+
+  float r = sqrtf(powf(_clockHour.mdWidth / 2 - touchPoint.x, 2) +
+                  powf(_clockHour.mdHeight / 2 - touchPoint.y, 2));
+
+  if (_clockMode == MDClockMode24H) {
+    if (hour == 0)
+      hour = 12;
+    if (r > _clockHour.mdHeight / 2 - kHourItemSize - kClockPadding) {
+      hour += 12;
+      if (hour == 24)
+        hour = 0;
+    }
+  } else {
+    hour %= 12;
+    if (_currentHour >= 12) {
+      hour += 12;
+      if (hour == 24)
+        hour = 0;
+    }
+  }
+
+  return hour;
+}
+
+- (NSString *)timePeriods {
+  if (_currentHour < 12)
+    return @"AM";
+  else
+    return @"PM";
+}
+
 #pragma mark Delegate & Actions
 
 - (void)setTitleOk:(nonnull NSString *)okTitle
@@ -1199,15 +1174,15 @@
 }
 
 - (void)changeTimeModeAM {
-  currentTimeModeStr = @"AM";
+  if (_currentHour >= 12)
+    _currentHour -= 12;
   _backgroundTimeMode.frame = _labelTimeModeAM.frame;
-  [self updateClockHand];
   [self updateHeaderView];
 }
 - (void)changeTimeModePM {
-  currentTimeModeStr = @"PM";
+  if (_currentHour < 12)
+    _currentHour += 12;
   _backgroundTimeMode.frame = _labelTimeModePM.frame;
-  [self updateClockHand];
   [self updateHeaderView];
 }
 
@@ -1229,7 +1204,7 @@
           [self updateClockHand];
           [self updateHeaderView];
           _clockHandView.transform = CGAffineTransformMakeRotation(
-              DEGREES_TO_RADIANS(currentHour * 30));
+              DEGREES_TO_RADIANS(_currentHour * 30));
         }
         completion:^(BOOL finished) {
           [UIView animateWithDuration:0.3 / 2
@@ -1265,13 +1240,7 @@
                            }];
         }];
 
-    if (_clockMode == MDClockMode24H) {
-      if (currentHour > 12) {
-        selectorCircleLayer.path = selectorCirclePath.CGPath;
-      } else {
-        selectorCircleLayer.path = selectorMinCirclePath.CGPath;
-      }
-    }
+    [self updateClockHand];
   }
 }
 
@@ -1294,7 +1263,7 @@
           [self updateClockHand];
           [self updateHeaderView];
           _clockHandView.transform = CGAffineTransformMakeRotation(
-              DEGREES_TO_RADIANS(currentMinute / 5 * 30));
+              DEGREES_TO_RADIANS(_currentMinute / 5 * 30));
         }
         completion:^(BOOL finished) {
           [UIView animateWithDuration:0.3 / 2
@@ -1356,22 +1325,11 @@
       [_delegate respondsToSelector:@selector(timePickerDialog:
                                                  didSelectHour:
                                                      andMinute:)]) {
-    if (_clockMode == MDClockMode24H) {
-      [_delegate timePickerDialog:self
-                    didSelectHour:currentHour
-                        andMinute:currentMinute];
-    } else {
-      if ([currentTimeModeStr isEqualToString:@"AM"]) {
-        [_delegate timePickerDialog:self
-                      didSelectHour:currentHour
-                          andMinute:currentMinute];
-      } else {
-        [_delegate timePickerDialog:self
-                      didSelectHour:(currentHour + 12) % 24
-                          andMinute:currentMinute];
-      }
-    }
+    [_delegate timePickerDialog:self
+                  didSelectHour:_currentHour
+                      andMinute:_currentMinute];
   }
+
   [self removeFromSuperview];
 }
 
