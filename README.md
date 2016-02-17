@@ -87,7 +87,7 @@ Component List
 # Get Started
 You can either use these controls in your app via 2 ways:
 <p>1. Add source code of those controls directly</p>
-<p>   Just download all source code files from this github repository and add those files directly to your XCode project.</p>
+<p>   Just download all source code files from this github repository and add those files directly to your Xcode project.</p>
 
 <p>2. Use via cocoapods</p>
 <p>   Add following line to Podfile:</p>
