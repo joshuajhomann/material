@@ -117,7 +117,7 @@
   TabContentViewController *controller =
       [[TabContentViewController alloc] init];
   dispatch_async(dispatch_get_main_queue(), ^{
-    [controller setContent:[NSString stringWithFormat:@"Tab %u", index + 1]];
+    [controller setContent:[NSString stringWithFormat:@"Tab %d", (int)index + 1]];
   });
   return controller;
 }
