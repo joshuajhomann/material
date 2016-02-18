@@ -113,18 +113,13 @@
 - (NSInteger)mdYearsFrom:(NSDate *)date {
   NSCalendar *calendar = [NSCalendarHelper mdSharedCalendar];
   NSDateComponents *dateComponents = [calendar
-      components:NSCalendarUnitDay | NSCalendarUnitMonth
- | NSCalendarUnitYear
-
+      components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
         fromDate:date];
   [dateComponents setDay:1];
   [dateComponents setMonth:1];
 
   NSDateComponents *myComponents = [calendar
-      components:NSCalendarUnitDay
- | NSCalendarUnitMonth
- | NSCalendarUnitYear
-
+      components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
         fromDate:self];
   [myComponents setDay:1];
   [myComponents setMonth:1];
@@ -140,10 +135,7 @@
 - (NSInteger)mdMonthsFrom:(NSDate *)date {
   NSCalendar *calendar = [NSCalendarHelper mdSharedCalendar];
   NSDateComponents *dateComponents = [calendar
-      components:NSCalendarUnitDay
- | NSCalendarUnitMonth
- | NSCalendarUnitYear
-
+      components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
         fromDate:date];
   [dateComponents setDay:1];
     
