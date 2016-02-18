@@ -566,8 +566,8 @@
 
 - (void) setHorizontalPaddingPerItem:(CGFloat)padding;
 {
+  _horizontalPaddingPerItem = padding;
   segmentedControl.horizontalPadding = padding;
-  //[segmentedControl resizeItems];
 }
 
 #pragma mark Setters

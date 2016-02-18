@@ -104,7 +104,6 @@
   //  tabBarViewController.selectedIndex = 3;
   self.title = @"MDTabBarViewController";
   
-  //tabBarViewController.tabBar.horizontalPaddingPerItem = 0; // FIXME:
 }
 
 - (void)didReceiveMemoryWarning {
