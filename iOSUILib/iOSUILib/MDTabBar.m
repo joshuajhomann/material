@@ -28,9 +28,6 @@
 #import <Foundation/Foundation.h>
 #import "UIFontHelper.h"
 
-//#define kMDContentHorizontalPaddingIPad 24
-//#define kMDContentHorizontalPaddingIPhone 12
-
 #pragma mark - MDTabBar
 
 @interface MDTabBar ()
@@ -232,12 +229,12 @@
   CGFloat maxItemSize = 0;
   CGFloat segmentedControlWidth = 0;
 
+  NSDictionary *attributes = @{NSFontAttributeName : font};
   for (int i = 0; i < self.numberOfSegments; i++) {
     NSString *title = [self titleForSegmentAtIndex:i];
     CGSize itemSize = CGSizeZero;
     if (title) {
-      itemSize = [title sizeWithAttributes:@{NSFontAttributeName : font}];
-
+      itemSize = [title sizeWithAttributes:attributes];
     } else {
       UIImage *image = [self imageForSegmentAtIndex:i];
       CGFloat height = self.bounds.size.height;
