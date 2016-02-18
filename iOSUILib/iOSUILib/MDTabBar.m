@@ -28,8 +28,8 @@
 #import <Foundation/Foundation.h>
 #import "UIFontHelper.h"
 
-#define kMDContentHorizontalPaddingIPad 24
-#define kMDContentHorizontalPaddingIPhone 12
+//#define kMDContentHorizontalPaddingIPad 24
+//#define kMDContentHorizontalPaddingIPhone 12
 
 #pragma mark - MDTabBar
 
@@ -41,6 +41,7 @@
 
 @interface MDSegmentedControl : UISegmentedControl
 
+@property(nonatomic) CGFloat horizontalPadding;
 @property(nonatomic) UIColor *rippleColor;
 @property(nonatomic) UIColor *indicatorColor;
 @property(nonatomic) NSMutableArray<UIView *> *tabs;
@@ -67,6 +68,7 @@
                   action:@selector(selectionChanged:)
         forControlEvents:UIControlEventValueChanged];
     tabBar = bar;
+      
   }
 
   return self;
@@ -243,11 +245,8 @@
       itemSize = CGSizeMake(width, height);
     }
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-      itemSize.width += kMDContentHorizontalPaddingIPad * 2;
-    else
-      itemSize.width += kMDContentHorizontalPaddingIPhone * 2;
-
+    itemSize.width += self.horizontalPadding * 2;
+      
     [self setWidth:itemSize.width forSegmentAtIndex:i];
 
     segmentedControlWidth += (itemSize.width);
@@ -456,6 +455,9 @@
   [scrollView addSubview:segmentedControl];
 
   [self addSubview:scrollView];
+  
+  self.horizontalPaddingPerItem = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 24 : 12;
+  segmentedControl.horizontalPadding = self.horizontalPaddingPerItem;
 
   [self setBackgroundColor:[UIColorHelper colorWithRGBA:kMDColorPrimary500]];
   self.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -563,6 +565,12 @@
 
 - (void)moveIndicatorToFrame:(CGRect)frame withAnimated:(BOOL)animated {
   [segmentedControl moveIndicatorToFrame:frame withAnimated:animated];
+}
+
+- (void) setHorizontalPaddingPerItem:(CGFloat)padding;
+{
+  segmentedControl.horizontalPadding = padding;
+  //[segmentedControl resizeItems];
 }
 
 #pragma mark Setters
