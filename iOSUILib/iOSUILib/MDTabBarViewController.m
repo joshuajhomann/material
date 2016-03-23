@@ -225,7 +225,7 @@
   [pageController
       setViewControllers:@[ viewController ]
                direction:animateDirection
-                animated:NO
+                animated:YES
               completion:^(BOOL finished) {
                 weakSelf->disableDragging = NO;
                 weakSelf->pageController.view.userInteractionEnabled = YES;
