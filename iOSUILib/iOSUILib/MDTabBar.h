@@ -52,6 +52,9 @@ IB_DESIGNABLE
 /// inset from the side (default: 8)
 @property(nonatomic, assign) CGFloat horizontalInset;
 
+/// padding for each item in tab bar (default: iPhone=12, iPad=24) Values <4 can cause labels to be truncated
+@property(nonatomic, assign) CGFloat horizontalPaddingPerItem;
+
 @property(nonatomic) NSUInteger selectedIndex;
 @property(nonatomic, weak) id<MDTabBarDelegate> delegate;
 @property(nonatomic, readonly) NSInteger numberOfItems;

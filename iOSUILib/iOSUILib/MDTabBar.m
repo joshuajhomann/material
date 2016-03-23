@@ -28,9 +28,6 @@
 #import <Foundation/Foundation.h>
 #import "UIFontHelper.h"
 
-#define kMDContentHorizontalPaddingIPad 24
-#define kMDContentHorizontalPaddingIPhone 12
-
 #pragma mark - MDTabBar
 
 @interface MDTabBar ()
@@ -41,6 +38,7 @@
 
 @interface MDSegmentedControl : UISegmentedControl
 
+@property(nonatomic) CGFloat horizontalPadding;
 @property(nonatomic) UIColor *rippleColor;
 @property(nonatomic) UIColor *indicatorColor;
 @property(nonatomic) NSMutableArray<UIView *> *tabs;
@@ -67,6 +65,7 @@
                   action:@selector(selectionChanged:)
         forControlEvents:UIControlEventValueChanged];
     tabBar = bar;
+      
   }
 
   return self;
@@ -230,12 +229,12 @@
   CGFloat maxItemSize = 0;
   CGFloat segmentedControlWidth = 0;
 
+  NSDictionary *attributes = @{NSFontAttributeName : font};
   for (int i = 0; i < self.numberOfSegments; i++) {
     NSString *title = [self titleForSegmentAtIndex:i];
     CGSize itemSize = CGSizeZero;
     if (title) {
-      itemSize = [title sizeWithAttributes:@{NSFontAttributeName : font}];
-
+      itemSize = [title sizeWithAttributes:attributes];
     } else {
       UIImage *image = [self imageForSegmentAtIndex:i];
       CGFloat height = self.bounds.size.height;
@@ -243,11 +242,8 @@
       itemSize = CGSizeMake(width, height);
     }
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-      itemSize.width += kMDContentHorizontalPaddingIPad * 2;
-    else
-      itemSize.width += kMDContentHorizontalPaddingIPhone * 2;
-
+    itemSize.width += self.horizontalPadding * 2;
+      
     [self setWidth:itemSize.width forSegmentAtIndex:i];
 
     segmentedControlWidth += (itemSize.width);
@@ -456,6 +452,9 @@
   [scrollView addSubview:segmentedControl];
 
   [self addSubview:scrollView];
+  
+  self.horizontalPaddingPerItem = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 24 : 12;
+  segmentedControl.horizontalPadding = self.horizontalPaddingPerItem;
 
   [self setBackgroundColor:[UIColorHelper colorWithRGBA:kMDColorPrimary500]];
   self.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -563,6 +562,12 @@
 
 - (void)moveIndicatorToFrame:(CGRect)frame withAnimated:(BOOL)animated {
   [segmentedControl moveIndicatorToFrame:frame withAnimated:animated];
+}
+
+- (void) setHorizontalPaddingPerItem:(CGFloat)padding;
+{
+  _horizontalPaddingPerItem = padding;
+  segmentedControl.horizontalPadding = padding;
 }
 
 #pragma mark Setters
