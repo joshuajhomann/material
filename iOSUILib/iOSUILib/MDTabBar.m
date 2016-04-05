@@ -273,6 +273,10 @@
   // subviews of UISegmentedControl.
   // May break in iOS updates.
 
+  // Sorting may fail if there are segments that haven't been laid out yet
+  // (e.g. two segments w/ origin.x == 0), so we do so now.
+  [self layoutIfNeeded];
+
   NSMutableArray *segments =
       [NSMutableArray arrayWithCapacity:self.numberOfSegments];
   for (UIView *view in self.subviews) {
