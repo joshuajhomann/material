@@ -146,6 +146,8 @@ CAMediaTimingFunction *timmingFunction;
   self.frame =
       CGRectMake(center.x - _cirleDiameter / 2, center.y - _cirleDiameter / 2,
                  _cirleDiameter, _cirleDiameter);
+    _trackLayer.frame = self.bounds;
+    _progressLayer.frame = self.bounds;
 }
 
 - (void)updateContents {
