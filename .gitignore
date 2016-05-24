@@ -31,3 +31,7 @@ DerivedData
 # Carthage/Checkouts
 
 .DS_Store
+Xamarin-Sample/XamarinUILib/bin
+Xamarin-Sample/XamarinUILib/obj
+Xamarin-Sample/XamarinUILibDemo/bin
+Xamarin-Sample/XamarinUILibDemo/obj
