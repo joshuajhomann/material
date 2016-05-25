@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, Click Me!</string>
+	<string name="app_name">MaterialControls.Android</string>
+	<string name="username_hint">Username</string>
+	<string name="password_hint">Password</string>
+	<string name="address_hint">Address</string>
+</resources>

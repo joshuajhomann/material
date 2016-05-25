@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{497C0D2B-67EF-46AA-8B41-EC5165819438}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>XamarinUILib.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>XamarinUILib.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Cirrious.CrossCore.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\Xamarin.iOS10\Cirrious.CrossCore.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Binding.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.CrossCore">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\Xamarin.iOS10\Cirrious.CrossCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross">
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Views\MainView.xib" />
+    <InterfaceDefinition Include="Views\TextFieldView.xib" />
+    <InterfaceDefinition Include="Views\ButtonView.xib" />
+    <InterfaceDefinition Include="Views\ProgressView.xib" />
+    <InterfaceDefinition Include="Views\SwitchView.xib" />
+    <InterfaceDefinition Include="Views\DatePickerView.xib" />
+    <InterfaceDefinition Include="Views\DatePickerDialogView.xib" />
+    <InterfaceDefinition Include="Views\TableViewView.xib" />
+    <InterfaceDefinition Include="Views\CollectionViewView.xib" />
+    <InterfaceDefinition Include="Views\CollectionViewCell.xib" />
+    <InterfaceDefinition Include="Views\TimePickerDialogView.xib" />
+    <InterfaceDefinition Include="Views\TabBarView.xib" />
+    <InterfaceDefinition Include="Views\TabBarViewControllerView.xib" />
+    <InterfaceDefinition Include="Views\TabContentViewController.xib" />
+    <InterfaceDefinition Include="Views\SnackBarView.xib" />
+    <InterfaceDefinition Include="Views\ToastView.xib" />
+    <InterfaceDefinition Include="Views\SliderView.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Setup.cs" />
+    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\MainView.designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextFieldView.cs" />
+    <Compile Include="Views\TextFieldView.designer.cs">
+      <DependentUpon>TextFieldView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonView.cs" />
+    <Compile Include="Views\ButtonView.designer.cs">
+      <DependentUpon>ButtonView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BaseView.cs" />
+    <Compile Include="Controls\ViewExtensions.cs" />
+    <Compile Include="Views\ProgressView.cs" />
+    <Compile Include="Views\ProgressView.designer.cs">
+      <DependentUpon>ProgressView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SwitchView.cs" />
+    <Compile Include="Views\SwitchView.designer.cs">
+      <DependentUpon>SwitchView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DatePickerView.cs" />
+    <Compile Include="Views\DatePickerView.designer.cs">
+      <DependentUpon>DatePickerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DatePickerDialogView.cs" />
+    <Compile Include="Views\DatePickerDialogView.designer.cs">
+      <DependentUpon>DatePickerDialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableViewView.cs" />
+    <Compile Include="Views\TableViewView.designer.cs">
+      <DependentUpon>TableViewView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CollectionViewView.cs" />
+    <Compile Include="Views\CollectionViewView.designer.cs">
+      <DependentUpon>CollectionViewView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimePickerDialogView.cs" />
+    <Compile Include="Views\TimePickerDialogView.designer.cs">
+      <DependentUpon>TimePickerDialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabBarView.cs" />
+    <Compile Include="Views\TabBarView.designer.cs">
+      <DependentUpon>TabBarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabBarViewControllerView.cs" />
+    <Compile Include="Views\TabBarViewControllerView.designer.cs">
+      <DependentUpon>TabBarViewControllerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabContentViewController.cs" />
+    <Compile Include="Views\TabContentViewController.designer.cs">
+      <DependentUpon>TabContentViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SnackBarView.cs" />
+    <Compile Include="Views\SnackBarView.designer.cs">
+      <DependentUpon>SnackBarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToastView.cs" />
+    <Compile Include="Views\ToastView.designer.cs">
+      <DependentUpon>ToastView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SliderView.cs" />
+    <Compile Include="Views\SliderView.designer.cs">
+      <DependentUpon>SliderView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\XamarinUILib\MaterialControls.csproj">
+      <Project>{78781EA1-98F6-4895-9E8A-64A94385FF4A}</Project>
+      <Name>MaterialControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamarinUILib.Core\MaterialControls.Core.csproj">
+      <Project>{E30A8AB0-FE0A-4264-9906-8A21B7FB4F49}</Project>
+      <Name>MaterialControls.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Controls\" />
+  </ItemGroup>
+</Project>

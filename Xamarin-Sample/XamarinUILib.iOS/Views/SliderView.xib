@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SliderView">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ku-9K-Ax4">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
+                    <subviews>
+                        <view tag="1" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yp6-Uf-5Za" customClass="MDSlider">
+                            <rect key="frame" x="8" y="29" width="246" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="34" id="YPY-PT-QJ3"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="step">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="enabledValueLabel" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fT-ov-h02">
+                            <rect key="frame" x="262" y="35" width="50" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Tgk-jA-lMR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l1w-AW-LpK" customClass="MDSlider">
+                            <rect key="frame" x="8" y="100" width="246" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="34" id="HqN-sP-CRB"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="step">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="thumbOnColor">
+                                    <color key="value" red="0.35294117650000001" green="0.61568627450000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="trackOnColor">
+                                    <color key="value" red="0.35294117650000001" green="0.61568627450000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="enabledValueLabel" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocd-mD-msI">
+                            <rect key="frame" x="262" y="106" width="50" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="sxS-XT-wag"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Enabled:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pb-wB-KMS">
+                            <rect key="frame" x="8" y="147" width="74" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="74" id="5ek-mG-nBB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5Y-n2-q3y">
+                            <rect key="frame" x="136" y="142" width="51" height="31"/>
+                        </switch>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continuous Slider:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3i7-rM-PGB">
+                            <rect key="frame" x="8" y="0.0" width="304" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Discrete Slider:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGx-sT-Msn">
+                            <rect key="frame" x="8" y="71" width="304" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="NGx-sT-Msn" secondAttribute="trailing" constant="8" id="7Gf-Ow-h4Z"/>
+                        <constraint firstAttribute="trailing" secondItem="3i7-rM-PGB" secondAttribute="trailing" constant="8" id="Asm-aL-NwS"/>
+                        <constraint firstItem="Yp6-Uf-5Za" firstAttribute="top" secondItem="3i7-rM-PGB" secondAttribute="bottom" constant="8" id="Byp-dp-9sq"/>
+                        <constraint firstItem="3pb-wB-KMS" firstAttribute="leading" secondItem="7ku-9K-Ax4" secondAttribute="leading" constant="8" id="CbA-gc-Jcv"/>
+                        <constraint firstAttribute="bottom" secondItem="x5Y-n2-q3y" secondAttribute="bottom" id="DzZ-YO-ZfG"/>
+                        <constraint firstItem="l1w-AW-LpK" firstAttribute="leading" secondItem="7ku-9K-Ax4" secondAttribute="leading" constant="8" id="IQi-jT-i80"/>
+                        <constraint firstItem="l1w-AW-LpK" firstAttribute="centerY" secondItem="ocd-mD-msI" secondAttribute="centerY" constant="0.5" id="Jtp-tJ-yNS"/>
+                        <constraint firstAttribute="centerX" secondItem="x5Y-n2-q3y" secondAttribute="centerX" id="LfA-jd-Kaf"/>
+                        <constraint firstItem="3i7-rM-PGB" firstAttribute="top" secondItem="7ku-9K-Ax4" secondAttribute="top" id="Ljc-QI-587"/>
+                        <constraint firstItem="x5Y-n2-q3y" firstAttribute="top" secondItem="l1w-AW-LpK" secondAttribute="bottom" constant="8" id="MF0-HX-Tq8"/>
+                        <constraint firstAttribute="trailing" secondItem="4fT-ov-h02" secondAttribute="trailing" constant="8" id="RlB-zf-a4c"/>
+                        <constraint firstItem="l1w-AW-LpK" firstAttribute="top" secondItem="NGx-sT-Msn" secondAttribute="bottom" constant="8" id="S3D-92-vJO"/>
+                        <constraint firstItem="NGx-sT-Msn" firstAttribute="leading" secondItem="7ku-9K-Ax4" secondAttribute="leading" constant="8" id="SP0-cc-n4w"/>
+                        <constraint firstItem="4fT-ov-h02" firstAttribute="leading" secondItem="Yp6-Uf-5Za" secondAttribute="trailing" constant="8" id="Uhg-S6-aBF"/>
+                        <constraint firstAttribute="trailing" secondItem="Yp6-Uf-5Za" secondAttribute="trailing" constant="16" id="W3g-Zc-07M"/>
+                        <constraint firstAttribute="trailing" secondItem="ocd-mD-msI" secondAttribute="trailing" constant="8" id="Wm6-fz-Tlt"/>
+                        <constraint firstItem="NGx-sT-Msn" firstAttribute="top" secondItem="Yp6-Uf-5Za" secondAttribute="bottom" constant="8" id="Y19-XY-cTr"/>
+                        <constraint firstItem="ocd-mD-msI" firstAttribute="leading" secondItem="l1w-AW-LpK" secondAttribute="trailing" constant="8" id="aiR-yi-Pp3"/>
+                        <constraint firstItem="l1w-AW-LpK" firstAttribute="top" secondItem="Yp6-Uf-5Za" secondAttribute="bottom" constant="37" id="eed-sd-yNP"/>
+                        <constraint firstItem="Yp6-Uf-5Za" firstAttribute="centerY" secondItem="4fT-ov-h02" secondAttribute="centerY" constant="0.5" id="lNS-pQ-Iso"/>
+                        <constraint firstItem="Yp6-Uf-5Za" firstAttribute="leading" secondItem="7ku-9K-Ax4" secondAttribute="leading" constant="8" id="nz8-r8-YEL"/>
+                        <constraint firstItem="Yp6-Uf-5Za" firstAttribute="top" secondItem="7ku-9K-Ax4" secondAttribute="top" constant="29" id="r60-HR-bbH"/>
+                        <constraint firstItem="3i7-rM-PGB" firstAttribute="leading" secondItem="7ku-9K-Ax4" secondAttribute="leading" constant="8" id="vKs-qA-WHk"/>
+                        <constraint firstItem="3pb-wB-KMS" firstAttribute="centerY" secondItem="x5Y-n2-q3y" secondAttribute="centerY" id="xPS-lm-cRE"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="r60-HR-bbH"/>
+                            <exclude reference="W3g-Zc-07M"/>
+                            <exclude reference="eed-sd-yNP"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7ku-9K-Ax4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4x6-3T-PlY"/>
+                <constraint firstItem="7ku-9K-Ax4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EX9-tK-PB4"/>
+                <constraint firstAttribute="trailing" secondItem="7ku-9K-Ax4" secondAttribute="trailing" id="Z4Z-41-k0W"/>
+            </constraints>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

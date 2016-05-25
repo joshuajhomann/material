@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="XamarinUILibDemo/MaterialControlsDemo.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="XamarinUILib/Properties/AssemblyInfo.cs">
+    <Files>
+      <File FileName="XamarinUILib/ApiDefinition.cs" Line="1" Column="1" />
+      <File FileName="XamarinUILib.Core/ViewModels/SliderViewModel.cs" Line="1" Column="1" />
+      <File FileName="XamarinUILib.Core/ViewModels/MainViewModel.cs" Line="1" Column="1" />
+      <File FileName="XamarinUILib.iOS/Views/SliderView.cs" Line="1" Column="1" />
+      <File FileName="XamarinUILib.Core/ViewModels/ProgressViewModel.cs" Line="1" Column="1" />
+      <File FileName="XamarinUILib/Properties/AssemblyInfo.cs" Line="16" Column="37" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.MaterialControls.Android AndroidDesignerPreferredDevice="Nexus 4" />
+  <MonoDevelop.Ide.ItemProperties.MaterialControlsDemo PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E6F100E9-79A1-4941-94EB-172D736B25A3" />
+  <MonoDevelop.Ide.ItemProperties.MaterialControls.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E6F100E9-79A1-4941-94EB-172D736B25A3" />
+</Properties>

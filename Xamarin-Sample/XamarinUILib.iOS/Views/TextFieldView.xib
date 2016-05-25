@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7706"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextFieldView">
+            <connections>
+                <outlet property="LimitedLengthTextField" destination="vLT-z4-YJI" id="In1-3X-pim"/>
+                <outlet property="MultiLineTextField" destination="iLY-cD-2Xo" id="PJZ-vb-SoF"/>
+                <outlet property="TextField" destination="GAd-vG-lkd" id="9f2-bu-Cm8"/>
+                <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="GAd-vG-lkd" customClass="MDTextField">
+                    <rect key="frame" x="8" y="8" width="304" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="hint" value="Username"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="vLT-z4-YJI" customClass="MDTextField">
+                    <rect key="frame" x="8" y="66" width="304" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="singleLine" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxCharacterCount">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="floatingLabel" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="label" value="Enter text here"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="iLY-cD-2Xo" customClass="MDTextField">
+                    <rect key="frame" x="8" y="124" width="304" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="hint" value="Password"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="secureTextEntry" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vLT-z4-YJI" firstAttribute="top" secondItem="GAd-vG-lkd" secondAttribute="bottom" constant="8" id="4WM-dS-u0b"/>
+                <constraint firstItem="GAd-vG-lkd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="6WS-vf-Hrc"/>
+                <constraint firstItem="GAd-vG-lkd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="CsQ-Lw-h84"/>
+                <constraint firstItem="iLY-cD-2Xo" firstAttribute="top" secondItem="vLT-z4-YJI" secondAttribute="bottom" constant="8" id="D8n-qv-FHZ"/>
+                <constraint firstAttribute="trailing" secondItem="vLT-z4-YJI" secondAttribute="trailing" constant="8" id="HrQ-Lb-tar"/>
+                <constraint firstAttribute="trailing" secondItem="iLY-cD-2Xo" secondAttribute="trailing" constant="8" id="Oa3-Ud-P3M"/>
+                <constraint firstItem="vLT-z4-YJI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eEo-4P-JI4"/>
+                <constraint firstItem="iLY-cD-2Xo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="gri-Ax-Z56"/>
+                <constraint firstAttribute="trailing" secondItem="GAd-vG-lkd" secondAttribute="trailing" constant="8" id="qpz-uj-nvN"/>
+            </constraints>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

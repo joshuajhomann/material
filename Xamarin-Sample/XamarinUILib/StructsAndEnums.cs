@@ -1,12 +1,45 @@
 ﻿using System;
 using ObjCRuntime;
 
-namespace iOSUILib {
+namespace MaterialControls {
 
 	public enum MDButtonType : uint {
 		Raised,
 		Flat,
 		FloatingAction
+	}
+
+	[Native]
+	public enum MDCalendarMonthSymbolsFormat : long /* nint */ {
+		Short = 0,
+		Full = 1,
+		ShortUppercase = 2,
+		FullUppercase = 3
+	}
+
+	[Native]
+	public enum MDCalendarCellStyle : long /* nint */ {
+		Circle = 0,
+		Rectangle = 1
+	}
+
+	[Native]
+	public enum MDCalendarCellState : long /* nint */ {
+		Normal = 0,
+		Selected = 1,
+		Placeholder = 1 << 1,
+		Disabled = 1 << 2,
+		Today = 1 << 3,
+		Weekend = 1 << 4,
+		WeekTitle = 1 << 5,
+		MonthTitle = 1 << 6,
+		Button = 1 << 7
+	}
+
+	[Native]
+	public enum MDCalendarTheme : long /* nint */ {
+		Light = 1,
+		Dark = 2
 	}
 
 	public enum MDProgressStyle : uint {
@@ -26,6 +59,12 @@ namespace iOSUILib {
 		HIGHLIGHT,
 		ERROR,
 		DISABLED
+	}
+
+	[Native]
+	public enum MDCalendarTimeMode : long /* nint */ {
+		MDCalendarTimeMode12H,
+		MDCalendarTimeMode24H
 	}
 
 	[Native]
