@@ -85,7 +85,7 @@
 
     [self setBackgroundColor:self.calendar.backgroundColor];
 
-    _buttonFont = [UIFontHelper robotoFontWithName:@"roboto-bold" size:15];
+    _buttonFont = [UIFontHelper boldRobotoFontOfSize:15];
 
     MDButton *buttonOk = [[MDButton alloc]
         initWithFrame:CGRectMake(

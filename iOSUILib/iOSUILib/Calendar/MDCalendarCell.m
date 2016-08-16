@@ -48,7 +48,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFontHelper robotoFontOfSize:15];
+    titleLabel.font = [UIFontHelper robotoFontWithName: @"Arial-BoldMT" size:15];
     titleLabel.textColor = [UIColor darkTextColor];
     [self.contentView addSubview:titleLabel];
     self.titleLabel = titleLabel;

@@ -45,8 +45,8 @@
   if (self) {
     _dateFormatter = [[NSDateFormatter alloc] init];
     _textColor = [UIColor whiteColor];
-    _headerColor = [UIColorHelper colorWithRGBA:@"#00796b"]; //	Teal
-    _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#009688"];
+    _headerColor = [UIColorHelper colorWithRGBA:@"#FFFFF"]; //	Teal
+    _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#4888F2"];
 
     _labelDayName = [[UILabel alloc] initWithFrame:CGRectZero];
     _labelDayName.textAlignment = NSTextAlignmentCenter;
@@ -212,8 +212,8 @@
       _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#374248"];
       _headerColor = [UIColorHelper colorWithRGBA:@"#80CBC4"];
     } else if (_theme == MDCalendarThemeLight) {
-      _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#009688"];
-      _headerColor = [UIColorHelper colorWithRGBA:@"#00796B"];
+      _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#4888F2"];
+      _headerColor = [UIColorHelper colorWithRGBA:@"#929292"];
     }
 
     [self setBackgroundColor:_headerBackgroundColor];

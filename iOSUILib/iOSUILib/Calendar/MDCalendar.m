@@ -97,7 +97,7 @@
 - (void)initialize {
   _showPlaceholder = NO;
   _titleFont = [UIFontHelper robotoFontOfSize:15];
-  _titleMonthFont = [UIFontHelper robotoFontWithName:@"roboto-bold" size:15];
+  _titleMonthFont = [UIFontHelper robotoFontWithName:@"Arial-BoldMT" size:15];
   [self initThemeColors];
   _theme = -1;
   _isDoingLayoutSubview = NO;
@@ -170,7 +170,7 @@
       [NSMutableDictionary dictionaryWithCapacity:5];
   backgroundColorsLight[@(MDCalendarCellStateNormal)] = [UIColor clearColor];
   backgroundColorsLight[@(MDCalendarCellStateSelected)] =
-      [UIColorHelper colorWithRGBA:@"#009688"];
+      [UIColorHelper colorWithRGBA:@"#4888F2"];
   backgroundColorsLight[@(MDCalendarCellStateDisabled)] = [UIColor clearColor];
   backgroundColorsLight[@(MDCalendarCellStatePlaceholder)] =
       [UIColor clearColor];
@@ -197,7 +197,7 @@
   titleColorsLight[@(MDCalendarCellStateDisabled)] = [UIColor clearColor];
   titleColorsLight[@(MDCalendarCellStatePlaceholder)] = [UIColor clearColor];
   titleColorsLight[@(MDCalendarCellStateToday)] =
-      [UIColorHelper colorWithRGBA:@"#009284"];
+      [UIColorHelper colorWithRGBA:@"#4E4E4E"];
   titleColorsLight[@(MDCalendarCellStateWeekTitle)] = [UIColor lightGrayColor];
   titleColorsLight[@(MDCalendarCellStateMonthTitle)] = [UIColor blackColor];
   titleColorsLight[@(MDCalendarCellStateButton)] = [UIColor blackColor];

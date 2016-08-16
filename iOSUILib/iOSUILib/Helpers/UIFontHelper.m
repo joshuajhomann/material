@@ -27,7 +27,7 @@
 + (UIFont *)robotoFontWithName:(NSString *)fontName size:(CGFloat)fontSize {
   UIFont *font;
   if (fontName == nil) {
-    font = [UIFont fontWithName:@"roboto-regular" size:fontSize];
+    font = [UIFont fontWithName:@"Arial-MT" size:fontSize];
   } else {
     font = [UIFont fontWithName:fontName size:fontSize];
   }
@@ -40,11 +40,11 @@
 
 + (UIFont *)robotoFontOfSize:(CGFloat)fontSize {
 
-  return [UIFontHelper robotoFontWithName:nil size:fontSize];
+  return [UIFontHelper robotoFontWithName:@"Arial-MT" size:fontSize];
 }
 
 + (UIFont *)boldRobotoFontOfSize:(CGFloat)fontSize {
-  return [UIFontHelper robotoFontWithName:@"roboto-bold" size:fontSize];
+  return [UIFontHelper robotoFontWithName:@"Arial-BoldMT" size:fontSize];
 }
 
 @end

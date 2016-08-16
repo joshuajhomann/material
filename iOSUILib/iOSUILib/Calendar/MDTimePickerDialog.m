@@ -208,7 +208,7 @@
 
 - (void)setCurrentMinute:(NSInteger)currentMinute {
   if (_currentMinute != currentMinute) {
-    _currentMinute = currentMinute;
+    _currentMinute = currentMinute % 60;
   }
 }
 
@@ -222,9 +222,9 @@
 
   if (theme == MDTimePickerThemeLight) {
 
-    _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#009688"];
+    _headerBackgroundColor = [UIColorHelper colorWithRGBA:@"#4888F2"];
     _titleColor = [UIColorHelper colorWithRGBA:@"#2F2F2F"];
-    _selectionColor = [UIColorHelper colorWithRGBA:@"#009688"];
+    _selectionColor = [UIColorHelper colorWithRGBA:@"#4888F2"];
     _selectionCenterColor = [UIColorHelper colorWithRGBA:@"#000302"];
     _backgroundPopupColor = [UIColor whiteColor];
     _backgroundClockColor = [UIColorHelper colorWithRGBA:@"#ECEFF1"];
@@ -256,8 +256,8 @@
 
   [self.buttonCancel setTitleColor:_titleColor forState:UIControlStateNormal];
   [self.buttonOk setTitleColor:_titleColor forState:UIControlStateNormal];
-  _labelTimeModeAM.textColor = _titleColor;
-  _labelTimeModePM.textColor = _titleColor;
+  _labelTimeModeAM.textColor = [UIColorHelper colorWithRGBA:@"#4E4E4E"];
+  _labelTimeModePM.textColor = [UIColorHelper colorWithRGBA:@"#4E4E4E"];
   _backgroundTimeMode.fillColor = _selectionColor.CGColor;
 
   selectorCircleLayer.fillColor = _selectionColor.CGColor;
@@ -316,7 +316,7 @@
       setFrame:CGRectMake(hSpacing, vSpacing, self.mdWidth - 2 * hSpacing,
                           self.mdHeight - 2 * vSpacing)];
 
-  _buttonFont = [UIFontHelper robotoFontWithName:@"roboto-bold" size:15];
+  _buttonFont = [UIFontHelper robotoFontOfSize: 15];
 
   MDButton *buttonOk = [[MDButton alloc]
       initWithFrame:CGRectMake(popupHolder.mdWidth -
@@ -1120,8 +1120,7 @@
                         180) /
                        6;
   float roundedUp = lroundf(minutesFloat);
-  if (roundedUp == 60)
-    roundedUp = 00;
+  roundedUp = ((int)roundedUp)%60;
   return roundedUp;
 }
 

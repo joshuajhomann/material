@@ -94,7 +94,7 @@ MDSnackbarManger *snackbarManagerInstance;
 
   actionButton = [[UIButton alloc] init];
   actionButton.titleLabel.font =
-      [UIFontHelper robotoFontWithName:@"roboto-medium" size:14];
+    [UIFontHelper robotoFontOfSize: 14];
   actionButton.alpha = 0;
   actionButton.enabled = false;
 
